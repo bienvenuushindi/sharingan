@@ -1,6 +1,6 @@
 class RoleRouteConstraint
   def initialize(&block)
-    @block = block || ->(user) { true }
+    @block = block || ->(_user) { true }
   end
 
   def matches?(request)

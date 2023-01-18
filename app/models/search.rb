@@ -2,7 +2,6 @@ class Search < ApplicationRecord
   has_and_belongs_to_many :users
   validates :term, presence: true, uniqueness: true
 
-
   def update_occurrence
     increment!(:occurrence)
   end
