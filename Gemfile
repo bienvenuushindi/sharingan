@@ -2,7 +2,8 @@ source 'https://rubygems.org'
 git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 
 ruby '3.1.2'
-# CanCanCan is an authorization library for Ruby and Ruby on Rails which restricts what resources a given user is allowed to access
+# CanCanCan is an authorization library for Ruby and Ruby on Rails which
+# restricts what resources a given user is allowed to access
 gem 'cancancan'
 # Devise is a flexible authentication solution for Rails based on Warden
 gem 'devise'
