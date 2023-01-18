@@ -14,9 +14,10 @@ class ApplicationController < ActionController::Base
     unauthenticated_root_path
   end
 
-  def after_sign_in_path_for(_resource_or_scope)
+  def after_sign_in_path_for(resource)
+    p resource
     # Add path here
-    if current_user.admin?
+    if resource.role == 'admin'
       admin_root_path
     else
       authenticated_root_path
