@@ -10,10 +10,8 @@ gem 'cancancan'
 # Devise is a flexible authentication solution for Rails based on Warden
 gem 'devise'
 
-
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4'
-
 
 # RuboCop is a Ruby static code analyzer (a.k.a. linter) and code formatter.
 gem 'rubocop', '>= 1.0', '< 2.0'
