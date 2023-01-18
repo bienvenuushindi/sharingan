@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.0].define(version: 2023_01_18_150521) do
+ActiveRecord::Schema[7.0].define(version: 2023_01_18_153844) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -29,11 +29,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_150521) do
     t.integer "occurrence", default: 0, null: false
     t.integer "user_count", default: 0, null: false
     t.integer "article_count", default: 0, null: false
-    t.bigint "user_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.index ["term"], name: "index_searches_on_term"
-    t.index ["user_id"], name: "index_searches_on_user_id"
   end
 
   create_table "searches_users", id: false, force: :cascade do |t|
@@ -56,7 +54,6 @@ ActiveRecord::Schema[7.0].define(version: 2023_01_18_150521) do
   end
 
   add_foreign_key "articles", "users"
-  add_foreign_key "searches", "users"
   add_foreign_key "searches_users", "searches"
   add_foreign_key "searches_users", "users"
 end
