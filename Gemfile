@@ -10,6 +10,8 @@ gem 'cancancan'
 # Devise is a flexible authentication solution for Rails based on Warden
 gem 'devise'
 
+gem 'faker'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4'
 
