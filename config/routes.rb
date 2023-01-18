@@ -1,6 +1,17 @@
 Rails.application.routes.draw do
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
+  devise_for :users
   # Defines the root path route ("/")
-  # root "articles#index"
+  devise_scope :user do
+    authenticated :user do
+      constraints RoleRouteConstraint.new { |user| user.admin? } do
+        root 'home#index', as: :admin_root
+      end
+      root 'searches#new', as: :authenticated_root
+    end
+    unauthenticated do
+      root 'devise/sessions#new', as: :unauthenticated_root
+    end
+  end
+  resources :searches
+  resources :articles
 end
