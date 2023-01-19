@@ -1,26 +1,28 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <title>Sharingan</title>
-    <meta name="viewport" content="width=device-width,initial-scale=1">
-    <%= csrf_meta_tags %>
-    <%= csp_meta_tag %>
-    <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+<head>
+  <title>Sharingan</title>
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <%= csrf_meta_tags %>
+  <%= csp_meta_tag %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-    <%= javascript_importmap_tags %>
-  </head>
+  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= javascript_importmap_tags %>
+</head>
 
-  <body>
-    <main class="container mx-auto mt-28 px-5 flex">
-      <%= render 'partials/nav' %>
-      <% if notice %>
-        <p class="alert alert-success"><%= notice %></p>
-      <% end %>
-      <% if alert %>
-        <p class="alert alert-danger text-success"><%= alert %></p>
-      <% end %>
-      <%= yield %>
-    </main>
-  </body>
+<body>
+<main>
+  <%= render 'partials/nav' %>
+  <% if notice %>
+    <p class="alert alert-success"><%= notice %></p>
+  <% end %>
+  <% if alert %>
+    <p class="alert alert-danger text-success"><%= alert %></p>
+  <% end %>
+  <div class="container grid grid-row align-items-center justify-center h-screen mt-20">
+    <%= yield %>
+  </div>
+</main>
+</body>
 </html>
