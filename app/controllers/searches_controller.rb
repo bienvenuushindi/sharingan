@@ -53,7 +53,25 @@ class SearchesController < ApplicationController
     flash[:notice] = @search.save ? 'Search was successfully created.' : 'Search insertion failed.'
   end
 
+  def select_page
+    if current_user.admin?
+      admin_dashboard
+    else
+      visitor_page
+    end
+  end
+
   private
+
+  def admin_dashboard
+    # load data required for managers
+    redirect_to admin_root_url
+  end
+
+  def visitor_page
+    # load data required for operators
+    redirect_to searches_url
+  end
 
   def search_params
     params[:term].strip
