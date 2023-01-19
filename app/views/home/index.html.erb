@@ -1,3 +1,21 @@
-<div>
-  <h1>Home Page</h1>
-</div>
+<h2>Searches</h2>
+<table class="table-auto">
+  <thead>
+  <tr>
+    <th class="border-b dark:border-slate-600 font-medium py-4 pl-2 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Id</th>
+    <th class="border-b dark:border-slate-600 font-medium py-4 pl-2 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Keyword</th>
+    <th class="border-b dark:border-slate-600 font-medium py-4 pl-2 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Popularity</th>
+    <th class="border-b dark:border-slate-600 font-medium py-4 pl-2 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Search
+      by
+    </th>
+    <th class="border-b dark:border-slate-600 font-medium py-4 pl-2 pt-0 pb-3 text-slate-400 dark:text-slate-200 text-left">Article
+      Visited
+    </th>
+  </tr>
+  </thead>
+  <tbody>
+  <% @searches.each do |search| %>
+    <%= render "home/search", search: %>
+  <% end %>
+  </tbody>
+</table>
