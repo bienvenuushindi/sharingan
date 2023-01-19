@@ -6,12 +6,13 @@ Rails.application.routes.draw do
       constraints RoleRouteConstraint.new { |user| user.admin? } do
         root 'home#index', as: :admin_root
       end
-      root 'searches#new', as: :authenticated_root
+      root 'searches#index', as: :authenticated_root
     end
     unauthenticated do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
-  resources :searches, only: [:new, :create, :index]
+  resources :searches,  only: [:create, :index]
   resources :articles
+  get '/search/:article_id(/:term)', to: 'searches#add', as: 'visit'
 end
