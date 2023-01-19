@@ -1,4 +1,4 @@
-atabases:
+databases:
   - name: mysite
     databaseName: mysite
     user: mysite
