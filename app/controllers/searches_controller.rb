@@ -1,12 +1,12 @@
 class SearchesController < ApplicationController
   # GET /searches or /searches.json
   def index
-    @searches = Search.all
-  end
-
-  # GET /searches/new
-  def new
-    @search = Search.new
+    @searches = params[:term].present? ? Article.where('title LIKE ?', "%#{params[:term]}%") : Article.all
+    if turbo_frame_request?
+      render partial: 'searches', locals: { searches: @searches }
+    else
+      render 'index'
+    end
   end
 
   # POST /searches or /searches.json
