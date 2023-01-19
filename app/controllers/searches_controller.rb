@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
       @searches = Article.search(@search_term)
       # @searches = find_best_match(@search_term)
     else
-      @searches = Article.all
+      find_best_match
     end
     if turbo_frame_request?
       create(search_params) if params[:commit].present?
@@ -31,13 +31,28 @@ class SearchesController < ApplicationController
     redirect_to article_path(@article)
   end
 
-  def find_best_match(term)
+  def find_best_match(_term = '')
+    @searches = []
+
+    p current_user.searches
+    # user_search = current_user.searches
+    # find user preferences
+    # p current_user.searches.includes([:articles]).map(&:articles).flatten.each
+    # p user_search.search('Bo').includes([:articles]).uniq.map(&:articles).flatten
+
+    # do |article|
+    #   p article
+    #   @searches << article
+    #   end
+
     # find similar term order by popularity
-    Search.sort_by_occurrence.search(term).articles.sort_by_visited
+    # Search..where.not(id: ['Rails 3', 'Rails 5']).search('Bo')
+    # Search.sort_by_occurrence.search(term).articles.sort_by_visited
 
     # Post.where(published: true).joins(:comments).merge( Comment.where(spam: false) )
     # return article related to this term
     # join with join with articles which are not part of this set but have the same term
+    # @term = term
   end
 
   # POST /searches or /searches.json
@@ -53,7 +68,25 @@ class SearchesController < ApplicationController
     flash[:notice] = @search.save ? 'Search was successfully created.' : 'Search insertion failed.'
   end
 
+  def select_page
+    if current_user.admin?
+      admin_dashboard
+    else
+      visitor_page
+    end
+  end
+
   private
+
+  def admin_dashboard
+    # load data required for managers
+    redirect_to admin_root_url
+  end
+
+  def visitor_page
+    # load data required for operators
+    redirect_to searches_url
+  end
 
   def search_params
     params[:term].strip
