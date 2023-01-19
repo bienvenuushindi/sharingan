@@ -81,6 +81,7 @@ test:
 #
 production:
   <<: *default
+  url: <%= ENV["DATABASE_URL"] %>
   database: sharingan_production
   username: sharingan
   password: <%= ENV["SHARINGAN_DATABASE_PASSWORD"] %>
