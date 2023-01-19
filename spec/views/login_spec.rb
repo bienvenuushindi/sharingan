@@ -16,7 +16,7 @@ RSpec.describe 'Login process', type: :feature, js: true do
   end
 
   it 'navigates to forgot password page' do
-    click_on('Forgot your password')
-    expect(page).to have_current_path(new_user_password_path)
+    click_on('Register')
+    expect(page).to have_current_path(new_user_registration_path)
   end
 end
