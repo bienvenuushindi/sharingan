@@ -120,6 +120,7 @@ rspec spec
 - [ ] **Make use of Redis server and Sidekiq gems to fulfill this previous feature**
 - [ ] **Improve design and Improve navigation**
 - [ ] **Add more statistics data to give more insights to the Admin**
+- [ ] **Improve Search Algorithm**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
