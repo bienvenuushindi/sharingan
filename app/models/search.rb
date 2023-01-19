@@ -5,7 +5,7 @@ class Search < ApplicationRecord
   has_and_belongs_to_many :articles
   validates :term, presence: true, uniqueness: true
   validates :user_count, numericality: { greater_than_or_equal_to: 0 }
-  validates :article_count,  numericality: { greater_than_or_equal_to: 0 }
+  validates :article_count, numericality: { greater_than_or_equal_to: 0 }
   validates :occurrence, numericality: { greater_than_or_equal_to: 0 }
 
   def sort_by_occurrence

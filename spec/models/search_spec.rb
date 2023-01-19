@@ -1,7 +1,7 @@
 require 'rails_helper'
 RSpec.describe 'Search', type: :model do
   subject do
-    Search.new( term: "kak", occurrence: 2, user_count: 2, article_count: 2, )
+    Search.new(term: 'kak', occurrence: 2, user_count: 2, article_count: 2)
   end
   before { subject.save }
 
@@ -32,5 +32,4 @@ RSpec.describe 'Search', type: :model do
     subject.article_count = -1
     expect(subject).to_not be_valid
   end
-
 end
