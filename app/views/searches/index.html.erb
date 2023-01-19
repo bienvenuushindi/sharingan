@@ -1,6 +1,6 @@
 <%= form_with(url: searches_path, id: 'search', method: :get, data: { controller: "search-form", turbo_frame: "searches", turbo_action: "advance" }) do |form| %>
   <div class="my-5">
-    <%= form.label :term %>
+    <%= form.label :term, class: "text-center my-5 font-bold text-4xl" %>
     <%= form.text_field :term, autocomplete: "off", placeholder: 'What can we help you with?', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", data: { action: "input->search-form#search" } %>
   </div>
   <div class="inline">

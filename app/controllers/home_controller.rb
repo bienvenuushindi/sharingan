@@ -9,6 +9,6 @@ class HomeController < ApplicationController
   def statistics
     @search = Search.find(params[:id])
     @users = @search.users.order('email desc').limit(30).uniq
-    @articles = @search.articles.order('visited_count desc').limit(30).uniq
+    @articles = @search.articles.includes([:user]).order('visited_count desc').limit(30).uniq
   end
 end
