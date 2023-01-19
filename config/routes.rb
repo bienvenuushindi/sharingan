@@ -14,4 +14,5 @@ Rails.application.routes.draw do
   end
   resources :searches,  only: [:create, :index]
   resources :articles
+  get '/search/:article_id(/:term)', to: 'searches#add', as: 'visit'
 end
