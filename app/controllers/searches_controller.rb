@@ -34,7 +34,7 @@ class SearchesController < ApplicationController
   def find_best_match(_term = '')
     @searches = []
 
-    p current_user.searches
+    p current_user.searches.uniq.pluck(:id)
     # user_search = current_user.searches
     # find user preferences
     # p current_user.searches.includes([:articles]).map(&:articles).flatten.each
