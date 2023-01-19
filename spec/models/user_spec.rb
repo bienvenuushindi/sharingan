@@ -15,10 +15,6 @@ RSpec.describe 'User', type: :model do
     expect(subject).to_not be_valid
   end
 
-  it 'role should can be blank' do
-    subject.role = nil
-    expect(subject).to be_valid
-  end
   it 'password should be present' do
     subject.password = nil
     expect(subject).to_not be_valid

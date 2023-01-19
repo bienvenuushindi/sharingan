@@ -11,9 +11,7 @@ export default class extends Controller {
   }
 
   search(event) {
-    // this.element.requestSubmit()
     Rails.fire(this.element, 'submit');
-    console.log('test')
     event.preventDefault()
   }
 }

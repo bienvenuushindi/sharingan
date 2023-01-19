@@ -12,7 +12,6 @@ class User < ApplicationRecord
   has_and_belongs_to_many :searches
   validates :email, presence: true, uniqueness: true, email: true
   validates :password, presence: true, length: { minimum: 6 }, on: :create
-  validates :role, absence: true
 
   def admin?
     role == 'admin'

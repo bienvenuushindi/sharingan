@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
       @searches = Article.search(@search_term)
       # @searches = find_best_match(@search_term)
     else
-      @searches = Article.all
+      @searches = []
     end
     if turbo_frame_request?
       create(search_params) if params[:commit].present?
