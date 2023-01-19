@@ -1,0 +1,12 @@
+<nav class="fixed top-0 bg-white w-screen ">
+  <ul class="nav-group navbar-nav flex justify-end mr-10 mt-4 gap-3">
+    <% if current_user == nil %>
+      <li class="nav-item"><%= link_to 'Login', new_user_session_path, class: 'btn bg-black text-white px-4 py-3 rounded' %></li>
+      <li class="nav-item"><%= link_to 'Register', new_user_registration_path, class: 'btn bg-black text-white px-4 py-3 rounded ' %></li>
+    <% else %>
+      <li class="nav-item">
+        <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn bg-black text-white px-4 py-3 rounded' %>
+      </li>
+    <% end %>
+  </ul>
+</nav>

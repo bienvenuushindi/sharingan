@@ -1,0 +1,9 @@
+{
+  "name": "sharingan",
+  "version": "1.0.0",
+  "dependencies": {
+    "@hotwired/stimulus": "^3.2.1",
+    "@rails/ujs": "^7.0.4-1",
+    "stimulus-use": "^0.51.3"
+  }
+}

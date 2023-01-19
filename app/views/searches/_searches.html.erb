@@ -1,0 +1,9 @@
+<%= turbo_frame_tag "searches" do %>
+  <% searches.each do |search| %>
+    <div class="flex justify-between px-4 py-2 border border-b border-gray-200">
+        <span class="w-full">
+          <%= link_to search.title, visit_url(:article_id => search.id, :term => ( term unless term.nil?)), class: 'w-100' %>
+        </span>
+    </div>
+  <% end %>
+<% end %>
