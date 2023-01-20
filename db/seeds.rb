@@ -6,11 +6,9 @@
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
 require 'faker'
-User.destroy_all
-User.create(email: 'developer@helpjuice.com', password: 'help@juice')
-admin = User.where(email:'developer@helpjuice.com').update!(role: 'admin').first
+admin = User.where(email: 'developer@helpjuice.com', password: 'help@juice').first_or_create
 Article.destroy_all
-100.times do
+30.times do
   Article.create!(title: Faker::JapaneseMedia::Naruto.character, body: Faker::JapaneseMedia::Naruto.demon, user_id: admin.id)
 end
 
