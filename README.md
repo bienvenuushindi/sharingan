@@ -124,7 +124,6 @@ rspec spec
 
 - [ ] **Add test for remaining features**
 - [ ] **Use caching and a job queue to process requests in the background. This is important to handle a large number of requests**
-- [ ] **Make use of Redis server and Sidekiq gems to fulfill this previous feature**
 - [ ] **Improve design and Improve navigation**
 - [ ] **Add more statistics data to give more insights to the Admin**
 - [ ] **Improve Search Algorithm**
