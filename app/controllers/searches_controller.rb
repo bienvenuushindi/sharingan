@@ -3,15 +3,13 @@ class SearchesController < ApplicationController
   def index
     if params_exist?
       @search_term = search_params
-      @searches = Article.search(@search_term)
-      # @searches = find_best_match(@search_term)
+      @searches = find_best_match(@search_term)
     else
-      find_best_match
+      @searches = []
     end
     if turbo_frame_request?
-      create(search_params) if params[:commit].present?
       if params[:commit].present?
-        render partial: 'searches', locals: { searches: [] }
+        create(search_params)
       else
         render partial: 'searches', locals: { searches: @searches, term: @search_term }
       end
@@ -31,25 +29,24 @@ class SearchesController < ApplicationController
     redirect_to article_path(@article)
   end
 
-  def find_best_match(_term = '')
-    @searches = []
-
+  def find_best_match(term = '')
     # p current_user.searches.uniq.pluck(:id)
-    # user_search = current_user.searches.uniq
+    user_searches = current_user.searches.search(term)
+
     # find user preferences
-    # p current_user.searches.includes([:articles]).map(&:articles).flatten.each
-    # p user_search.search('Bo').includes([:articles]).uniq.map(&:articles).flatten
+    preference_articles = user_searches.includes([:articles]).uniq.map(&:articles).flatten
 
     # find similar term order by popularity
-    # popular = Search.where.not(id: user_search.pluck(:id)).search(term).order('occurrence desc')
+    popular_articles = Search.where.not(id: user_searches.pluck(:id))
+      .search(term).order('occurrence desc')
+      .includes([:articles]).uniq.map(&:articles).flatten
 
-    # Search..where.not(id: ['Rails 3', 'Rails 5']).search('Bo')
-    # Search.sort_by_occurrence.search(term).articles.sort_by_visited
+    # find articles by most visited
+    articles = Article.where.not(id: popular_articles.pluck(:id).union(preference_articles))
+      .search(term).order('visited_count desc').uniq
 
-    # Post.where(published: true).joins(:comments).merge( Comment.where(spam: false) )
-    # return article related to this term
-    # join with join with articles which are not part of this set but have the same term
-    # @term = term
+    # combine results
+    @searches = preference_articles.concat(popular_articles).concat(articles)
   end
 
   # POST /searches or /searches.json
