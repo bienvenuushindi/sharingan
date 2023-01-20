@@ -35,13 +35,13 @@ class SearchesController < ApplicationController
     @searches = []
 
     # p current_user.searches.uniq.pluck(:id)
-    user_search = current_user.searches.uniq
+    # user_search = current_user.searches.uniq
     # find user preferences
     # p current_user.searches.includes([:articles]).map(&:articles).flatten.each
     # p user_search.search('Bo').includes([:articles]).uniq.map(&:articles).flatten
 
     # find similar term order by popularity
-    Search.where.not(id: user_search.pluck(:id)).search(term).order('occurrence ')
+    # popular = Search.where.not(id: user_search.pluck(:id)).search(term).order('occurrence desc')
 
     # Search..where.not(id: ['Rails 3', 'Rails 5']).search('Bo')
     # Search.sort_by_occurrence.search(term).articles.sort_by_visited

@@ -8,7 +8,7 @@
 require 'faker'
 User.destroy_all
 User.create(email: 'developer@helpjuice.com', password: 'help@juice')
-admin = User.where(email:'developer@helpjuice.com').update!(role: 'admin')
+admin = User.where(email:'developer@helpjuice.com').update!(role: 'admin').first
 Article.destroy_all
 100.times do
   Article.create!(title: Faker::JapaneseMedia::Naruto.character, body: Faker::JapaneseMedia::Naruto.demon, user_id: admin.id)
