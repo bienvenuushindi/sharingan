@@ -1,4 +1,10 @@
-<h2>Searches</h2>
+<div class="flex justify-between w-full">
+  <h2 class="font-bold text-4xl">Searches</h2>
+  <div class="flex gap-3">
+    <%= link_to 'New article', new_article_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <%= link_to 'View articles', articles_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+  </div>
+</div>
 <table class="table-auto w-full">
   <thead>
   <tr>
