@@ -38,10 +38,13 @@ class SearchesController < ApplicationController
     preference_articles = user_searches.includes([:articles]).uniq.map(&:articles).flatten
 
     # find similar term order by popularity
-    popular_articles = Search.where.not(id: user_searches.pluck(:id)).search(term).order('occurrence desc').includes([:articles]).uniq.map(&:articles).flatten
+    popular_articles = Search.where.not(id: user_searches.pluck(:id))
+      .search(term).order('occurrence desc')
+      .includes([:articles]).uniq.map(&:articles).flatten
 
     # find articles by most visited
-    articles = Article.where.not(id: popular_articles.pluck(:id).union(preference_articles)).search(term).order('visited_count desc').uniq
+    articles = Article.where.not(id: popular_articles.pluck(:id).union(preference_articles))
+      .search(term).order('visited_count desc').uniq
 
     # combine results
     @searches = preference_articles.concat(popular_articles).concat(articles)
