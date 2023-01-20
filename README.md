@@ -77,9 +77,10 @@ $ git clone git@github.com:bienvenuushindi/sharingan.git
 you@your-Pc-name:~$ cd <folder>
 ```
 #### 3. Press Enter to navigate to your local clone.
-#### 4. Install the gems:
+#### 4. Install the gems and dependencies:
 ```bash command
 bundle install
+npm install
 ```
 #### 5. Create database and run the necessary migration files :
 ```bash command
