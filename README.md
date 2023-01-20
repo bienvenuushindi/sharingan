@@ -47,12 +47,13 @@ This project was built using.
 ## 🚀 Live Demo <a name="live-demo"></a>
 
 - [Live Demo Link](https://sharingan-89re.onrender.com/)
- ## 🚀 Admin Credentials <a name="live-demo"></a>   
-- Credentials: email: 'developer@helpjuice.com', password: 'help@juice'
-      
-## 🚀 Video <a name="live-demo"></a>
 
-- [Video Presentation](https://www.loom.com/share/7af84a32634b45a0b6b45efb63743b69)
+<!--  ## 🚀 Admin Credentials <a name="live-demo"></a>   
+- Credentials: email: 'developer@helpjuice.com', password: 'help@juice'-->
+      
+<!-- ## 🚀 Video <a name="live-demo"></a> -->
+
+<!-- - [Video Presentation](https://www.loom.com/share/7af84a32634b45a0b6b45efb63743b69) -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
