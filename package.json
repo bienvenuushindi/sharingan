@@ -4,6 +4,10 @@
   "dependencies": {
     "@hotwired/stimulus": "^3.2.1",
     "@rails/ujs": "^7.0.4-1",
-    "stimulus-use": "^0.51.3"
+    "stimulus-use": "^0.51.3",
+    "esbuild": "^0.14.11"
+  },
+  "scripts": {
+    "build": "node esbuild.config.js"
   }
 }
