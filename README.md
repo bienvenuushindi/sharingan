@@ -1,8 +1,9 @@
 <h3><b>Sharingan</b></h3>
 
-# 📖 My Budget App <a name="about-project"></a>
+# 📖 Sharingan <a name="about-project"></a>
 
-> A mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what.
+>  Create a realtime search box, where users search articles, and then to have analytics that display what users were searching for.
+
 
 ## 🛠 Built With <a name="built-with"></a>
 ### Tech Stack <a name="tech-stack"></a>
