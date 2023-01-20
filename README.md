@@ -37,7 +37,7 @@ This project was built using.
 
 ### Key Features <a name="key-features"></a>
 - **User can register and login**
-- **Authenticated User can use realtime search box to search articles
+- **Authenticated User can use realtime search box to search articles**
 - **Admin can view analytics that display what users were searching for**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
