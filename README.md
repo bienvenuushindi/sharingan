@@ -46,13 +46,13 @@ This project was built using.
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link]((https://sharingan-89re.onrender.com/)
+- [Live Demo Link](https://sharingan-89re.onrender.com/)
  ## 🚀 Admin Credentials <a name="live-demo"></a>   
 - Credentials: email: 'developer@helpjuice.com', password: 'help@juice'
       
 ## 🚀 Video <a name="live-demo"></a>
 
-- [Recording....]((myvideo)
+- [Recording....](myvideo)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
