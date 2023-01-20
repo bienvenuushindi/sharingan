@@ -58,5 +58,5 @@ Style/HashTransformKeys:
   Enabled: false
 Style/HashTransformValues:
   Enabled: false
-Style/RedundantAssignment`:
+Style/RedundantConstantBase:
   Enabled: false
