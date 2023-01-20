@@ -1,4 +1,5 @@
 class SearchesController < ApplicationController
+
   # GET /searches or /searches.json
   def index
     if params_exist?
