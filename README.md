@@ -2,7 +2,7 @@
 
 # 📖 Sharingan <a name="about-project"></a>
 
->  Create a realtime search box, where users search articles, and then to have analytics that display what users were searching for.
+> A realtime search box, where users search articles, and then the Admin can have analytics that display what users were searching for.
 
 
 ## 🛠 Built With <a name="built-with"></a>
