@@ -7,6 +7,8 @@
       <li class="nav-item flex gap-3">
         <% if current_user.admin? %>
         <%= link_to 'Search', searches_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+        <%= link_to 'Add Category', new_category_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+        <%= link_to 'Add article', new_article_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
         <%= link_to 'Statistics', admin_root_path, class: "rounded-lg py-3 px-5 bg-black/40 text-white block font-medium" %>
           <% end %>
         <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn bg-black text-white px-4 py-3 rounded' %>

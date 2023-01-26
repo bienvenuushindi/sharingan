@@ -3,9 +3,30 @@
     <%= form.label :term, class: "text-center my-5 font-bold text-4xl" %>
     <%= form.text_field :term, autocomplete: "off", placeholder: 'What can we help you with?', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", data: { action: "input->search-form#search" } %>
   </div>
+  <div class="form-group text-start p-2">
+    <%= form.label :Categories, class: 'form-label h5' %> <br/>
+    <%= form.collection_check_boxes :category_ids, @categories, :id, :name, include_hidden: false do |b| %>
+      <div class="collection-check-box">
+        <%= b.check_box(data: { action: "input->search-form#search" } ) %>
+        <%= b.label %>
+      </div>
+    <% end %>
+  </div>
   <div class="inline">
     <%= form.submit "Search", autocomplete: "off", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
   </div>
 <% end %>
 <%= render "searches", searches: @searches, term: @term %>
+
+<div class="flex gap-3">
+  <div class="border ">
+    <h3>Most Read</h3>
+    <%= render "articles_trends", articles: @articles_trends %>
+
+  </div>
+  <div class="border">
+    <h3>Trending</h3>
+    <%= render "searches_trends", searches: @search_trends %>
+  </div>
+</div>
 

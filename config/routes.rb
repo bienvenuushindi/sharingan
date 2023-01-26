@@ -10,7 +10,7 @@ Rails.application.routes.draw do
       root 'devise/sessions#new', as: :unauthenticated_root
     end
   end
-  resources :searches,  only: [:create, :index]
+  resources :searches,  only: [:create, :index, :show]
   resources :articles
   get '/search/:article_id(/:term)', to: 'searches#add', as: 'visit'
   get '/keyword/:id', to: 'home#statistics', as: 'statistics'
