@@ -1,15 +1,34 @@
 <%= turbo_frame_tag "searches" do %>
-  <% searches.each do |article| %>
-    <div class="flex justify-between px-4 py-2 border border-b border-gray-200">
-        <span class="w-full">
-          <a href=""></a>
-          <%= link_to  visit_url(:article_id => article.id, :term => ( term unless term.nil?)), class: 'mb-2' do %>
-            #
-                 <div class="border-b"><%= highlight(article.title,term.split) %></div>
-
-                 <div><%= highlight(article.body, term.split) %></div>
-          <% end %>
-        </span>
+  <% if params[:term].present? %>
+    <div class="px-6 py-4 shadow">
+      <h2 class="font-bold text-xl mb-2"> <%= searches.length %> Results </h2>
     </div>
   <% end %>
+<!--  <div class="grid grid-cols-2 justify-between overflow-y-auto hover:overflow-y-scroll  h-96">-->
+  <div class="grid grid-cols-2 justify-between">
+    <% searches.each do |article| %>
+      <div class="px-4 py-2 border border-b border-gray-200">
+        <% if term.present? %>
+          <%= link_to visit_url(:article_id => article.id, :term => term), class: 'mb-2' do %>
+            <div class="shadow-lg">
+              <div class="px-6 py-4">
+                <h2 class="font-bold text-xl mb-2"><%= highlight(article.title, term.split) %></h2>
+                <p class="text-gray-700 text-base">
+                  <%= highlight(article.body, term.split) %>
+                </p>
+              </div>
+              <div class="px-6 pt-4 pb-2">
+                <% article.categories.each do |category| %>
+      <span class="inline-block bg-gray-200 rounded-full px-3 py-1 text-sm font-semibold text-gray-700 mr-2 mb-2">#<%= category.name %>
+        </span>
+
+                <% end %>
+              </div>
+            </div>
+          <% end %>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
+
 <% end %>

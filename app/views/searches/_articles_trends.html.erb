@@ -1,7 +1,6 @@
 <% articles.each do |article| %>
-  <div class="flex justify-between px-4 py-2 border border-b border-gray-200">
-        <span class="w-full">
-          <%= link_to article.title, article_url(article), class: 'w-100' %>
-        </span>
+  <div class="card shadow m-2 px-4 py-2 border border-b border-gray-200 col-4 font-semibold">
+    <span class="rounded bg-blue-900 w-1 h-1">.</span>
+    <%= link_to article.title, article_url(article), class: 'w-100' %>
   </div>
 <% end %>

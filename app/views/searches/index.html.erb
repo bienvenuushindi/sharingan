@@ -1,31 +1,40 @@
-<%= form_with(url: searches_path, id: 'search', method: :get, data: { controller: "search-form", turbo_frame: "searches", turbo_action: "advance" }) do |form| %>
-  <div class="my-5">
-    <%= form.label :term, class: "text-center my-5 font-bold text-4xl" %>
-    <%= form.text_field :term, autocomplete: "off", placeholder: 'What can we help you with?', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full", data: { action: "input->search-form#search" } %>
+<%= form_with(url: searches_path, id: 'search', class: 'shadow-lg p-6 rounded', method: :get, data: { controller: "search-form", turbo_frame: "searches", turbo_action: "advance" }) do |form| %>
+  <div class=" flex-grow">
+    <%= form.label :term, class: "text-center my-5 font-bold text-4xl hidden" %>
+    <div class="relative border flex items-center w-full h-12 rounded-lg shadow-md mt-2 focus-within:shadow-lg bg-white overflow-hidden">
+      <div class="grid place-items-center h-full w-12 text-gray-300">
+        <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+        </svg>
+      </div>
+      <%= form.text_field :term, value: params[:term], autocomplete: "off",
+                          placeholder: 'What can we help you with?',
+                          class: "peer h-full w-full outline-none border-0 text-gray-700 pr-2", data: { action: "input->search-form#search" } %>
+    </div>
   </div>
   <div class="form-group text-start p-2">
-    <%= form.label :Categories, class: 'form-label h5' %> <br/>
-    <%= form.collection_check_boxes :category_ids, @categories, :id, :name, include_hidden: false do |b| %>
-      <div class="collection-check-box">
-        <%= b.check_box(data: { action: "input->search-form#search" } ) %>
-        <%= b.label %>
-      </div>
-    <% end %>
-  </div>
-  <div class="inline">
-    <%= form.submit "Search", autocomplete: "off", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
+    <%= form.label :filter, class: 'form-label text-center mt-8 text-gray-600' %> <br/>
+    <div class="flex flex-wrap gap-3">
+      <%= form.collection_check_boxes :category_ids, @categories, :id, :name, include_hidden: false do |b| %>
+        <div class="collection-check-box w-fit flex gap-2 items-baseline shadow py-2 px-2">
+          <%= b.check_box(data: { action: "input->search-form#search" }) %>
+          <%= b.label(class: 'capitalize text-sm') %>
+        </div>
+      <% end %>
+    </div>
   </div>
 <% end %>
-<%= render "searches", searches: @searches, term: @term %>
+<%= render "searches", searches: @searches, term: params[:term] %>
 
-<div class="flex gap-3">
-  <div class="border ">
-    <h3>Most Read</h3>
-    <%= render "articles_trends", articles: @articles_trends %>
-
+<div class="flex gap-3 px-2 py-6 mt-20 ">
+  <div class="w-3/4 shadow-lg">
+    <h3 class="text-white mt-6 font-semibold text-2xl bg-blue-900 py-4 pl-3 rounded-t">Hot Topics</h3>
+    <div class="grid grid-cols-2 gap-2 p-2">
+      <%= render "articles_trends", articles: @articles_trends %>
+    </div>
   </div>
-  <div class="border">
-    <h3>Trending</h3>
+  <div class="w-1/4 shadow-lg">
+    <h3 class="text-white mt-6 font-semibold text-2xl bg-blue-900 py-4 pl-3 rounded-t">Trending</h3>
     <%= render "searches_trends", searches: @search_trends %>
   </div>
 </div>

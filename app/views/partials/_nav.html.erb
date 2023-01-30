@@ -1,18 +1,12 @@
-<nav class="fixed top-0 bg-white w-screen ">
-  <ul class="nav-group navbar-nav flex justify-end mr-10 mt-4 gap-3">
-    <% if current_user == nil %>
-      <li class="nav-item"><%= link_to 'Login', new_user_session_path, class: 'btn bg-black text-white px-4 py-3 rounded' %></li>
-      <li class="nav-item"><%= link_to 'Register', new_user_registration_path, class: 'btn bg-black text-white px-4 py-3 rounded ' %></li>
-    <% else %>
-      <li class="nav-item flex gap-3">
-        <% if current_user.admin? %>
-        <%= link_to 'Search', searches_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-        <%= link_to 'Add Category', new_category_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-        <%= link_to 'Add article', new_article_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-        <%= link_to 'Statistics', admin_root_path, class: "rounded-lg py-3 px-5 bg-black/40 text-white block font-medium" %>
-          <% end %>
-        <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn bg-black text-white px-4 py-3 rounded' %>
-      </li>
+<nav class="fixed top-0 z-10 w-full h-full  flex flex-col justify-between items-start  shadow
+        xl:w-64 xl:mt-0 xl:translate-x-0   bg-blue-900">
+  <ul class="nav-group navbar-nav flex flex-col h-full  mr-10 mt-4 gap-3">
+    <% if current_user.admin? %>
+      <li><%= link_to 'Search', searches_path, class: " py-3 px-5  text-white block font-medium" %></li>
+      <li><%= link_to 'Add Category', new_category_path, class: " py-3 px-5  text-white block font-medium" %></li>
+      <li>  <%= link_to 'Add article', new_article_path, class: " py-3 px-5  text-white block font-medium" %></li>
+      <li> <%= link_to 'Statistics', admin_root_path, class: " py-3 px-5 bg-black/40 text-white block font-medium" %></li>
     <% end %>
+    <li class="self-end">   <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn bg-black text-white px-4 py-3 rounded' %></li>
   </ul>
 </nav>

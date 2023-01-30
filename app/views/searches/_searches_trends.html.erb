@@ -1,9 +1,5 @@
-<%#= turbo_frame_tag "searches" do %>
-  <% searches.each do |search| %>
-    <div class="flex justify-between px-4 py-2 border border-b border-gray-200">
-        <span class="w-full">
-          <%= link_to search.term, search_url(search), class: 'w-100' %>
-        </span>
-    </div>
-  <% end %>
-<%# end %>
+<% searches.each do |search| %>
+  <div class="inline-block bg-gray-100 hover:shadow-md rounded-full px-3 py-1 m-2 text-sm font-semibold text-gray-700 ">#
+    <%= link_to search.term, search_url(search), class: 'text-sm font-semibold ' %>
+  </div>
+<% end %>
