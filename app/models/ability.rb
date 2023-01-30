@@ -7,8 +7,7 @@ class Ability
     if user.admin?
       can :manage, :all
     else
-      can :manage, Article, user_id: user.id
-      can :manage, Category, user_id: user.id
+      can %i[update read destroy], [Article, Category], user_id: user.id
       can :read, Article
     end
   end
