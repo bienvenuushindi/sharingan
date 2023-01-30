@@ -1,28 +1,61 @@
-<h2 class="text-center my-5 font-bold text-4xl">Sign up</h2>
+<div class="relative flex flex-col justify-center min-h-screen overflow-hidden">
+  <div class="w-full p-6 m-auto bg-white rounded-md shadow-md lg:max-w-xl">
+    <h1 class="text-3xl font-semibold text-center text-clrSec">
+      <span class="text-xl text-clrPrime">Create an account</span>
+    </h1>
+    <div class="text-center text-red-600">
+      <% if notice %>
+        <p class="alert alert-success"><%= notice %></p>
+      <% end %>
+      <% if alert %>
+        <p class="alert alert-danger text-success"><%= alert %></p>
+      <% end %>
+    </div>
+    <%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
+      <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="my-2">
+        <%= f.label :email, class: "block text-sm font-semibold text-gray-800" %><br/>
+        <%= f.email_field :email,
+                          autofocus: true,
+                          autocomplete: "email",
+                          class: "block shadow rounded-md border border-gray-200 my-0 outline-none px-3 py-2 w-full",
+                          placeholder: "Enter your email",
+                          required: true
+        %>
+      </div>
+      <div class="mt-6">
+        <%= f.label :password, class: "block text-sm  font-semibold text-gray-800" %>
+        <% if @minimum_password_length %>
+          <em><span class="text-blue-900">(<%= @minimum_password_length %> characters minimum)</span></em>
+        <% end %><br/>
+        <%= f.password_field :password,
+                             autocomplete: "new-password",
+                             class: "block w-full px-4 py-2 text-clrPrime bg-white border rounded-md focus:border-clrPrime focus:ring-clrPrime focus:outline-none focus:ring focus:ring-opacity-20",
+                             minLength: 6,
+                             placeholder: "Enter your password",
+                             required: true
+        %>
+      </div>
 
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
+      <div class="mt-6">
+        <%= f.label :password_confirmation, class: "block text-sm font-semibold text-gray-800" %><br/>
+        <%= f.password_field :password_confirmation, autocomplete: "new-password",
+                             class: "block w-full px-4 py-2 text-clrPrime bg-white border rounded-md focus:border-clrPrime focus:ring-clrPrime focus:outline-none focus:ring focus:ring-opacity-20",
+                             minLength: 6,
+                             placeholder: "Enter your password",
+                             required: true
+        %>
+      </div>
+      <div class="actions my-3">
+        <%= f.submit "Sign up",
+                     class: "w-full px-4 py-2 tracking-wide text-white transition-colors duration-200 transform bg-blue-900 rounded-md hover:bg-blue-600 focus:outline-none focus:bg-clrPrime cursor-pointer" %>
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autofocus: true, autocomplete: "email", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
+      </div>
+    <% end %>
+    <p class="mt-8 text-xs font-light text-center border-t pt-2 text-gray-700">
+      Already have an account?
+     <%= link_to 'Login', new_user_session_path, class: 'font-medium text-clrPrime hover:underline' %>
+    </p>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up", class: "rounded-lg py-3 px-5 bg-blue-600 text-white inline-block font-medium cursor-pointer" %>
-  </div>
-<% end %>
+</div>
 
