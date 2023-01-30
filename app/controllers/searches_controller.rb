@@ -16,7 +16,7 @@ class SearchesController < ApplicationController
         render partial: 'searches', locals: { searches: @searches, term: @search_term }
       end
     else
-      render 'index'
+      render 'index', locals: { searches: @searches, term: '' }
     end
   end
 
@@ -40,25 +40,24 @@ class SearchesController < ApplicationController
       user_searches = current_user.searches.search(term)
 
       # find user preferences
-      preference_articles = user_searches.includes([:articles]).uniq.map(&:articles).flatten
+      preference_articles = user_searches.includes(articles: [:categories]).uniq.map(&:articles).flatten
 
       # find similar term order by popularity
       popular_articles = Search.where.not(id: user_searches.pluck(:id))
                                .search(term).order('occurrence desc')
-                               .includes([:articles]).uniq.map(&:articles).flatten
+                               .includes(articles: [:categories]).uniq.map(&:articles).flatten
 
       # find articles by most visited
       articles = Article.where.not(id: popular_articles.pluck(:id).union(preference_articles))
-                        .search(term).order('visited_count desc').uniq
+                        .search(term).includes([:categories]).order('visited_count desc').uniq
 
       # combine results
       @searches = preference_articles.concat(popular_articles).concat(articles)
     else
       articles = Category.where(id: categories).includes([:articles]).uniq.map(&:articles).flatten
-      @searches = Article.where(id: articles).search(term).order('visited_count desc')
+      @searches = Article.where(id: articles).search(term).order('visited_count desc').includes([:categories])
     end
   end
-
   # POST /searches or /searches.json
   def create(term, from_article: false)
     @search = Search.where(term: term.downcase).first_or_initialize
@@ -105,8 +104,8 @@ class SearchesController < ApplicationController
   end
 
   def set_hot_topics
-    @articles_trends = Article.sort_by_visited.limit(10)
-    @search_trends = Search.sort_by_occurrence.limit(10)
+    @articles_trends = Article.sort_by_visited.limit(8)
+    @search_trends = Search.sort_by_occurrence.limit(8)
     @categories = Category.cr_categories(current_user)
   end
 
