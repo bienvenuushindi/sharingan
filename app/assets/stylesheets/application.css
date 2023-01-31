@@ -20,3 +20,32 @@ html {
     scroll-behavior: smooth;
     font-family: 'Lato', sans-serif;
 }
+
+.pagy-nav {
+ display: flex;
+ gap:.5rem;
+}
+
+.page {
+    padding: 0.2rem .5rem;
+    border-radius: 5px;
+    background: #e3e2e2;
+}
+
+.page.active{
+    background: #2563eb;
+    color: #ffffff;
+}
+
+.page.disabled{
+    cursor: not-allowed;
+    pointer-events: none;
+    color: #c0c0c0;
+    background-color: #ffffff;
+}
+
+
+.pagy-info b {
+    color: #2563eb;
+    font-weight: bolder;
+}

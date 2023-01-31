@@ -5,7 +5,7 @@ class SearchesController < ApplicationController
   def index
     if params_exist?
       @search_term = search_params
-      @searches = find_best_match(@search_term, categories_params?)
+      find_best_match(@search_term, categories_params?)
     else
       @searches = []
     end
@@ -48,16 +48,20 @@ class SearchesController < ApplicationController
                                .includes(articles: [:categories]).uniq.map(&:articles).flatten
 
       # find articles by most visited
-      articles = Article.where.not(id: popular_articles.pluck(:id).union(preference_articles))
-                        .search(term).includes([:categories]).order('visited_count desc').uniq
+      # articles = Article.where.not(id: popular_articles.pluck(:id).union(preference_articles))
+      #                   .search(term).includes([:categories]).order('visited_count desc').uniq
+      articles = Article.search(term).includes([:categories]).order('visited_count desc')
 
       # combine results
-      @searches = preference_articles.concat(popular_articles).concat(articles)
+      @pagy, @searches = pagy(articles, items: 6)
+      # or [Array1, Array2, Array3].flatten
     else
       articles = Category.where(id: categories).includes([:articles]).uniq.map(&:articles).flatten
-      @searches = Article.where(id: articles).search(term).order('visited_count desc').includes([:categories])
+      # @pagy, @articles = pagy(Article.all, items: 3)
+      @pagy, @searches = pagy(Article.where(id: articles).search(term).order('visited_count desc').includes([:categories]), items: 6)
     end
   end
+
   # POST /searches or /searches.json
   def create(term, from_article: false)
     @search = Search.where(term: term.downcase).first_or_initialize
