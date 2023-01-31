@@ -21,9 +21,9 @@ class ArticlesController < ApplicationController
   # POST /articles or /articles.json
   def create
     @article = Article.new(title: article_params[:title], body: article_params[:body], public: article_params[:public], user: current_user)
-    @article.add_categories(article_params[:category_ids])
     respond_to do |format|
       if @article.save
+        @article.add_categories(article_params[:category_ids])
         format.html { redirect_to article_url(@article), notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else

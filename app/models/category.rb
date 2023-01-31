@@ -8,5 +8,8 @@ class Category < ApplicationRecord
     where(['user_id IN (?) OR user_id = (?)', User.admins.pluck(:id), user.id])
   }
 
-  scope :parent_categories, -> { where.not('parent_category_id = nil') }
+  scope :parent_categories, -> { where(parent_category_id: nil) }
+
+  scope :guidelines_categories, -> { where(parent_category_id: Category.select('id').where(name: 'Guidelines')) }
+  scope :projects_categories, -> { where(parent_category_id: Category.select('id').where(name: 'Projects')) }
 end

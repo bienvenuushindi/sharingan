@@ -1,5 +1,5 @@
 <%= turbo_frame_tag "searches" do %>
-  <% if params[:term].present? && @pagy.present? %>
+  <% if params[:term].present? && @pagy.present? && @pagy.count > 0  %>
     <div class="px-6 py-4 shadow">
       <h2 class="font-bold text-xl mb-2"> <%= @pagy.count %> Results </h2>
       <div class="flex  items-center justify-center  w-full">
@@ -34,7 +34,7 @@
     <% end %>
   </div>
   <div class="flex  items-center justify-center  mt-6 w-full">
-    <% if @pagy.present? %>
+    <% if @pagy.present? && @pagy.count > 0 %>
       <%== pagy_nav(@pagy) %>
     <% end %>
   </div>

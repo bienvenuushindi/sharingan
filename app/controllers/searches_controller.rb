@@ -50,15 +50,17 @@ class SearchesController < ApplicationController
       # find articles by most visited
       # articles = Article.where.not(id: popular_articles.pluck(:id).union(preference_articles))
       #                   .search(term).includes([:categories]).order('visited_count desc').uniq
-      articles = Article.search(term).includes([:categories]).order('visited_count desc')
+      cat_articles = if params[:category].present?
+                       Category.includes([:articles]).projects_categories.uniq.map(&:articles).flatten.pluck(:id)
+                     else
+                       Category.includes([:articles]).guidelines_categories.uniq.map(&:articles).flatten.pluck(:id)
+                     end
+      articles = Article.includes([:categories]).where(id: cat_articles).search(term).order('visited_count desc')
 
-      # combine results
       @pagy, @searches = pagy(articles, items: 6)
-      # or [Array1, Array2, Array3].flatten
     else
-      articles = Category.where(id: categories).includes([:articles]).uniq.map(&:articles).flatten
-      # @pagy, @articles = pagy(Article.all, items: 3)
-      @pagy, @searches = pagy(Article.where(id: articles).search(term).order('visited_count desc').includes([:categories]), items: 6)
+      articles = Category.includes([:articles]).where(id: categories).uniq.map(&:articles).flatten
+      @pagy, @searches = pagy(Article.includes([:categories]).where(id: articles).search(term).order('visited_count desc'), items: 6)
     end
   end
 
@@ -110,7 +112,7 @@ class SearchesController < ApplicationController
   def set_hot_topics
     @articles_trends = Article.sort_by_visited.limit(8)
     @search_trends = Search.sort_by_occurrence.limit(8)
-    @categories = Category.cr_categories(current_user)
+    @categories = params[:category].present? ? Category.cr_categories(current_user).projects_categories : Category.cr_categories(current_user).guidelines_categories
   end
 
   def set_search
