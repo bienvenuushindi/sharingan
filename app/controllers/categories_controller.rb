@@ -1,6 +1,7 @@
 class CategoriesController < ApplicationController
   load_and_authorize_resource
   before_action :set_category, only: %i[show edit update destroy]
+  before_action :set_group, only: %i[new edit]
 
   # GET /categories or /categories.json
   def index
@@ -17,6 +18,21 @@ class CategoriesController < ApplicationController
 
   # GET /categories/1/edit
   def edit; end
+
+  def group_by_category
+    p params[:category]
+    @categories = Category.find(params[:category]).categories
+    p @categories
+    respond_to do |format|
+      format.turbo_stream do
+        render turbo_stream: turbo_stream.replace('categories', render_to_string(partial: 'articles/categories'),
+                                                  locals: { categories: @categories })
+      end
+
+      format.html { redirect_to new_article_url }
+    end
+
+  end
 
   # POST /categories or /categories.json
   def create
@@ -58,13 +74,18 @@ class CategoriesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_category
-      @category = Category.find(params[:id])
-    end
 
-    # Only allow a list of trusted parameters through.
-    def category_params
-      params.require(:category).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_category
+    @category = Category.find(params[:id])
+  end
+
+  # Only allow a list of trusted parameters through.
+  def category_params
+    params.require(:category).permit(:name, :parent_category_id)
+  end
+
+  def set_group
+    @group = Category.parent_categories
+  end
 end

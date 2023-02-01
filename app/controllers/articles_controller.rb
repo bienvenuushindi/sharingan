@@ -13,6 +13,15 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @group = Category.parent_categories
+    @categories = Category.guidelines_categories
+    # @categories = Category.guidelines_categories
+    # if turbo_frame_request?
+    #   @categories = Category.projects_categories
+    #   render partial: 'articles/categories', locals: { categories: @categories }
+    # else
+    #   render 'new', locals: { categories: @categories }
+    # end
   end
 
   # GET /articles/1/edit
@@ -20,6 +29,9 @@ class ArticlesController < ApplicationController
 
   # POST /articles or /articles.json
   def create
+    p '======================================================================'
+    p article_params
+    p '======================================================================'
     @article = Article.new(title: article_params[:title], body: article_params[:body], public: article_params[:public], user: current_user)
     respond_to do |format|
       if @article.save
@@ -60,6 +72,7 @@ class ArticlesController < ApplicationController
 
   def set_select_collections
     @categories = Category.cr_categories(current_user)
+    set_group
   end
 
   # Use callbacks to share common setup or constraints between actions.
@@ -70,5 +83,9 @@ class ArticlesController < ApplicationController
   # Only allow a list of trusted parameters through.
   def article_params
     params.require(:article).permit(:title, :body, :public, category_ids: [])
+  end
+
+  def set_group
+    @group = Category.parent_categories
   end
 end

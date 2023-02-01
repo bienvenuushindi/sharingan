@@ -6,7 +6,8 @@
     "@hotwired/turbo-rails": "^7.2.4",
     "@rails/ujs": "^7.0.4-1",
     "esbuild": "^0.17.3",
-    "stimulus-use": "^0.51.3"
+    "stimulus-use": "^0.51.3",
+    "@rails/request.js": "0.0.8"
   },
   "scripts": {
     "build": "esbuild app/javascript/*.* --bundle --sourcemap --outdir=app/assets/builds --public-path=assets"

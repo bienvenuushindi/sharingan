@@ -15,17 +15,18 @@
     <%= form.label :title %>
     <%= form.text_field :title, class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
   </div>
-
   <div class="form-group text-start p-2">
-    <%= form.label :Categories, class: 'form-label h5' %> <br/>
-    <%= form.collection_check_boxes :category_ids, @categories, :id, :name do |b| %>
-      <div class="collection-check-box">
-        <%= b.check_box %>
-        <%= b.label %>
-      </div>
-    <% end %>
+    <%= form.label :Groups, class: 'form-label h5' %> <br/>
+    <div class="flex flex-wrap gap-3" data-controller="admin" data-turbo_action="advance" data-turbo_frame="categories">
+      <%= form.collection_radio_buttons :group_id, @group, :id, :name, {}, { checked: @group.first } do |b| %>
+        <div class="collection-check-box w-fit flex gap-2 items-baseline shadow py-2 px-2">
+          <%= b.radio_button(data: { action: "input->admin#switch", admin_target: "category" }) %>
+          <%= b.label(class: 'capitalize text-sm') %>
+        </div>
+      <% end %>
+    </div>
   </div>
-
+  <%= render "categories" %>
   <div class="my-5">
     <%= form.label :body %>
     <%= form.text_area :body, rows: '15', class: "block shadow rounded-md border border-gray-200 outline-none px-3 py-2 mt-2 w-full" %>
