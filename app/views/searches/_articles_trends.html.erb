@@ -1,6 +1,9 @@
-<% articles.each do |article| %>
-  <div class="card shadow m-2 px-4 py-2 border border-b border-gray-200 col-4 font-semibold">
-    <span class="rounded bg-blue-900 w-1 h-1">.</span>
-    <%= link_to article.title, article_url(article), class: 'w-100' %>
-  </div>
-<% end %>
+<h3 class="border-b  mt-6 font-semibold text-2xl pb-3 pl-3 rounded-t">Hot Topics</h3>
+<div class="grid grid-cols-2 gap-2 p-2">
+  <% articles.each do |article| %>
+    <div class="card shadow m-2 px-4 py-2 border border-b border-gray-200 col-4 font-semibold">
+      <span class="rounded bg-blue-900 w-1 h-1">.</span>
+      <%= link_to article.title, article_url(article), class: 'w-100' %>
+    </div>
+  <% end %>
+</div>
