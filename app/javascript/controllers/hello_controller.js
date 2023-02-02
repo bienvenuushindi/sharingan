@@ -1,5 +1,4 @@
 import {Controller} from "@hotwired/stimulus"
-import {closeMenu} from "../custom";
 
 export default class extends Controller {
     connect() {
