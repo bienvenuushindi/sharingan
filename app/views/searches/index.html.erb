@@ -26,15 +26,11 @@
 <% end %>
 <%= render "searches", searches: @searches, term: params[:term] %>
 
-<div class="flex gap-3 px-2 py-6 mt-6 ">
-  <div class="w-3/4 shadow-lg">
-    <h3 class="text-white mt-6 font-semibold text-2xl bg-blue-900 py-4 pl-3 rounded-t">Hot Topics</h3>
-    <div class="grid grid-cols-2 gap-2 p-2">
+<div class="flex gap-3 px-2 mt-6 ">
+  <div class="w-3/4 shadow-lg border">
       <%= render "articles_trends", articles: @articles_trends %>
-    </div>
   </div>
-  <div class="w-1/4 shadow-lg">
-    <h3 class="text-white mt-6 font-semibold text-2xl bg-blue-900 py-4 pl-3 rounded-t">Trending</h3>
+  <div class="w-1/4 shadow-lg border">
     <%= render "searches_trends", searches: @search_trends %>
   </div>
 </div>
