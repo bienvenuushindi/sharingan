@@ -20,7 +20,7 @@
     <div class="flex flex-wrap gap-3" data-controller="admin" data-turbo_action="advance" data-turbo_frame="categories">
       <%= form.collection_radio_buttons :group_id, @group, :id, :name, {}, { checked: @group.first } do |b| %>
         <div class="collection-check-box w-fit flex gap-2 items-baseline shadow py-2 px-2">
-          <%= b.radio_button(data: { action: "input->admin#switch", admin_target: "category" }) %>
+          <%= b.radio_button(data: { action: "input->admin#switch", admin_target: "category", origin: 'categories' }) %>
           <%= b.label(class: 'capitalize text-sm') %>
         </div>
       <% end %>
