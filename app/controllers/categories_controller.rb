@@ -20,18 +20,15 @@ class CategoriesController < ApplicationController
   def edit; end
 
   def group_by_category
-    p params[:category]
     @categories = Category.find(params[:category]).categories
-    p @categories
     respond_to do |format|
       format.turbo_stream do
-        render turbo_stream: turbo_stream.replace('categories', render_to_string(partial: 'articles/categories'),
+        render turbo_stream: turbo_stream.replace(params[:origin], render_to_string(partial: 'articles/categories'),
                                                   locals: { categories: @categories })
       end
 
       format.html { redirect_to new_article_url }
     end
-
   end
 
   # POST /categories or /categories.json
