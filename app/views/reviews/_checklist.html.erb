@@ -1,0 +1,15 @@
+<%= turbo_frame_tag "reviews" do %>
+  <% if @list.present? %>
+    <div class="form-group text-start p-2">
+      <h4 class="form-label h5">Checklist</h4>
+      <div class="grid grid-cols-1 ">
+        <% @list.each_with_index do |item, id| %>
+          <div class="collection-check-box w-fit flex gap-2 items-baseline  py-2 px-2">
+            <input id="article_category_ids_<%= item.id %>" name="article[category_ids][]" type="checkbox" checked value="<%= item.id %>"/>
+            <label for="article_category_ids_<%= item.id %>"><%= item.title %></label>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  <% end %>
+<% end %>

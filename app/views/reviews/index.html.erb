@@ -1,0 +1,13 @@
+<div class="form-group text-start p-2">
+  <h3> Select a project</h3>
+  <div class="flex flex-wrap gap-3" data-controller="admin" data-turbo_action="advance" data-turbo_frame="reviews">
+    <% Category.projects_categories.each do |item| %>
+      <div class="collection-check-box w-fit flex gap-2 items-baseline shadow py-2 px-2">
+        <input data-action="input->admin#switch" data-admin-target="category" data-origin="reviews" type="radio" value="<%= item.id %>" name="review[group_id]" id="review_group_id_<%= item.id %>">
+        <label class="capitalize text-sm" for="review_group_id_<%= item.id %>"><%= item.name %></label>
+      </div>
+    <% end %>
+  </div>
+</div>
+<%= render "checklist" %>
+

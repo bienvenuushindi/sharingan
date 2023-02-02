@@ -9,12 +9,32 @@ export default class extends Controller {
         this.token = document.querySelector(
             'meta[name="csrf-token"]'
         ).content;
+        this.resetFields()
     }
 
+    resetFields() {
+        this.categoryTargets.forEach(item => {
+            item.checked = false
+        })
+    }
+
+
+    get isOriginReviews() {
+        return this.target === 'reviews'
+    }
+
+    get target() {
+        return this.categoryTarget.getAttribute('data-origin')
+    }
+
+    get url() {
+        return this.isOriginReviews ? "/checklist" : "/group-by"
+    }
+
+
     async switch(event) {
-        let targetCategory = this.categoryTarget.value
-        const params = {category: event.target.value};
-        await post("/group-by", {
+        const params = {category: event.target.value, origin: this.target};
+        await post(this.url, {
             body: params,
             'X-CSRF-Token': this.token,
             contentType: 'application/json',
