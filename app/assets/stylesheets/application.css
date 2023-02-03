@@ -23,6 +23,12 @@ html {
     font-family: 'Lato', sans-serif;
 }
 
+.top-100 {top: 100%}
+.bottom-100 {bottom: 100%}
+.max-h-select {
+    max-height: 300px;
+}
+
 .pagy-nav {
     display: flex;
     gap: .5rem;
@@ -50,4 +56,8 @@ html {
 .pagy-info b {
     color: #2563eb;
     font-weight: bolder;
+}
+
+.stop-propagation > * {
+    pointer-events: none
 }

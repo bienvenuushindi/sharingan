@@ -38,7 +38,7 @@ export default class extends Controller {
 
     async checklist() {
         if (this.categoryTarget.checked) {
-            const currentItem = document.getElementById('rc-' + this.categoryTarget.value);
+            const currentItem = this.getElementById('rc-' + this.categoryTarget.value);
             if (currentItem) currentItem.remove()
         } else {
             await this.fetchBody()
@@ -58,8 +58,18 @@ export default class extends Controller {
             });
     }
 
+    getElementById(element) {
+        return document.getElementById(element)
+    }
+
     async switch(event) {
-        const params = {category: event.target.value, origin: this.target};
+        const cat = event.target.getAttribute('data-value') || event.target.value
+        if (this.isOriginReviews) {
+            this.getElementById('review').innerHTML = '';
+            this.getElementById('filter-project').value = this.getElementById('project-' + cat).textContent
+        }
+
+        const params = {category: cat, origin: this.target};
         await post(this.url, {
             body: params,
             'X-CSRF-Token': this.token,
