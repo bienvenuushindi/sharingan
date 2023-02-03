@@ -67,6 +67,7 @@ export default class extends Controller {
         if (this.isOriginReviews) {
             this.getElementById('review').innerHTML = '';
             this.getElementById('filter-project').value = this.getElementById('project-' + cat).textContent
+            this.getElementById('project-title').innerHTML = this.getElementById('project-' + cat).textContent
         }
 
         const params = {category: cat, origin: this.target};

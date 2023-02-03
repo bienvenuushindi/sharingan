@@ -19,7 +19,7 @@
           <div class="absolute shadow bg-white top-100 z-40 w-full lef-0 rounded max-h-select overflow-y-auto svelte-5uyqqj">
             <div class="flex flex-col w-full" data-controller="admin" data-turbo_action="advance" data-turbo_frame="reviews">
               <% Category.projects_categories.includes(:parent_category).each do |item| %>
-                <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-gray-300 wrapper">
+                <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-gray-300 wrapper ">
                   <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100 stop-propagation"
                        data-action="click->admin#switch"
                        data-admin-target="category"
@@ -48,9 +48,13 @@
     </div>
   </div>
 </div>
-<div class="grid-cols-2 grid">
-  <%= render "checklist" %>
-  <%= render "review" %>
+<div class="">
+  <h4 id="project-title" class="form-label mb-2 text-3xl"></h4>
+  <div class="grid-cols-2 grid shadow-lg mt-2 border">
+    <%= render "checklist" %>
+    <%= render "review" %>
+  </div>
+
 </div>
 
 
