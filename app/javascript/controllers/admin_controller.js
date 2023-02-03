@@ -1,5 +1,5 @@
 import {Controller} from "@hotwired/stimulus"
-import {post} from "@rails/request.js";
+import {post, get} from "@rails/request.js";
 
 export default class extends Controller {
 
@@ -9,15 +9,20 @@ export default class extends Controller {
         this.token = document.querySelector(
             'meta[name="csrf-token"]'
         ).content;
+
         this.resetFields()
     }
 
     resetFields() {
         this.categoryTargets.forEach(item => {
-            item.checked = false
+            if (!this.isOriginChecklist) item.checked = false;
         })
     }
 
+
+    get isOriginChecklist() {
+        return (this.target === 'changes')
+    }
 
     get isOriginReviews() {
         return this.target === 'reviews'
@@ -28,9 +33,21 @@ export default class extends Controller {
     }
 
     get url() {
-        return this.isOriginReviews ? "/checklist" : "/group-by"
+        return this.categoryTarget.getAttribute('data-url')
     }
 
+    async fetchBody(event) {
+        await get(this.url, {
+            'X-CSRF-Token': this.token,
+            contentType: 'application/json',
+            credentials: 'same-origin',
+            responseKind: 'turbo-stream'
+        }).then(response => response.text)
+            .then(html => {
+                return Turbo.renderStreamMessage(html)
+            });
+        event.preventDefault()
+    }
 
     async switch(event) {
         const params = {category: event.target.value, origin: this.target};

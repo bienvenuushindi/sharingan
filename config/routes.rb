@@ -14,8 +14,9 @@ Rails.application.routes.draw do
   resources :articles
   get '/search/:article_id(/:term)', to: 'searches#add', as: 'visit'
   post '/checklist(/:category)', to: 'reviews#checklist', as: 'checklist'
+  get '/review/:id', to: 'reviews#fetch_body', as: 'get_body'
   get '/search-by(/:category)', to: 'reviews#index', as: 'search_by_category'
-  post '/group-by(/:category)', to: 'categories#group_by_category', as: 'group_by_category'
+  post '/group-by(/:category)', to: 'categories#group_by_category', as: 'group'
   get '/keyword/:id', to: 'home#statistics', as: 'statistics'
   get '/dashboard', to: 'home#index', as: 'admin_root'
 end

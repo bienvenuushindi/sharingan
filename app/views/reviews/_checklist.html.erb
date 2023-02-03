@@ -4,8 +4,8 @@
       <h4 class="form-label h5">Checklist</h4>
       <div class="grid grid-cols-1 ">
         <% @list.each_with_index do |item, id| %>
-          <div class="collection-check-box w-fit flex gap-2 items-baseline  py-2 px-2">
-            <input id="article_category_ids_<%= item.id %>" name="article[category_ids][]" type="checkbox" checked value="<%= item.id %>"/>
+          <div class="collection-check-box w-fit flex gap-2 items-baseline  py-2 px-2" data-controller="admin" data-turbo_action="advance" data-turbo_frame="changes">
+            <input id="article_category_ids_<%= item.id %>" data-url="/review/<%= item.id %>" name="article[category_ids][]" data-origin="changes" type="checkbox" checked="checked" value="<%= item.id %>" data-action="input->admin#fetchBody" data-admin-target="category"/>
             <label for="article_category_ids_<%= item.id %>"><%= item.title %></label>
           </div>
         <% end %>
