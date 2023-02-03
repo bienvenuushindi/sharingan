@@ -36,7 +36,17 @@ export default class extends Controller {
         return this.categoryTarget.getAttribute('data-url')
     }
 
-    async fetchBody(event) {
+    async checklist() {
+        if (this.categoryTarget.checked) {
+            const currentItem = document.getElementById('rc-' + this.categoryTarget.value);
+            if (currentItem) currentItem.remove()
+        } else {
+            await this.fetchBody()
+        }
+    }
+
+
+    async fetchBody() {
         await get(this.url, {
             'X-CSRF-Token': this.token,
             contentType: 'application/json',
@@ -46,7 +56,6 @@ export default class extends Controller {
             .then(html => {
                 return Turbo.renderStreamMessage(html)
             });
-        event.preventDefault()
     }
 
     async switch(event) {
