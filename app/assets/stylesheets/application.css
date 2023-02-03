@@ -1,4 +1,6 @@
 /*@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap');*/
+@import "github-markdown-css/github-markdown-light.css";
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -22,8 +24,8 @@ html {
 }
 
 .pagy-nav {
- display: flex;
- gap:.5rem;
+    display: flex;
+    gap: .5rem;
 }
 
 .page {
@@ -32,12 +34,12 @@ html {
     background: #e3e2e2;
 }
 
-.page.active{
+.page.active {
     background: #2563eb;
     color: #ffffff;
 }
 
-.page.disabled{
+.page.disabled {
     cursor: not-allowed;
     pointer-events: none;
     color: #c0c0c0;

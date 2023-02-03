@@ -68,6 +68,11 @@
     "@esbuild/win32-ia32" "0.17.5"
     "@esbuild/win32-x64" "0.17.5"
 
+"github-markdown-css@^5.1.0":
+  "integrity" "sha512-QLtORwHHtUHhPMHu7i4GKfP6Vx5CWZn+NKQXe+cBhslY1HEt0CTEkP4d/vSROKV0iIJSpl4UtlQ16AD8C6lMug=="
+  "resolved" "https://registry.npmjs.org/github-markdown-css/-/github-markdown-css-5.1.0.tgz"
+  "version" "5.1.0"
+
 "hotkeys-js@>=3":
   "integrity" "sha512-mshqjgTqx8ee0qryHvRgZaZDxTwxam/2yTQmQlqAWS3+twnq1jsY9Yng9zB7lWq6WRrjTbTOc7knNwccXQiAjQ=="
   "resolved" "https://registry.npmjs.org/hotkeys-js/-/hotkeys-js-3.10.1.tgz"
