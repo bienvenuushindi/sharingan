@@ -14,6 +14,9 @@ gem 'faker'
 
 gem 'pagy'
 
+gem 'github-markup'
+gem 'commonmarker'
+
 gem 'pg_search'
 
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
