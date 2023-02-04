@@ -11,6 +11,14 @@
   <ul class="nav-group navbar-nav flex flex-col h-full  mr-10 mt-4 gap-3 w-full px-2">
     <% if current_user.admin? %>
       <li class="nav-item">
+        <%= render 'partials/icons/task' %>
+        <%= link_to 'Categories', categories_path, class: "nav-link " %>
+      </li>
+      <li class="nav-item">
+        <%= render 'partials/icons/task' %>
+        <%= link_to 'Articles', articles_path, class: "nav-link " %>
+      </li>
+      <li class="nav-item">
         <%= render 'partials/icons/plus_icon' %>
         <%= link_to 'Add Category', new_category_path, class: "nav-link " %>
       </li>
