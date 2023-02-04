@@ -1,26 +1,24 @@
-<div class="form-group text-start p-2">
+<div class="form-group text-start">
   <div class="flex flex-col items-center">
-    <div class="w-full flex flex-col items-center h-64">
-      <div class="w-full px-4">
+    <div id="project-search-container" class="w-full flex flex-col items-center">
+      <div class="w-full">
         <div class="flex flex-col items-center relative">
           <div class="w-full">
             <div class="my-2 p-1 bg-white flex border border-gray-200 rounded" data-controller="search-form" data-turbo_action="advance">
               <div class="flex flex-auto flex-wrap"></div>
-              <input id="filter-project" placeholder="Select a project to review" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" data-action="input->search-form#filterProject">
-              <div class="text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200">
-                <button class="cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none">
-                  <svg xmlns="http://www.w3.org/2000/svg" width="100%" height="100%" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="feather feather-chevron-up w-4 h-4">
-                    <polyline points="18 15 12 9 6 15"></polyline>
-                  </svg>
+              <input id="filter-project" placeholder="Select a project to review" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" data-action="input->search-form#filterProject focus->search-form#showBox  ">
+              <div id="cross-btn" class="text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200 hidden">
+                <button class="cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none" data-action="click->search-form#hideBox">
+                  <%= render 'partials/icons/cross' %>
                 </button>
               </div>
             </div>
           </div>
-          <div class="absolute shadow bg-white top-100 z-40 w-full lef-0 rounded max-h-select overflow-y-auto svelte-5uyqqj">
+          <div id="projects-list" class="hidden absolute shadow bg-white top-100 z-40 w-full lef-0 rounded max-h-select overflow-y-auto svelte-5uyqqj">
             <div class="flex flex-col w-full" data-controller="admin" data-turbo_action="advance" data-turbo_frame="reviews">
               <% Category.projects_categories.includes(:parent_category).each do |item| %>
                 <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-gray-300 wrapper ">
-                  <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-teal-100 stop-propagation"
+                  <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-blue-600 stop-propagation"
                        data-action="click->admin#switch"
                        data-admin-target="category"
                        data-url="<%= checklist_path %>"
@@ -29,11 +27,11 @@
                        data-value="<%= item.id %>"
                   >
                     <div class="w-6 flex flex-col items-center">
-                      <div class="flex relative w-5 h-5 bg-orange-500 justify-center items-center m-1 mr-2 w-4 h-4 mt-1 rounded-full ">
-                        <img class="rounded-full" alt="A" src="https://randomuser.me/api/portraits/men/62.jpg"></div>
+                      <div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+                      </div>
                     </div>
                     <div class="w-full items-center flex">
-                      <div class="mx-2 -mt-1 ">
+                      <div class="mx-2 ">
                         <div id="project-<%= item.id %>" class="projects"><%= item.name %></div>
                         <div class="text-xs truncate w-full normal-case font-normal -mt-1 text-gray-500"><%= item.parent_category.name %></div>
                       </div>
@@ -49,7 +47,7 @@
   </div>
 </div>
 <div class="">
-  <h4 id="project-title" class="form-label mb-2 text-3xl"></h4>
+  <h4 id="project-title" class="form-label my-4 text-blue-600 font-bold text-3xl"></h4>
   <div class="grid-cols-2 grid shadow-lg mt-2 border">
     <%= render "checklist" %>
     <%= render "review" %>
