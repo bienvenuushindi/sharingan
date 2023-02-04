@@ -1,4 +1,5 @@
-<h3 class="text-gray-700 border-b mt-6 font-semibold text-2xl  pb-3 pl-3 rounded-t">Trending</h3>
+<h3 class="border-b flex items-center gap-2  mt-6 font-semibold text-2xl pb-3 pl-3 rounded-t"><div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+</div>Trending</h3>
 <% searches.each do |search| %>
   <div class="inline-block bg-gray-100 hover:shadow-md rounded-full px-3 py-1 m-2 text-sm font-semibold text-gray-700 ">#
     <%= link_to search.term, search_url(search), class: 'text-sm font-semibold ' %>
