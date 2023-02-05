@@ -20,7 +20,7 @@ export default class extends Controller {
         this.getElementById('cross-btn').classList.remove('hidden')
     }
 
-    hideBox(){
+    hideBox() {
         this.getElementById('projects-list').classList.add('hidden')
         this.getElementById('cross-btn').classList.add('hidden')
     }

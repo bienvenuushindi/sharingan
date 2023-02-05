@@ -45,6 +45,19 @@ export default class extends Controller {
         }
     }
 
+    copyText(event) {
+        // Get the source
+        const target = event.target
+        const parent = target.closest('div')
+        const copyText = parent.firstElementChild;
+        // Copy the text
+        navigator.clipboard.writeText(copyText.innerHTML);
+        parent.lastElementChild.classList.remove('hidden');
+        const timeoutID=setTimeout(()=> {parent.lastElementChild.classList.add('hidden')}, 1000)
+        clearTimeout(timeoutID)
+
+    }
+
 
     async fetchBody() {
         await get(this.url, {
