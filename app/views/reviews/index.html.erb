@@ -4,9 +4,13 @@
       <div class="w-full">
         <div class="flex flex-col items-center relative">
           <div class="w-full">
-            <div class="my-2 p-1 bg-white flex border border-gray-200 rounded" data-controller="search-form" data-turbo_action="advance">
-              <div class="flex flex-auto flex-wrap"></div>
-              <input id="filter-project" placeholder="Select a project to review" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" data-action="input->search-form#filterProject focus->search-form#showBox  ">
+            <div class="my-2 p-1 bg-white flex items-center border border-gray-200 rounded" data-controller="search-form" data-turbo_action="advance">
+              <div class="grid place-items-center h-full w-12 text-gray-300">
+                <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                  <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+                </svg>
+              </div>
+              <input id="filter-project" placeholder="Please type the project name" class="p-1 px-2 appearance-none outline-none w-full text-gray-800" data-action="input->search-form#filterProject focus->search-form#showBox  ">
               <div id="cross-btn" class="text-gray-300 w-8 py-1 pl-2 pr-1 border-l flex items-center border-gray-200 hidden">
                 <button class="cursor-pointer w-6 h-6 text-gray-600 outline-none focus:outline-none" data-action="click->search-form#hideBox">
                   <%= render 'partials/icons/cross' %>
