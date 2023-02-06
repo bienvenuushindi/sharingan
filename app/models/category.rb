@@ -12,6 +12,6 @@ class Category < ApplicationRecord
 
   scope :guidelines_categories, -> { where(parent_category_id: Category.select('id').where(name: 'Guidelines')) }
   scope :projects_categories, -> { where(parent_category_id: Category.select('id').where(name: 'Projects')) }
-  scope :general_req, -> { where('name LIKE ?', 'general%') }
-  scope :filter_out_gen_req, -> { where('name NOT LIKE ?', 'general%') }
+  scope :general_req, -> { starts_with('name', 'general') }
+  scope :filter_out_gen_req, -> { starts_not_with('name', 'general') }
 end
