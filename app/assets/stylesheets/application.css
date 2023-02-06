@@ -29,6 +29,10 @@ html {
     max-height: 300px;
 }
 
+.max-h-screen-90 {
+    max-height: 80vh;
+}
+
 .pagy-nav {
     display: flex;
     gap: .5rem;
