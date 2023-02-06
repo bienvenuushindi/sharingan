@@ -28,6 +28,9 @@ export default class extends Controller {
         return this.target === 'reviews'
     }
 
+    get isOriginCategories() {
+        return this.target === 'categories'
+    }
     get target() {
         return this.categoryTarget.getAttribute('data-origin')
     }
@@ -53,7 +56,9 @@ export default class extends Controller {
         // Copy the text
         navigator.clipboard.writeText(copyText.innerHTML);
         parent.lastElementChild.classList.remove('hidden');
-        setTimeout(()=> {parent.lastElementChild.classList.add('hidden')}, 1000)
+        setTimeout(() => {
+            parent.lastElementChild.classList.add('hidden')
+        }, 1000)
     }
 
 
@@ -74,6 +79,7 @@ export default class extends Controller {
     }
 
     async switch(event) {
+        let url = event.target.getAttribute('data-url') || this.url
         const cat = event.target.getAttribute('data-value') || event.target.value
         if (this.isOriginReviews) {
             this.getElementById('review').innerHTML = '';
@@ -82,8 +88,13 @@ export default class extends Controller {
             this.getElementById('projects-list').classList.add('hidden')
             this.getElementById('cross-btn').classList.add('hidden')
         }
+
+        if(this.isOriginCategories) {
+            this.getElementById('add-article').classList.remove('hidden')
+        }
+        
         const params = {category: cat, origin: this.target};
-        await post(this.url, {
+        await post(url, {
             body: params,
             'X-CSRF-Token': this.token,
             contentType: 'application/json',

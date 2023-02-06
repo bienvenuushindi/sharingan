@@ -19,14 +19,23 @@ class CategoriesController < ApplicationController
   # GET /categories/1/edit
   def edit; end
 
+  def general_requirement
+    @gen_req = true
+    get_categories
+  end
+
   def group_by_category
-    @categories = Category.find(params[:category]).categories
+    @gen_req = false
+    get_categories(params[:category])
+  end
+
+  def get_categories(target = nil)
+    @categories = target.nil? ? Category.general_req : Category.find(target).categories.filter_out_gen_req
     respond_to do |format|
       format.turbo_stream do
         render turbo_stream: turbo_stream.replace(params[:origin], render_to_string(partial: 'articles/categories'),
-                                                  locals: { categories: @categories })
+                                                  locals: { categories: @categories, gen_req: @gen_req })
       end
-
       format.html { redirect_to new_article_url }
     end
   end
