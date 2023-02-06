@@ -53,9 +53,7 @@ export default class extends Controller {
         // Copy the text
         navigator.clipboard.writeText(copyText.innerHTML);
         parent.lastElementChild.classList.remove('hidden');
-        const timeoutID=setTimeout(()=> {parent.lastElementChild.classList.add('hidden')}, 1000)
-        clearTimeout(timeoutID)
-
+        setTimeout(()=> {parent.lastElementChild.classList.add('hidden')}, 1000)
     }
 
 
