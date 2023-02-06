@@ -1,4 +1,5 @@
 <div class="form-group text-start">
+  <h4 id="project-title" class="form-label m1-4 text-blue-600 font-bold text-3xl">Please Select Project</h4>
   <div class="flex flex-col items-center">
     <div id="project-search-container" class="w-full flex flex-col items-center">
       <div class="w-full">
@@ -20,7 +21,7 @@
           </div>
           <div id="projects-list" class="hidden absolute shadow bg-white top-100 z-40 w-full lef-0 rounded max-h-select overflow-y-auto svelte-5uyqqj">
             <div class="flex flex-col w-full" data-controller="admin" data-turbo_action="advance" data-turbo_frame="reviews">
-              <% Category.projects_categories.includes(:parent_category).each do |item| %>
+              <% Category.projects_categories.filter_out_gen_req.includes(:parent_category).each do |item| %>
                 <div class="cursor-pointer w-full border-gray-100 rounded-t border-b hover:bg-gray-300 wrapper ">
                   <div class="flex w-full items-center p-2 pl-2 border-transparent border-l-2 relative hover:border-blue-600 stop-propagation"
                        data-action="click->admin#switch"
@@ -53,7 +54,11 @@
 <div class="">
   <h4 id="project-title" class="form-label my-4 text-blue-600 font-bold text-3xl"></h4>
   <div class="grid-cols-2 grid gap-3 mt-2 shadow-lg  border">
-    <%= render "checklist" %>
+    <div class="max-h-screen-90 overflow-y-auto">
+      <%= render "gen_req" %>
+      <%= render "checklist" %>
+    </div>
+
     <div class="border">
       <%= render "review" %>
     </div>
