@@ -8,7 +8,17 @@ class Search < ApplicationRecord
   validates :article_count, numericality: { greater_than_or_equal_to: 0 }
   validates :occurrence, numericality: { greater_than_or_equal_to: 0 }
 
-  def sort_by_occurrence
+  before_save :update_occurrence, :update_user_count
+
+  def add_user(user)
+    users << user
+  end
+
+  def uniq_articles
+    articles.uniq
+  end
+
+  def self.sort_by_occurrence
     order('occurrence desc')
   end
 

@@ -1,5 +1,4 @@
 class HomeController < ApplicationController
-  before_action :authenticate_user!, except: [:index]
   def index
     @searches = Search.all.order('occurrence desc').limit(30)
     @users = User.where(role: 'user').order('email desc').limit(30)

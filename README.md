@@ -1,8 +1,9 @@
 <h3><b>Sharingan</b></h3>
 
-# 📖 My Budget App <a name="about-project"></a>
+# 📖 Sharingan <a name="about-project"></a>
 
-> A mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what.
+>  Create a realtime search box, where users search articles, and then to have analytics that display what users were searching for.
+
 
 ## 🛠 Built With <a name="built-with"></a>
 ### Tech Stack <a name="tech-stack"></a>
@@ -77,9 +78,10 @@ $ git clone git@github.com:bienvenuushindi/sharingan.git
 you@your-Pc-name:~$ cd <folder>
 ```
 #### 3. Press Enter to navigate to your local clone.
-#### 4. Install the gems:
+#### 4. Install the gems and dependencies:
 ```bash command
 bundle install
+npm install
 ```
 #### 5. Create database and run the necessary migration files :
 ```bash command

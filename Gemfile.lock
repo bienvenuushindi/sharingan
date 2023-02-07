@@ -87,6 +87,7 @@ GEM
       rack-test (>= 0.6.3)
       regexp_parser (>= 1.5, < 3.0)
       xpath (~> 3.2)
+    commonmarker (0.23.8)
     concurrent-ruby (1.1.10)
     crass (1.0.6)
     database_cleaner (2.0.1)
@@ -114,6 +115,7 @@ GEM
       railties (>= 5.0.0)
     faker (3.1.0)
       i18n (>= 1.8.11, < 2)
+    github-markup (4.0.1)
     globalid (1.0.1)
       activesupport (>= 5.0)
     i18n (1.12.0)
@@ -127,6 +129,8 @@ GEM
     jbuilder (2.11.5)
       actionview (>= 5.0.0)
       activesupport (>= 5.0.0)
+    jsbundling-rails (1.1.1)
+      railties (>= 6.0.0)
     json (2.6.2)
     loofah (2.19.1)
       crass (~> 1.0.2)
@@ -155,6 +159,7 @@ GEM
     nokogiri (1.14.0-x86_64-linux)
       racc (~> 1.4)
     orm_adapter (0.5.0)
+    pagy (6.0.1)
     parallel (1.22.1)
     parser (3.1.2.1)
       ast (~> 2.4.1)
@@ -204,6 +209,8 @@ GEM
     regexp_parser (2.6.1)
     reline (0.3.2)
       io-console (~> 0.5)
+    requestjs-rails (0.0.10)
+      rails (>= 6.0.0)
     responders (3.0.1)
       actionpack (>= 5.0)
       railties (>= 5.0)
@@ -291,18 +298,23 @@ DEPENDENCIES
   bullet
   cancancan
   capybara
+  commonmarker
   database_cleaner
   debug
   devise
   factory_bot_rails
   faker
+  github-markup
   importmap-rails
   jbuilder
+  jsbundling-rails
+  pagy
   pg (~> 1.1)
   pg_search
   puma (~> 5.0)
   rails (~> 7.0.4)
   rails-controller-testing
+  requestjs-rails
   rspec-rails
   rubocop
   selenium-webdriver

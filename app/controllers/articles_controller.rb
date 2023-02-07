@@ -1,7 +1,7 @@
 class ArticlesController < ApplicationController
   load_and_authorize_resource
   before_action :set_article, only: %i[show edit update destroy]
-
+  before_action :set_select_collections, only: %i[edit update new create]
   # GET /articles or /articles.json
   def index
     @articles = Article.all
@@ -13,6 +13,15 @@ class ArticlesController < ApplicationController
   # GET /articles/new
   def new
     @article = Article.new
+    @group = Category.parent_categories
+    @categories = Category.guidelines_categories
+    # @categories = Category.guidelines_categories
+    # if turbo_frame_request?
+    #   @categories = Category.projects_categories
+    #   render partial: 'articles/categories', locals: { categories: @categories }
+    # else
+    #   render 'new', locals: { categories: @categories }
+    # end
   end
 
   # GET /articles/1/edit
@@ -20,12 +29,11 @@ class ArticlesController < ApplicationController
 
   # POST /articles or /articles.json
   def create
-    @article = Article.new(article_params)
-    # user means author in this context
-    @article.user = current_user
-
+    @article = Article.new(title: article_params[:title], body: article_params[:body], public: article_params[:public],
+                           user: current_user)
     respond_to do |format|
       if @article.save
+        @article.add_categories(article_params[:category_ids])
         format.html { redirect_to article_url(@article), notice: 'Article was successfully created.' }
         format.json { render :show, status: :created, location: @article }
       else
@@ -60,6 +68,11 @@ class ArticlesController < ApplicationController
 
   private
 
+  def set_select_collections
+    @categories = Category.cr_categories(current_user)
+    set_group
+  end
+
   # Use callbacks to share common setup or constraints between actions.
   def set_article
     @article = Article.find(params[:id])
@@ -67,6 +80,10 @@ class ArticlesController < ApplicationController
 
   # Only allow a list of trusted parameters through.
   def article_params
-    params.require(:article).permit(:title, :body)
+    params.require(:article).permit(:title, :body, :public, category_ids: [])
+  end
+
+  def set_group
+    @group = Category.parent_categories
   end
 end

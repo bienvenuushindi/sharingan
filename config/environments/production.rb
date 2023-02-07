@@ -2,8 +2,10 @@ require "active_support/core_ext/integer/time"
 
 Rails.application.configure do
   # Settings specified here will take precedence over those in config/application.rb.
-  config.require_master_key = true
-  config.secret_key_base = '7152494cf42e8f54b0290598800b7dae89764ac54ebfd5d06979554b4d09f14b8d10b1866eb71074d644ec0376735bdfc7dadcd750b6da91dd80f7b91eeedffa'
+  # config.require_master_key = true
+  # config.secret_key_base = '7152494cf42e8f54b0290598800b7dae89764ac54ebfd5d06979554b4d09f14b8d10b1866eb71074d644ec0376735bdfc7dadcd750b6da91dd80f7b91eeedffa'
+
+  config.public_file_server.enabled = ENV['RAILS_SERVE_STATIC_FILES'].present? || ENV['RENDER'].present?
   # Code is not reloaded between requests.
   config.cache_classes = true
 

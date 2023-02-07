@@ -1,3 +1,6 @@
+/* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap'); */
+@import "github-markdown-css/github-markdown-light.css";
+
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
@@ -13,3 +16,51 @@
  *= require_tree .
  *= require_self
  */
+
+html {
+  scroll-behavior: smooth;
+  font-family: 'Lato', sans-serif;
+}
+
+.top-100 { top: 100%; }
+.bottom-100 { bottom: 100%; }
+
+.max-h-select {
+  max-height: 300px;
+}
+
+.max-h-screen-90 {
+  max-height: 80vh;
+}
+
+.pagy-nav {
+  display: flex;
+  gap: 0.5rem;
+}
+
+.page {
+  padding: 0.2rem 0.5rem;
+  border-radius: 5px;
+  background: #e3e2e2;
+}
+
+.page.active {
+  background: #2563eb;
+  color: #fff;
+}
+
+.page.disabled {
+  cursor: not-allowed;
+  pointer-events: none;
+  color: #c0c0c0;
+  background-color: #fff;
+}
+
+.pagy-info b {
+  color: #2563eb;
+  font-weight: bolder;
+}
+
+.stop-propagation > * {
+  pointer-events: none;
+}
