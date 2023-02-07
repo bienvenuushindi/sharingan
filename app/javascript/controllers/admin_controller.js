@@ -82,7 +82,7 @@ export default class extends Controller {
         let url = event.target.getAttribute('data-url') || this.url
         const cat = event.target.getAttribute('data-value') || event.target.value
         if (this.isOriginReviews) {
-            this.getElementById('review').innerHTML = '';
+            // this.getElementById('review').innerHTML = '';
             this.getElementById('filter-project').value = this.getElementById('project-' + cat).textContent
             this.getElementById('project-title').innerHTML = this.getElementById('project-' + cat).textContent
             this.getElementById('projects-list').classList.add('hidden')
@@ -92,7 +92,7 @@ export default class extends Controller {
         if(this.isOriginCategories) {
             this.getElementById('add-article').classList.remove('hidden')
         }
-        
+
         const params = {category: cat, origin: this.target};
         await post(url, {
             body: params,
