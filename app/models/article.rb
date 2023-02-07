@@ -25,8 +25,4 @@ class Article < ApplicationRecord
   def add_categories(categories_set)
     categories_set.reject { |item| item == '' }.each { |item| categories << Category.find(item) }
   end
-
-  def add_user(user)
-    user = user
-  end
 end

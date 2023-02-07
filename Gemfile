@@ -14,8 +14,8 @@ gem 'faker'
 
 gem 'pagy'
 
-gem 'github-markup'
 gem 'commonmarker'
+gem 'github-markup'
 
 gem 'pg_search'
 

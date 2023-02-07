@@ -15,7 +15,7 @@ class User < ApplicationRecord
   validates :email, presence: true, uniqueness: true, email: true
   validates :password, presence: true, length: { minimum: 6 }, on: :create
 
-  scope :admins, -> {where(role: 'admin')}
+  scope :admins, -> { where(role: 'admin') }
   def admin?
     role == 'admin'
   end

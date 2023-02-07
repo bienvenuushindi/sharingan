@@ -37,15 +37,15 @@ class SearchesController < ApplicationController
     if categories.length.zero?
 
       # p current_user.searches.uniq.pluck(:id)
-      user_searches = current_user.searches.search(term)
+      # user_searches = current_user.searches.search(term)
 
       # find user preferences
-      preference_articles = user_searches.includes(articles: [:categories]).uniq.map(&:articles).flatten
+      # preference_articles = user_searches.includes(articles: [:categories]).uniq.map(&:articles).flatten
 
       # find similar term order by popularity
-      popular_articles = Search.where.not(id: user_searches.pluck(:id))
-                               .search(term).order('occurrence desc')
-                               .includes(articles: [:categories]).uniq.map(&:articles).flatten
+      # popular_articles = Search.where.not(id: user_searches.pluck(:id))
+      #   .search(term).order('occurrence desc')
+      #   .includes(articles: [:categories]).uniq.map(&:articles).flatten
 
       # find articles by most visited
       # articles = Article.where.not(id: popular_articles.pluck(:id).union(preference_articles))
@@ -60,7 +60,9 @@ class SearchesController < ApplicationController
       @pagy, @searches = pagy(articles, items: 6)
     else
       articles = Category.includes([:articles]).where(id: categories).uniq.map(&:articles).flatten
-      @pagy, @searches = pagy(Article.includes([:categories]).where(id: articles).search(term).order('visited_count desc'), items: 6)
+      @pagy, @searches = pagy(
+        Article.includes([:categories]).where(id: articles).search(term).order('visited_count desc'), items: 6
+      )
     end
   end
 
@@ -112,11 +114,14 @@ class SearchesController < ApplicationController
   def set_hot_topics
     @articles_trends = Article.sort_by_visited.limit(8)
     @search_trends = Search.sort_by_occurrence.limit(8)
-    @categories = params[:category].present? ? Category.cr_categories(current_user).projects_categories : Category.cr_categories(current_user).guidelines_categories
+    @categories = if params[:category].present?
+                    Category.cr_categories(current_user).projects_categories
+                  else
+                    Category.cr_categories(current_user).guidelines_categories
+                  end
   end
 
   def set_search
     @search = Search.find(params[:id])
   end
-
 end
