@@ -1,8 +1,8 @@
 <div class="grid grid-cols-1 mx-3">
   <h3 class="text-2xl text-blue-600">General Requirements</h3>
   <% Category.general_req.includes(:articles).each do |group| %>
-    <div class="capitalize pl-1 text-red-600 flex gap-2">
-      <div class="flex relative bg-red-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+    <div class="capitalize pl-1 text-blue-600 flex gap-2">
+      <div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
       </div>
       <%= group.name.split('-').last %>
     </div>
