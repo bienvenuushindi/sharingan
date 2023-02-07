@@ -34,7 +34,7 @@ class SearchesController < ApplicationController
   end
 
   def find_best_match(term = '', categories = [])
-    if categories.length.zero?
+    if categories.empty?
 
       # p current_user.searches.uniq.pluck(:id)
       # user_searches = current_user.searches.search(term)
