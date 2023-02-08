@@ -12,9 +12,17 @@ gem 'devise'
 
 gem 'faker'
 
+gem 'pagy'
+
+gem 'commonmarker'
+gem 'github-markup'
+
 gem 'pg_search'
+
 # Bundle edge Rails instead: gem "rails", github: "rails/rails", branch: "main"
 gem 'rails', '~> 7.0.4'
+
+gem 'requestjs-rails'
 
 # The original asset pipeline for Rails [https://github.com/rails/sprockets-rails]
 gem 'sprockets-rails'

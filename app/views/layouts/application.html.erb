@@ -6,24 +6,37 @@
   <%= csrf_meta_tags %>
   <%= csp_meta_tag %>
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
 
-  <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%#= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+  <%= stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap','application.css' %>
   <%= javascript_importmap_tags %>
-    <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
+  <%= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 </head>
 
 <body>
-<main>
+<aside>
+  <!-- This is used to open the menu -->
+  <div data-controller="hello" class="m-3 absolute z-10">
+    <span class="cursor-pointer text-blue-900 text-4xl" id="open" data-action ="click->hello#openMenu">&#9776;</span>
+  </div>
   <%= render 'partials/nav' %>
+</aside>
+<main class="xl:ml-64 " id="main">
+  <%= render 'partials/header' %>
   <% if notice %>
     <p class="alert alert-success"><%= notice %></p>
   <% end %>
   <% if alert %>
     <p class="alert alert-danger text-success"><%= alert %></p>
   <% end %>
-  <div class="container mx-auto align-items-start justify-center h-screen mt-20">
-    <%= yield %>
+  <div class="container flex mx-auto align-items-start justify-center h-screen mt-6">
+    <div class="w-full md:w-11/12 mx-auto">
+      <%= yield %>
+    </div>
   </div>
+  <%= render 'partials/footer' %>
 </main>
 </body>
 </html>

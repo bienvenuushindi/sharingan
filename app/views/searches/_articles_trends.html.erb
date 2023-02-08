@@ -1,0 +1,10 @@
+<h3 class="border-b flex items-center gap-2 text-blue-600  mt-6 font-semibold text-2xl pb-3 pl-3 rounded-t"><div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+</div>
+  Hot Topics</h3>
+<div class="grid grid-cols-2 gap-2 p-2">
+  <% articles.each do |article| %>
+    <div class="card shadow m-2 px-4 py-2 border border-b border-gray-200 col-4">
+      <%= link_to article.title, article_url(article), class: 'w-100 font-extrabold' %>
+    </div>
+  <% end %>
+</div>

@@ -1,16 +1,50 @@
-<nav class="fixed top-0 bg-white w-screen ">
-  <ul class="nav-group navbar-nav flex justify-end mr-10 mt-4 gap-3">
-    <% if current_user == nil %>
-      <li class="nav-item"><%= link_to 'Login', new_user_session_path, class: 'btn bg-black text-white px-4 py-3 rounded' %></li>
-      <li class="nav-item"><%= link_to 'Register', new_user_registration_path, class: 'btn bg-black text-white px-4 py-3 rounded ' %></li>
-    <% else %>
-      <li class="nav-item flex gap-3">
-        <% if current_user.admin? %>
-        <%= link_to 'Search', searches_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
-        <%= link_to 'Statistics', admin_root_path, class: "rounded-lg py-3 px-5 bg-black/40 text-white block font-medium" %>
-          <% end %>
-        <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'btn bg-black text-white px-4 py-3 rounded' %>
+<nav id="side-menu" class="fixed top-0 z-10  h-full  flex flex-col justify-between items-start  shadow
+        xl:w-64 xl:mt-0 xl:translate-x-0   bg-blue-900">
+  <div class="flex w-full items-center px-2" data-controller="hello">
+    <div class="flex-grow flex">
+      <%= render 'partials/icons/fire_icon' %>
+      <span class="leading-10 text-gray-100 text-2xl font-bold ml-1 uppercase">Sharingan</span>
+    </div>
+    <a href="javascript:void(0)" class="text-right text-4xl text-white mx-3 font-bold" id="close" data-action="click->hello#closeMenu">&times;</a>
+  </div>
+
+  <ul class="nav-group navbar-nav flex flex-col h-full  mr-10 mt-4 gap-3 w-full px-2">
+    <% if current_user.admin? %>
+      <li class="nav-item">
+        <%= render 'partials/icons/task' %>
+        <%= link_to 'Categories', categories_path, class: "nav-link " %>
       </li>
+      <li class="nav-item">
+        <%= render 'partials/icons/task' %>
+        <%= link_to 'Articles', articles_path, class: "nav-link " %>
+      </li>
+      <li class="nav-item">
+        <%= render 'partials/icons/plus_icon' %>
+        <%= link_to 'Add Category', new_category_path, class: "nav-link " %>
+      </li>
+      <li class="nav-item">
+        <%= render 'partials/icons/plus_icon' %>
+        <%= link_to 'Add article', new_article_path, class: "nav-link " %>
+      </li>
+      <li class="nav-item">
+        <%= render 'partials/icons/task' %>
+        <%= link_to 'Statistics', admin_root_path, class: "nav-link py-3" %></li>
     <% end %>
+    <li>
+      <h4 class="px-2 text-white block font-medium text-gray-200 flex gap-3">
+        <%= render 'partials/icons/search' %>
+        Search
+      </h4>
+      <ul class="ml-4">
+        <% Category.parent_categories.each do |item| %>
+          <% if item.name == 'Projects' %>
+            <li class="nav-item"><%= link_to item.name, search_by_category_path(category: item.name), class: "nav-link " %></li>
+          <% else %>
+            <li class="nav-item"><%= link_to item.name, searches_path, class: "nav-link " %></li>
+          <% end %>
+        <% end %>
+      </ul>
+    </li>
+    <li class=" mt-auto nav-item"> <%= render 'partials/icons/unlock' %>   <%= button_to 'Logout', destroy_user_session_path, method: :delete, class: 'nav-link' %></li>
   </ul>
 </nav>

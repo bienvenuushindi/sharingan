@@ -46,7 +46,7 @@ RSpec.configure do |config|
 
   Capybara.javascript_driver = :selenium_chrome
   # Remove this line if you're not using ActiveRecord or ActiveRecord fixtures
-  config.fixture_path = "#{::Rails.root}/spec/fixtures"
+  config.fixture_path = "#{Rails.root}/spec/fixtures"
 
   Capybara.configure do |c|
     c.run_server = false
