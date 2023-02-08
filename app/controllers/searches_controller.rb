@@ -1,23 +1,26 @@
 class SearchesController < ApplicationController
+  before_action :set_hot_topics, only: [:index]
+  before_action :set_search, only: [:show]
   # GET /searches or /searches.json
   def index
     if params_exist?
       @search_term = search_params
-      @searches = find_best_match(@search_term)
+      find_best_match(@search_term, categories_params?)
     else
       @searches = []
     end
     if turbo_frame_request?
-      create(search_params) if params[:commit].present?
       if params[:commit].present?
-        render partial: 'searches', locals: { searches: [] }
+        create(@search_term)
       else
         render partial: 'searches', locals: { searches: @searches, term: @search_term }
       end
     else
-      render 'index'
+      render 'index', locals: { searches: @searches, term: '' }
     end
   end
+
+  def show; end
 
   def add
     @article = Article.find(params[:article_id])
@@ -30,32 +33,45 @@ class SearchesController < ApplicationController
     redirect_to article_path(@article)
   end
 
-  def find_best_match(term = '')
-    # p current_user.searches.uniq.pluck(:id)
-    user_searches = current_user.searches.search(term)
+  def find_best_match(term = '', categories = [])
+    if categories.empty?
 
-    # find user preferences
-    preference_articles = user_searches.includes([:articles]).uniq.map(&:articles).flatten
+      # p current_user.searches.uniq.pluck(:id)
+      # user_searches = current_user.searches.search(term)
 
-    # find similar term order by popularity
-    popular_articles = Search.where.not(id: user_searches.pluck(:id))
-      .search(term).order('occurrence desc')
-      .includes([:articles]).uniq.map(&:articles).flatten
+      # find user preferences
+      # preference_articles = user_searches.includes(articles: [:categories]).uniq.map(&:articles).flatten
 
-    # find articles by most visited
-    articles = Article.where.not(id: popular_articles.pluck(:id).union(preference_articles))
-      .search(term).order('visited_count desc').uniq
+      # find similar term order by popularity
+      # popular_articles = Search.where.not(id: user_searches.pluck(:id))
+      #   .search(term).order('occurrence desc')
+      #   .includes(articles: [:categories]).uniq.map(&:articles).flatten
 
-    # combine results
-    @searches = preference_articles.concat(popular_articles).concat(articles)
+      # find articles by most visited
+      # articles = Article.where.not(id: popular_articles.pluck(:id).union(preference_articles))
+      #                   .search(term).includes([:categories]).order('visited_count desc').uniq
+      cat_articles = if params[:category].present?
+                       Category.includes([:articles]).projects_categories.uniq.map(&:articles).flatten.pluck(:id)
+                     else
+                       Category.includes([:articles]).guidelines_categories.uniq.map(&:articles).flatten.pluck(:id)
+                     end
+      articles = Article.includes([:categories]).where(id: cat_articles).search(term).order('visited_count desc')
+
+      @pagy, @searches = pagy(articles, items: 6)
+    else
+      articles = Category.includes([:articles]).where(id: categories).uniq.map(&:articles).flatten
+      @pagy, @searches = pagy(
+        Article.includes([:categories]).where(id: articles).search(term).order('visited_count desc'), items: 6
+      )
+    end
   end
 
   # POST /searches or /searches.json
   def create(term, from_article: false)
     @search = Search.where(term: term.downcase).first_or_initialize
-    @search.users << current_user
-    @search.update_occurrence
-    @search.update_user_count
+    @search.add_user(current_user)
+    # @search.update_occurrence
+    # @search.update_user_count
     if from_article
       @search.update_article_count
       @search.articles << @article
@@ -89,5 +105,23 @@ class SearchesController < ApplicationController
 
   def params_exist?
     params[:term].present?
+  end
+
+  def categories_params?
+    params[:category_ids] || []
+  end
+
+  def set_hot_topics
+    @articles_trends = Article.sort_by_visited.limit(8)
+    @search_trends = Search.sort_by_occurrence.limit(8)
+    @categories = if params[:category].present?
+                    Category.cr_categories(current_user).projects_categories
+                  else
+                    Category.cr_categories(current_user).guidelines_categories
+                  end
+  end
+
+  def set_search
+    @search = Search.find(params[:id])
   end
 end

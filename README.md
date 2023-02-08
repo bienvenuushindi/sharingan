@@ -1,8 +1,9 @@
 <h3><b>Sharingan</b></h3>
 
-# 📖 My Budget App <a name="about-project"></a>
+# 📖 Sharingan <a name="about-project"></a>
 
-> A mobile web application where you can manage your budget: you have a list of transactions associated with a category, so that you can see how much money you spent and on what.
+> A realtime search box, where users search articles, and then the Admin can have analytics that display what users were searching for.
+
 
 ## 🛠 Built With <a name="built-with"></a>
 ### Tech Stack <a name="tech-stack"></a>
@@ -36,7 +37,7 @@ This project was built using.
 
 ### Key Features <a name="key-features"></a>
 - **User can register and login**
-- **Authenticated User can use realtime search box to search articles
+- **Authenticated User can use realtime search box to search articles**
 - **Admin can view analytics that display what users were searching for**
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
@@ -45,8 +46,14 @@ This project was built using.
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
+- [Live Demo Link](https://sharingan-89re.onrender.com/)
 
-- [Live Demo Link](https://microverse-budget-app.herokuapp.com/)
+<!--  ## 🚀 Admin Credentials <a name="live-demo"></a>   
+- Credentials: email: 'developer@helpjuice.com', password: 'help@juice'-->
+      
+<!-- ## 🚀 Video <a name="live-demo"></a> -->
+
+<!-- - [Video Presentation](https://www.loom.com/share/7af84a32634b45a0b6b45efb63743b69) -->
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -118,7 +125,6 @@ rspec spec
 
 - [ ] **Add test for remaining features**
 - [ ] **Use caching and a job queue to process requests in the background. This is important to handle a large number of requests**
-- [ ] **Make use of Redis server and Sidekiq gems to fulfill this previous feature**
 - [ ] **Improve design and Improve navigation**
 - [ ] **Add more statistics data to give more insights to the Admin**
 - [ ] **Improve Search Algorithm**

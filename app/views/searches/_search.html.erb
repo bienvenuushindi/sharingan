@@ -1,0 +1,14 @@
+<tr id="<%= dom_id search %>">
+  <div>
+    <%= search.term %>
+  </div>
+
+  <% search.uniq_articles.each do |item| %>
+    <div>
+     Title:  <%= item.title %>
+     Body:  <%= item.body %>
+
+    </div>
+
+  <% end %>
+</tr>
