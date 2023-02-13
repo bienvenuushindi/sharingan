@@ -7986,7 +7986,6 @@
       this.getElementById("cross-btn").classList.add("hidden");
     }
     search(event) {
-      console.log(this.element);
       import_ujs.default.fire(this.element, "submit");
       event.preventDefault();
     }
