@@ -1,7 +1,7 @@
-// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails
 import "@hotwired/turbo-rails"
 import "./controllers"
 import "@rails/ujs"
 import "stimulus-use"
 import "hotkeys-js"
 import "@rails/request.js"
+// Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails

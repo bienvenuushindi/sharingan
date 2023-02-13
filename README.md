@@ -103,12 +103,13 @@ bundle install
 npm install
 ```
 
-#### 5. Create database and run the necessary migration files :
+#### 5. Create database and run the necessary migration files & build js bundles :
 
 ```bash command
 $ bin/rails db:create
 $ rake db:migrate
 $ rake db:seed
+$ yarn run build
 ```
 
 #### 6 Finally you can run the server:
