@@ -10,5 +10,5 @@ Article.destroy_all
 User.destroy_all
 User.create(email: 'admin@test.com', password: 'admin@test')
 User.create(email: 'user@test.com', password: 'user@test')
-User.where(email:'amdin@test.com').update!(role: 'admin').first
+User.where(email: 'admin@test.com').update!(role: 'admin').first
 
