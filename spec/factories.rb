@@ -5,12 +5,15 @@ FactoryBot.define do
     visited_count { Faker::Number.between(from: 0, to: 7) }
   end
 end
+
 FactoryBot.define do
   factory :user do
-    email { Faker::Internet.email }
-    password { Faker::String.random(length: 7) }
+    email { 'dohysepup@mailinator.com' }
+    password { 'Pa$$w0rd!' }
+    role { 'user' }
   end
 end
+
 FactoryBot.define do
   factory :search do
     title { Faker::ProgrammingLanguage.name }
