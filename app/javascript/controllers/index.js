@@ -8,8 +8,5 @@ import SearchFormController from "./search_form-controller"
 import AdminController from "./admin-controller"
 
 application.register("hello", HelloController)
-
-
-
 application.register("search-form", SearchFormController)
 application.register("admin", AdminController)

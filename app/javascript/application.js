@@ -1,5 +1,5 @@
-import "@hotwired/turbo-rails"
 import "./controllers"
+import "@hotwired/turbo-rails"
 import "@rails/ujs"
 import "stimulus-use"
 import "hotkeys-js"
