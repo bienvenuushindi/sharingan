@@ -2,10 +2,13 @@
 
 # 📖 Sharingan <a name="about-project"></a>
 
-> A realtime search box, where users search articles, and then the Admin can have analytics that display what users were searching for.
-
+> This knowledge based system has been created to help code reviewers quickly search for specific code review guidelines
+> and generate a ready to use comment
+> for each requirement that is not followed by the student.
+> The Admin can manage data and have analytics that display what users were searching for.
 
 ## 🛠 Built With <a name="built-with"></a>
+
 ### Tech Stack <a name="tech-stack"></a>
 
 This project was built using.
@@ -36,100 +39,113 @@ This project was built using.
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
-- **User can register and login**
-- **Authenticated User can use realtime search box to search articles**
-- **Admin can view analytics that display what users were searching for**
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+- **User can register and login**
+- **Authenticated Code Reviewer can use realtime search box to search guidelines and generate ready to use comment for
+  each uncompleted requirements based on the company standard**
+- **Admin can manage data and view analytics that display what users were searching for**
+
+
 
 <!-- LIVE DEMO -->
 
 ## 🚀 Live Demo <a name="live-demo"></a>
 
-- [Live Demo Link](https://sharingan-89re.onrender.com/)
+- [Live Demo Link](https://sharingan.up.railway.app/)
 
-<!--  ## 🚀 Admin Credentials <a name="live-demo"></a>   
-- Credentials: email: 'developer@helpjuice.com', password: 'help@juice'-->
-      
+## 🚀 Credentials <a name="live-demo"></a>
+- Credentials Admin: email: 'admin@test.com', password: 'admin@test'
+- Credentials Normal User: email: 'user@test.com', password: 'user@test'
+
 <!-- ## 🚀 Video <a name="live-demo"></a> -->
 
 <!-- - [Video Presentation](https://www.loom.com/share/7af84a32634b45a0b6b45efb63743b69) -->
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- GETTING STARTED -->
 
 ## 💻 Getting Started <a name="getting-started"></a>
-
 
 To get a local copy up and running, follow these steps.
 
 ### Prerequisites
 
 In order to run this project you need:
+
 - Ruby installed
 - Postgresql installed
 - Git installed [ In case you want to clone this repo using your terminal]
 - Any IDE or text editor that supports Ruby
+
 ### Setup
 
 Clone this repository to your desired folder:
+
 #### 1. Clone this repository or download the Zip folder:"
 
 ```bash command
 $ git clone git@github.com:bienvenuushindi/sharingan.git
 ```
+
 #### 2. Navigate to the location of the folder in your machine:
+
 ```bash command
 you@your-Pc-name:~$ cd <folder>
 ```
+
 #### 3. Press Enter to navigate to your local clone.
+
 #### 4. Install the gems and dependencies:
+
 ```bash command
 bundle install
 npm install
 ```
+
 #### 5. Create database and run the necessary migration files :
+
 ```bash command
 $ bin/rails db:create
 $ rake db:migrate
 $ rake db:seed
 ```
+
 #### 6 Finally you can run the server:
+
 ```bash command
 rails s
 ```
 
-####  Additionally, run this if you want to test the app:
+#### Additionally, run this if you want to test the app:
+
 ```bash command
 rspec spec
 ```
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-<!-- AUTHORS -->
+
+<!-- AUTHOR -->
 
 ## 👥 Authors <a name="authors"></a>
 
-
 👤 **Ushindi Bienvenu**
+
 - GitHub: [@usbbush](https://github.com/bienvenuushindi)
 - LinkedIn: [@usbbush](https://www.linkedin.com/in/usbbush/)
 - Twitter: [@usbbush](https://www.twitter.com/usbbush/)
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- FUTURE FEATURES -->
 
 ## 🔭 Future Features <a name="future-features"></a>
 
-- [ ] **Add test for remaining features**
-- [ ] **Use caching and a job queue to process requests in the background. This is important to handle a large number of requests**
 - [ ] **Improve design and Improve navigation**
 - [ ] **Add more statistics data to give more insights to the Admin**
 - [ ] **Improve Search Algorithm**
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- CONTRIBUTING -->
 
@@ -139,24 +155,23 @@ Contributions, issues, and feature requests are welcome!
 
 Feel free to check the [issues page](../../issues/).
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- SUPPORT -->
 
 ## ⭐️ Show your support <a name="support"></a>
 
+If you like this project, Kindly give it a ⭐
 
-If you like this project, Kindly give it a  ⭐
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <!-- ACKNOWLEDGEMENTS -->
 
 ## 🙏 Acknowledgments <a name="acknowledgements"></a>
 
-I would like to thank the Ruby community and Helpjuice team
+I would like to thank the Ruby community
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
 
 <!-- LICENSE -->
 
@@ -164,6 +179,8 @@ I would like to thank the Ruby community and Helpjuice team
 
 This project is [MIT](./LICENSE) licensed.
 
-_NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/) - you can set it up quickly by [using templates available on GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository). You can also use [any other license](https://choosealicense.com/licenses/) if you wish._
+_NOTE: we recommend using the [MIT license](https://choosealicense.com/licenses/mit/) - you can set it up quickly
+by [using templates available on GitHub](https://docs.github.com/en/communities/setting-up-your-project-for-healthy-contributions/adding-a-license-to-a-repository).
+You can also use [any other license](https://choosealicense.com/licenses/) if you wish._
 
-<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
