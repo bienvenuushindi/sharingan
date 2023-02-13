@@ -46,6 +46,4 @@ RSpec.describe 'Search process', type: :feature, js: true do
     { term: 'window' },
     { term: 'duck' }
   ]
-
-
 end
