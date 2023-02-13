@@ -3,9 +3,9 @@
 // ./bin/rails generate stimulus controllerName
 
 import {application} from "./application"
-import HelloController from "./hello_controller"
-import SearchFormController from "./search_form_controller"
-import AdminController from "./admin_controller"
+import HelloController from "./hello-controller"
+import SearchFormController from "./search_form-controller"
+import AdminController from "./admin-controller"
 
 application.register("hello", HelloController)
 

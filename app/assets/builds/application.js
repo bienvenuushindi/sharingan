@@ -7427,7 +7427,7 @@
   application.debug = false;
   window.Stimulus = application;
 
-  // app/javascript/controllers/hello_controller.js
+  // app/javascript/controllers/hello-controller.js
   var hello_controller_default = class extends Controller {
     connect() {
     }
@@ -7445,7 +7445,7 @@
     }
   };
 
-  // app/javascript/controllers/search_form_controller.js
+  // app/javascript/controllers/search_form-controller.js
   var import_ujs = __toESM(require_rails_ujs());
 
   // node_modules/hotkeys-js/dist/hotkeys.esm.js
@@ -7969,7 +7969,7 @@
   };
   ThrottleController.throttles = [];
 
-  // app/javascript/controllers/search_form_controller.js
+  // app/javascript/controllers/search_form-controller.js
   var search_form_controller_default = class extends Controller {
     connect() {
       useDebounce(this, { wait: 500 });
@@ -8262,7 +8262,7 @@
     return request.perform();
   }
 
-  // app/javascript/controllers/admin_controller.js
+  // app/javascript/controllers/admin-controller.js
   var admin_controller_default = class extends Controller {
     connect() {
       this.token = document.querySelector(
