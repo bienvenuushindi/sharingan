@@ -5,10 +5,9 @@
 #
 #   movies = Movie.create([{ name: "Star Wars" }, { name: "Lord of the Rings" }])
 #   Character.create(name: "Luke", movie: movies.first)
-
-Article.destroy_all
-User.destroy_all
-User.create(email: 'admin@test.com', password: 'admin@test')
-User.create(email: 'user@test.com', password: 'user@test')
-User.where(email: 'admin@test.com').update!(role: 'admin').first
+unless User.where(email: 'admin@test.com').exists?
+  User.create(email: 'admin@test.com', password: 'admin@test')
+  User.create(email: 'user@test.com', password: 'user@test')
+  User.where(email: 'admin@test.com').update!(role: 'admin').first
+end
 

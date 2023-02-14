@@ -1,12 +1,18 @@
 <tr id="<%= dom_id search %>">
-  <div>
-    <%= search.term %>
+  <div class="flex items-baseline text-2xl font-bold">
+    Keyword:
+    <h3 class="border-b flex items-center gap-2 text-blue-600  font-semibold text-2xl pb-3 pl-3 rounded-t">
+      <div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+      </div> <%= search.term %></h3>
   </div>
 
   <% search.uniq_articles.each do |item| %>
-    <div>
-     Title:  <%= item.title %>
-     Body:  <%= item.body %>
+    <div class="shadow-lg rounded border flex-col flex gap-3 p-4">
+      <div class="border-b flex flex-col gap-3 pb-3 font-bold">
+        <span class=" text-blue-600">Title: </span> <%= item.title %>
+      </div>
+
+      <span class="font-bold text-blue-600">Body: </span> <%= sanitize markdown(item.body) %>
 
     </div>
 
