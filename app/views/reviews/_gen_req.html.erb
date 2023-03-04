@@ -1,16 +1,18 @@
 <div class="grid grid-cols-1 mx-3">
   <h3 class="text-2xl text-blue-600">General Requirements</h3>
   <% Category.general_req.includes(:articles).each do |group| %>
-    <div class="capitalize pl-1 text-blue-600 flex gap-2">
-      <div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+    <div class="shadow-lg py-2 border my-2 px-2">
+      <div class="capitalize pl-1 text-blue-600 flex gap-2">
+        <div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+        </div>
+        <%= group.name.split('-').last %>
       </div>
-      <%= group.name.split('-').last %>
+      <% group.articles.each_with_index do |item, id| %>
+        <div class="collection-check-box w-fit  w-full flex gap-2 items-baseline  py-2 px-2" data-controller="admin" data-turbo_action="advance" data-turbo_frame="changes">
+          <input id="article_category_ids_<%= item.id %>" data-url="/review/<%= item.id %>" name="article[category_ids][]" data-origin="changes" type="checkbox" checked="checked" value="<%= item.id %>" data-action="input->admin#checklist" data-admin-target="category"/>
+          <label for="article_category_ids_<%= item.id %>"><%= item.title %></label>
+        </div>
+      <% end %>
     </div>
-    <% group.articles.each_with_index do |item, id| %>
-      <div class="collection-check-box w-fit border-b w-full flex gap-2 items-baseline  py-2 px-2" data-controller="admin" data-turbo_action="advance" data-turbo_frame="changes">
-        <input id="article_category_ids_<%= item.id %>" data-url="/review/<%= item.id %>" name="article[category_ids][]" data-origin="changes" type="checkbox" checked="checked" value="<%= item.id %>" data-action="input->admin#checklist" data-admin-target="category"/>
-        <label for="article_category_ids_<%= item.id %>"><%= item.title %></label>
-      </div>
-    <% end %>
   <% end %>
 </div>

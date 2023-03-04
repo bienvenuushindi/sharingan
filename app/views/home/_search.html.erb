@@ -1,21 +1,21 @@
-<tr id="<%= dom_id search %>">
-  <td class="border-b  p-2  dark:text-slate-600">
+<tr id="<%= dom_id search %>" class="border-b">
+  <td class="p-2 ">
     <%= link_to '#', statistics_path(search), class: 'nav-link py-2 px-5 text-uppercase text-blue ' %>
   </td>
 
-  <td class="border-b  p-2  dark:text-slate-600">
+  <td class="p-2 ">
     <%= search.term %>
   </td>
 
-  <td class="border-b  p-2  dark:text-slate-600">
+  <td class="p-2 ">
     <%= search.occurrence %>
   </td>
 
-  <td class="border-b  p-2  ">
+  <td class="p-2  ">
     <%= search.user_count %>
   </td>
 
-  <td class="border-b  p-2  ">
+  <td class="p-2  ">
     <%= search.article_count %>
   </td>
 

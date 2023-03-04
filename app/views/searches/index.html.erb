@@ -1,7 +1,7 @@
 <%= form_with(url: params[:category] ? search_by_category_path(category: 'Project') : searches_path , id: 'search', class: 'shadow-lg p-6 rounded', method: :get, data: { controller: "search-form", turbo_frame: "searches", turbo_action: "advance" }) do |form| %>
   <div class=" flex-grow">
     <%= form.label :term, class: "text-center my-5 font-bold text-4xl hidden" %>
-    <div class="relative border flex items-center w-full h-12 rounded-lg shadow-md mt-2 focus-within:shadow-lg bg-white overflow-hidden">
+    <div class="relative border flex items-center border w-full h-12 rounded-lg focus-within:boder-none mt-2 focus-within:shadow-lg bg-white overflow-hidden">
       <div class="grid place-items-center h-full w-12 text-gray-300">
         <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
