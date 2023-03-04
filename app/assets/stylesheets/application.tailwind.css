@@ -10,4 +10,33 @@
   .nav-item {
     @apply my-px flex hover:bg-gray-100 hover:text-gray-700 text-gray-300 px-2 rounded;
   }
+
+  .app-btn {
+    @apply transition duration-100 py-1 px-2 w-fit outline-none
+  }
+
+  .btn-blue {
+    @apply  bg-blue-500 text-white font-bold hover:bg-blue-600 active:bg-blue-700 focus-visible:ring ring-blue-300
+  }
+
+  .btn-green {
+    @apply  bg-green-500 text-white hover:bg-green-600 active:bg-green-700 focus-visible:ring ring-green-300
+  }
+
+  .btn-warning {
+    @apply bg-yellow-500  hover:bg-yellow-600 active:bg-yellow-700 focus-visible:ring ring-yellow-300
+  }
+
+  .btn-danger {
+    @apply bg-red-500  hover:bg-red-600 text-white font-bold active:bg-red-700 focus-visible:ring ring-red-300
+  }
+
+  .btn-default {
+    @apply bg-gray-100  hover:bg-gray-600 hover:text-white font-bold active:bg-gray-700 active:text-white focus-visible:ring ring-gray-300
+  }
+
+  .btn-sm {
+    @apply font-bold rounded-md  text-sm
+  }
 }
+
