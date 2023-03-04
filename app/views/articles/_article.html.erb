@@ -1,15 +1,15 @@
 <div id="<%= dom_id article %>">
-  <div class="shadow-lg rounded border flex-col flex gap-3 p-4 my-4">
+  <div class=" rounded border flex-col flex gap-3 p-4 my-4">
     <div class="border-b flex flex-col gap-3 pb-3 font-bold">
       <span class=" text-blue-600">Title: </span> <%= article.title %>
     </div>
 
     <span class="font-bold text-blue-600">Body: </span> <%= sanitize markdown(article.body) %>
-    <div class="actions flex ">
+    <div class="actions flex gap-2 ">
       <% if action_name != "show" %>
-        <%= link_to "Show this article", article, class: "rounded-lg py-1 px-3 bg-gray-100 inline-block font-medium" %>
+        <%= link_to "Show", article, class: "app-btn btn-blue btn-sm" %>
         <% if can? :update, @article %>
-          <%= link_to 'Edit this article', edit_article_path(article), class: "rounded-lg py-1 ml-2 px-3 bg-gray-100 inline-block font-medium" %>
+          <%= link_to 'Edit', edit_article_path(article), class: "app-btn btn-warning btn-sm " %>
         <% end %>
         <hr class="mt-6">
       <% end %>

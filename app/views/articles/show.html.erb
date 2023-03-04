@@ -6,15 +6,15 @@
 
     <%= render @article %>
     <% if can? :update, @article %>
-    <%= link_to 'Edit this article', edit_article_path(@article), class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Edit this article', edit_article_path(@article), class: "app-btn btn-blue p-2 rounded" %>
     <% end %>
       <% if can? :destroy, @article %>
     <div class="inline-block ml-2">
-      <%= button_to 'Destroy this article', article_path(@article), method: :delete, class: "mt-2 rounded-lg py-3 px-5 bg-gray-100 font-medium" %>
+      <%= button_to 'Destroy this article', article_path(@article), method: :delete, class: "p-1 app-btn btn-danger rounded" %>
     </div>
       <% end %>
         <% if can? :update, @article %>
-    <%= link_to 'Back to articles', articles_path, class: "ml-2 rounded-lg py-3 px-5 bg-gray-100 inline-block font-medium" %>
+    <%= link_to 'Back to articles', articles_path, class: "ml-2 app-btn btn-default rounded p-2" %>
       <% end %>
   </div>
 </div>

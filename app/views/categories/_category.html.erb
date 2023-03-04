@@ -1,13 +1,13 @@
-<div id="<%= dom_id category %>">
+<div id="<%= dom_id category %>" class="shadow px-2 pb-3 pt-1 my-2 border flex flex-col justify-between">
   <div class=" flex flex-col gap-3 pb-3 font-bold">
     <span class=" text-blue-600">Name: </span>  <%= category.name %>
   </div>
-  <div>
+  <div class="">
     <% if can? :manage, @category %>
       <% if action_name != "show" %>
-        <%= link_to "Show", category, class: "rounded-lg py-1 px-3 bg-gray-100 inline-block font-medium" %>
-        <%= link_to 'Edit', edit_category_path(category), class: "rounded-lg py-1 px-3 bg-gray-100 inline-block font-medium" %>
-        <hr class="mt-6">
+        <%= link_to "Show", category, class: "app-btn btn-blue btn-sm" %>
+        <%= link_to 'Edit', edit_category_path(category), class: "app-btn btn-warning btn-sm" %>
+
       <% end %>
     <% end %>
   </div>
