@@ -8,7 +8,7 @@
     <%= link_to 'New article', new_article_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="articles" class="min-w-full">
+  <div id="articles" class="min-w-full grid grid-cols-2 gap-2 h-full">
     <%= render @articles %>
   </div>
 </div>

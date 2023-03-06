@@ -18761,7 +18761,7 @@
         fileTooLarge: "Image #image_name# is too big (#image_size#).\nMaximum file size is #image_max_size#.",
         importError: "Something went wrong when uploading the image #image_name#."
       };
-      function EasyMDE3(options) {
+      function EasyMDE2(options) {
         options = options || {};
         options.parent = this;
         var autoDownloadFA = true;
@@ -18897,7 +18897,7 @@
           });
         }
       }
-      EasyMDE3.prototype.uploadImages = function(files, onSuccess, onError) {
+      EasyMDE2.prototype.uploadImages = function(files, onSuccess, onError) {
         if (files.length === 0) {
           return;
         }
@@ -18908,7 +18908,7 @@
         }
         this.updateStatusBar("upload-image", this.options.imageTexts.sbOnDrop.replace("#images_names#", names.join(", ")));
       };
-      EasyMDE3.prototype.uploadImagesUsingCustomFunction = function(imageUploadFunction, files) {
+      EasyMDE2.prototype.uploadImagesUsingCustomFunction = function(imageUploadFunction, files) {
         if (files.length === 0) {
           return;
         }
@@ -18919,7 +18919,7 @@
         }
         this.updateStatusBar("upload-image", this.options.imageTexts.sbOnDrop.replace("#images_names#", names.join(", ")));
       };
-      EasyMDE3.prototype.updateStatusBar = function(itemName, content) {
+      EasyMDE2.prototype.updateStatusBar = function(itemName, content) {
         if (!this.gui.statusbar) {
           return;
         }
@@ -18932,7 +18932,7 @@
           console.log("EasyMDE: Several status bar items named " + itemName + " was found.");
         }
       };
-      EasyMDE3.prototype.markdown = function(text) {
+      EasyMDE2.prototype.markdown = function(text) {
         if (marked) {
           var markedOptions;
           if (this.options && this.options.renderingConfig && this.options.renderingConfig.markedOptions) {
@@ -18967,7 +18967,7 @@
           return htmlText;
         }
       };
-      EasyMDE3.prototype.render = function(el) {
+      EasyMDE2.prototype.render = function(el) {
         if (!el) {
           el = this.element || document.getElementsByTagName("textarea")[0];
         }
@@ -19162,7 +19162,7 @@
           temp_cm.refresh();
         }.bind(temp_cm), 0);
       };
-      EasyMDE3.prototype.cleanup = function() {
+      EasyMDE2.prototype.cleanup = function() {
         document.removeEventListener("keydown", this.documentOnKeyDown);
       };
       function isLocalStorageAvailable() {
@@ -19178,7 +19178,7 @@
         }
         return true;
       }
-      EasyMDE3.prototype.autosave = function() {
+      EasyMDE2.prototype.autosave = function() {
         if (isLocalStorageAvailable()) {
           var easyMDE = this;
           if (this.options.autosave.uniqueId == void 0 || this.options.autosave.uniqueId == "") {
@@ -19219,7 +19219,7 @@
           console.log("EasyMDE: localStorage not available, cannot autosave");
         }
       };
-      EasyMDE3.prototype.clearAutosavedValue = function() {
+      EasyMDE2.prototype.clearAutosavedValue = function() {
         if (isLocalStorageAvailable()) {
           if (this.options.autosave == void 0 || this.options.autosave.uniqueId == void 0 || this.options.autosave.uniqueId == "") {
             console.log("EasyMDE: You must set a uniqueId to clear the autosave value");
@@ -19230,7 +19230,7 @@
           console.log("EasyMDE: localStorage not available, cannot autosave");
         }
       };
-      EasyMDE3.prototype.openBrowseFileWindow = function(onSuccess, onError) {
+      EasyMDE2.prototype.openBrowseFileWindow = function(onSuccess, onError) {
         var self2 = this;
         var imageInput = this.gui.toolbar.getElementsByClassName("imageInput")[0];
         imageInput.click();
@@ -19244,7 +19244,7 @@
         }
         imageInput.addEventListener("change", onChange);
       };
-      EasyMDE3.prototype.uploadImage = function(file, onSuccess, onError) {
+      EasyMDE2.prototype.uploadImage = function(file, onSuccess, onError) {
         var self2 = this;
         onSuccess = onSuccess || function onSuccess2(imageUrl) {
           afterImageUploaded(self2, imageUrl);
@@ -19310,7 +19310,7 @@
         };
         request.send(formData);
       };
-      EasyMDE3.prototype.uploadImageUsingCustomFunction = function(imageUploadFunction, file) {
+      EasyMDE2.prototype.uploadImageUsingCustomFunction = function(imageUploadFunction, file) {
         var self2 = this;
         function onSuccess(imageUrl) {
           afterImageUploaded(self2, imageUrl);
@@ -19329,7 +19329,7 @@
         }
         imageUploadFunction.apply(this, [file, onSuccess, onError]);
       };
-      EasyMDE3.prototype.setPreviewMaxHeight = function() {
+      EasyMDE2.prototype.setPreviewMaxHeight = function() {
         var cm = this.codemirror;
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
@@ -19340,7 +19340,7 @@
         var previewMaxHeight = wrapperMaxHeight.toString() + "px";
         preview.style.height = previewMaxHeight;
       };
-      EasyMDE3.prototype.createSideBySide = function() {
+      EasyMDE2.prototype.createSideBySide = function() {
         var cm = this.codemirror;
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
@@ -19389,7 +19389,7 @@
         };
         return preview;
       };
-      EasyMDE3.prototype.createToolbar = function(items) {
+      EasyMDE2.prototype.createToolbar = function(items) {
         items = items || this.options.toolbar;
         if (!items || items.length === 0) {
           return;
@@ -19467,7 +19467,7 @@
         cmWrapper.parentNode.insertBefore(bar, cmWrapper);
         return bar;
       };
-      EasyMDE3.prototype.createStatusbar = function(status) {
+      EasyMDE2.prototype.createStatusbar = function(status) {
         status = status || this.options.status;
         var options = this.options;
         var cm = this.codemirror;
@@ -19561,7 +19561,7 @@
         cmWrapper.parentNode.insertBefore(bar, cmWrapper.nextSibling);
         return bar;
       };
-      EasyMDE3.prototype.value = function(val) {
+      EasyMDE2.prototype.value = function(val) {
         var cm = this.codemirror;
         if (val === void 0) {
           return cm.getValue();
@@ -19578,131 +19578,131 @@
           return this;
         }
       };
-      EasyMDE3.toggleBold = toggleBold;
-      EasyMDE3.toggleItalic = toggleItalic;
-      EasyMDE3.toggleStrikethrough = toggleStrikethrough;
-      EasyMDE3.toggleBlockquote = toggleBlockquote;
-      EasyMDE3.toggleHeadingSmaller = toggleHeadingSmaller;
-      EasyMDE3.toggleHeadingBigger = toggleHeadingBigger;
-      EasyMDE3.toggleHeading1 = toggleHeading1;
-      EasyMDE3.toggleHeading2 = toggleHeading2;
-      EasyMDE3.toggleHeading3 = toggleHeading3;
-      EasyMDE3.toggleHeading4 = toggleHeading4;
-      EasyMDE3.toggleHeading5 = toggleHeading5;
-      EasyMDE3.toggleHeading6 = toggleHeading6;
-      EasyMDE3.toggleCodeBlock = toggleCodeBlock;
-      EasyMDE3.toggleUnorderedList = toggleUnorderedList;
-      EasyMDE3.toggleOrderedList = toggleOrderedList;
-      EasyMDE3.cleanBlock = cleanBlock;
-      EasyMDE3.drawLink = drawLink;
-      EasyMDE3.drawImage = drawImage;
-      EasyMDE3.drawUploadedImage = drawUploadedImage;
-      EasyMDE3.drawTable = drawTable;
-      EasyMDE3.drawHorizontalRule = drawHorizontalRule;
-      EasyMDE3.undo = undo;
-      EasyMDE3.redo = redo;
-      EasyMDE3.togglePreview = togglePreview;
-      EasyMDE3.toggleSideBySide = toggleSideBySide;
-      EasyMDE3.toggleFullScreen = toggleFullScreen;
-      EasyMDE3.prototype.toggleBold = function() {
+      EasyMDE2.toggleBold = toggleBold;
+      EasyMDE2.toggleItalic = toggleItalic;
+      EasyMDE2.toggleStrikethrough = toggleStrikethrough;
+      EasyMDE2.toggleBlockquote = toggleBlockquote;
+      EasyMDE2.toggleHeadingSmaller = toggleHeadingSmaller;
+      EasyMDE2.toggleHeadingBigger = toggleHeadingBigger;
+      EasyMDE2.toggleHeading1 = toggleHeading1;
+      EasyMDE2.toggleHeading2 = toggleHeading2;
+      EasyMDE2.toggleHeading3 = toggleHeading3;
+      EasyMDE2.toggleHeading4 = toggleHeading4;
+      EasyMDE2.toggleHeading5 = toggleHeading5;
+      EasyMDE2.toggleHeading6 = toggleHeading6;
+      EasyMDE2.toggleCodeBlock = toggleCodeBlock;
+      EasyMDE2.toggleUnorderedList = toggleUnorderedList;
+      EasyMDE2.toggleOrderedList = toggleOrderedList;
+      EasyMDE2.cleanBlock = cleanBlock;
+      EasyMDE2.drawLink = drawLink;
+      EasyMDE2.drawImage = drawImage;
+      EasyMDE2.drawUploadedImage = drawUploadedImage;
+      EasyMDE2.drawTable = drawTable;
+      EasyMDE2.drawHorizontalRule = drawHorizontalRule;
+      EasyMDE2.undo = undo;
+      EasyMDE2.redo = redo;
+      EasyMDE2.togglePreview = togglePreview;
+      EasyMDE2.toggleSideBySide = toggleSideBySide;
+      EasyMDE2.toggleFullScreen = toggleFullScreen;
+      EasyMDE2.prototype.toggleBold = function() {
         toggleBold(this);
       };
-      EasyMDE3.prototype.toggleItalic = function() {
+      EasyMDE2.prototype.toggleItalic = function() {
         toggleItalic(this);
       };
-      EasyMDE3.prototype.toggleStrikethrough = function() {
+      EasyMDE2.prototype.toggleStrikethrough = function() {
         toggleStrikethrough(this);
       };
-      EasyMDE3.prototype.toggleBlockquote = function() {
+      EasyMDE2.prototype.toggleBlockquote = function() {
         toggleBlockquote(this);
       };
-      EasyMDE3.prototype.toggleHeadingSmaller = function() {
+      EasyMDE2.prototype.toggleHeadingSmaller = function() {
         toggleHeadingSmaller(this);
       };
-      EasyMDE3.prototype.toggleHeadingBigger = function() {
+      EasyMDE2.prototype.toggleHeadingBigger = function() {
         toggleHeadingBigger(this);
       };
-      EasyMDE3.prototype.toggleHeading1 = function() {
+      EasyMDE2.prototype.toggleHeading1 = function() {
         toggleHeading1(this);
       };
-      EasyMDE3.prototype.toggleHeading2 = function() {
+      EasyMDE2.prototype.toggleHeading2 = function() {
         toggleHeading2(this);
       };
-      EasyMDE3.prototype.toggleHeading3 = function() {
+      EasyMDE2.prototype.toggleHeading3 = function() {
         toggleHeading3(this);
       };
-      EasyMDE3.prototype.toggleHeading4 = function() {
+      EasyMDE2.prototype.toggleHeading4 = function() {
         toggleHeading4(this);
       };
-      EasyMDE3.prototype.toggleHeading5 = function() {
+      EasyMDE2.prototype.toggleHeading5 = function() {
         toggleHeading5(this);
       };
-      EasyMDE3.prototype.toggleHeading6 = function() {
+      EasyMDE2.prototype.toggleHeading6 = function() {
         toggleHeading6(this);
       };
-      EasyMDE3.prototype.toggleCodeBlock = function() {
+      EasyMDE2.prototype.toggleCodeBlock = function() {
         toggleCodeBlock(this);
       };
-      EasyMDE3.prototype.toggleUnorderedList = function() {
+      EasyMDE2.prototype.toggleUnorderedList = function() {
         toggleUnorderedList(this);
       };
-      EasyMDE3.prototype.toggleOrderedList = function() {
+      EasyMDE2.prototype.toggleOrderedList = function() {
         toggleOrderedList(this);
       };
-      EasyMDE3.prototype.cleanBlock = function() {
+      EasyMDE2.prototype.cleanBlock = function() {
         cleanBlock(this);
       };
-      EasyMDE3.prototype.drawLink = function() {
+      EasyMDE2.prototype.drawLink = function() {
         drawLink(this);
       };
-      EasyMDE3.prototype.drawImage = function() {
+      EasyMDE2.prototype.drawImage = function() {
         drawImage(this);
       };
-      EasyMDE3.prototype.drawUploadedImage = function() {
+      EasyMDE2.prototype.drawUploadedImage = function() {
         drawUploadedImage(this);
       };
-      EasyMDE3.prototype.drawTable = function() {
+      EasyMDE2.prototype.drawTable = function() {
         drawTable(this);
       };
-      EasyMDE3.prototype.drawHorizontalRule = function() {
+      EasyMDE2.prototype.drawHorizontalRule = function() {
         drawHorizontalRule(this);
       };
-      EasyMDE3.prototype.undo = function() {
+      EasyMDE2.prototype.undo = function() {
         undo(this);
       };
-      EasyMDE3.prototype.redo = function() {
+      EasyMDE2.prototype.redo = function() {
         redo(this);
       };
-      EasyMDE3.prototype.togglePreview = function() {
+      EasyMDE2.prototype.togglePreview = function() {
         togglePreview(this);
       };
-      EasyMDE3.prototype.toggleSideBySide = function() {
+      EasyMDE2.prototype.toggleSideBySide = function() {
         toggleSideBySide(this);
       };
-      EasyMDE3.prototype.toggleFullScreen = function() {
+      EasyMDE2.prototype.toggleFullScreen = function() {
         toggleFullScreen(this);
       };
-      EasyMDE3.prototype.isPreviewActive = function() {
+      EasyMDE2.prototype.isPreviewActive = function() {
         var cm = this.codemirror;
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.lastChild;
         return preview.classList.contains("editor-preview-active");
       };
-      EasyMDE3.prototype.isSideBySideActive = function() {
+      EasyMDE2.prototype.isSideBySideActive = function() {
         var cm = this.codemirror;
         var wrapper = cm.getWrapperElement();
         var preview = wrapper.nextSibling;
         return preview.classList.contains("editor-preview-active-side");
       };
-      EasyMDE3.prototype.isFullscreenActive = function() {
+      EasyMDE2.prototype.isFullscreenActive = function() {
         var cm = this.codemirror;
         return cm.getOption("fullScreen");
       };
-      EasyMDE3.prototype.getState = function() {
+      EasyMDE2.prototype.getState = function() {
         var cm = this.codemirror;
         return getState(cm);
       };
-      EasyMDE3.prototype.toTextArea = function() {
+      EasyMDE2.prototype.toTextArea = function() {
         var cm = this.codemirror;
         var wrapper = cm.getWrapperElement();
         var easyMDEContainer = wrapper.parentNode;
@@ -19726,7 +19726,7 @@
           this.clearAutosavedValue();
         }
       };
-      module.exports = EasyMDE3;
+      module.exports = EasyMDE2;
     }
   });
 
@@ -26621,9 +26621,21 @@
   window.Stimulus = application;
 
   // app/javascript/controllers/hello-controller.js
-  var import_easymde = __toESM(require_easymde());
   var hello_controller_default = class extends Controller {
     connect() {
+    }
+    toggleAccordion(event) {
+      const target = event.target;
+      const isExpanded = target.getAttribute("aria-expanded");
+      const controlsTarget = target.getAttribute("aria-controls");
+      const targetContainer = document.getElementById(controlsTarget);
+      if (isExpanded === "true") {
+        target.setAttribute("aria-expanded", false);
+        targetContainer.classList.add("hidden");
+      } else {
+        targetContainer.classList.remove("hidden");
+        target.setAttribute("aria-expanded", true);
+      }
     }
     sideMenu = document.getElementById("side-menu");
     mainSection = document.getElementById("main");
@@ -26716,7 +26728,7 @@
   __publicField(search_form_controller_default, "debounces", ["search", "filterProject"]);
 
   // app/javascript/controllers/admin-controller.js
-  var import_easymde2 = __toESM(require_easymde());
+  var import_easymde = __toESM(require_easymde());
   var admin_controller_default = class extends Controller {
     easyMDE;
     selectedProject = null;
@@ -26797,7 +26809,7 @@
         this.getElementById("add-article").classList.remove("hidden");
         if (!this.easyMDE) {
           const textArea = this.getElementById("markdown");
-          this.easyMDE = textArea && new import_easymde2.default({ element: textArea, placeholder: "Type here...", showIcons: ["code", "table"], insertTexts: {
+          this.easyMDE = textArea && new import_easymde.default({ element: textArea, placeholder: "Type here...", showIcons: ["code", "table"], insertTexts: {
             horizontalRule: ["", "\n\n-----\n\n"],
             image: ["![](http://", ")"],
             link: ["[", "](https://)"],
@@ -26826,7 +26838,7 @@
   application.register("admin", admin_controller_default);
 
   // app/javascript/application.js
-  var import_easymde3 = __toESM(require_easymde());
+  var import_easymde2 = __toESM(require_easymde());
 })();
 /*! Bundled license information:
 
