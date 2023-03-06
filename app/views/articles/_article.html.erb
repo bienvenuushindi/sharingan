@@ -4,7 +4,7 @@
       <span class=" text-blue-600">Title: </span> <%= article.title %>
     </div>
 
-    <span class="font-bold text-blue-600">Body: </span> <%=  raw(markdown(@body.body)) %>
+    <span class="font-bold text-blue-600">Body: </span> <%=  raw(markdown(article.body)) %>
     <div class="actions flex gap-2 ">
       <% if action_name != "show" %>
         <%= link_to "Show", article, class: "app-btn btn-blue btn-sm" %>
