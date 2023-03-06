@@ -6,7 +6,12 @@ module ApplicationHelper
   end
 
   def markdown(text)
-    GitHub::Markup.render_s(GitHub::Markups::MARKUP_MARKDOWN, text)
+    GitHub::Markup.render_s(GitHub::Markups::MARKUP_MARKDOWN, text,
+                            options: { commonmarker_opts: [:DEFAULT], commonmarker_exts: %i[autolink table strikethrough tagfilter] })
+  end
+
+  def translate_markdown(text)
+    CommonMarker.render_html(text, [:DEFAULT], %i[table tasklist strikethrough tagfilter])
   end
 
   def navigation

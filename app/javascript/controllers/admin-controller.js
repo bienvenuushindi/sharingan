@@ -1,9 +1,14 @@
 import {Controller} from "@hotwired/stimulus"
 import {post, get} from "@rails/request.js";
+import EasyMDE from "easymde";
 
 export default class extends Controller {
 
     static targets = ['category'];
+
+    easyMDE;
+
+    selectedProject = null
 
     connect() {
         this.token = document.querySelector(
@@ -31,6 +36,7 @@ export default class extends Controller {
     get isOriginCategories() {
         return this.target === 'categories'
     }
+
     get target() {
         return this.categoryTarget.getAttribute('data-origin')
     }
@@ -87,10 +93,26 @@ export default class extends Controller {
             this.getElementById('project-title').innerHTML = this.getElementById('project-' + cat).textContent
             this.getElementById('projects-list').classList.add('hidden')
             this.getElementById('cross-btn').classList.add('hidden')
+            if(this.selectedProject !== cat ){
+                this.getElementById('review').innerHTML = ''
+                console.log('state changed')
+                this.selectedProject = cat;
+            }
+
         }
 
-        if(this.isOriginCategories) {
+        if (this.isOriginCategories) {
             this.getElementById('add-article').classList.remove('hidden')
+            if(!this.easyMDE){
+                const textArea = this.getElementById('markdown')
+                this.easyMDE = textArea && new EasyMDE({element: textArea, placeholder: "Type here...", showIcons: ["code", "table"], insertTexts: {
+                        horizontalRule: ["", "\n\n-----\n\n"],
+                        image: ["![](http://", ")"],
+                        link: ["[", "](https://)"],
+                        table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
+                    },});
+            }
+
         }
 
         const params = {category: cat, origin: this.target};

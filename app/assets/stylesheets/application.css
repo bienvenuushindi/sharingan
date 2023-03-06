@@ -1,6 +1,6 @@
 /* @import url('https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap'); */
 @import "github-markdown-css/github-markdown-light.css";
-
+@import "easymde/dist/easymde.min.css";
 /*
  * This is a manifest file that'll be compiled into application.css, which will include all the files
  * listed below.
