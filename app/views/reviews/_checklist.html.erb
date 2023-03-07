@@ -1,12 +1,16 @@
 <%= turbo_frame_tag "reviews" do %>
   <% if @list.present? %>
-    <div class="grid grid-cols-1 mx-3 shadow-lg py-2 border my-2 py-3 px-2">
+    <div class="grid grid-cols-1 mx-3 shadow-lg py-2 border my-2 py-3 px-2 rounded">
       <h3 class="text-2xl text-blue-600">Project Requirements</h3>
       <% @list.each_with_index do |item, id| %>
-        <div class="collection-check-box w-fit border-b w-full flex gap-2 items-baseline  py-2 px-2" data-controller="admin" data-turbo_action="advance" data-turbo_frame="changes">
-          <input id="article_category_ids_<%= item.id %>" data-url="/review/<%= item.id %>" name="article[category_ids][]" data-origin="changes" type="checkbox" checked="checked" value="<%= item.id %>" data-action="input->admin#checklist" data-admin-target="category"/>
-          <div class="article_category_ids_<%= item.id %>"> <%= sanitize markdown(item.title) %></div>
+        <div class="justify-between flex items-center border-b">
+          <div class="collection-check-box w-fit  w-full flex gap-2 items-baseline  py-2 px-2" data-controller="admin" data-turbo_action="advance" data-turbo_frame="changes">
+            <input id="article_category_ids_<%= item.id %>" data-url="/review/<%= item.id %>" name="article[category_ids][]" data-origin="changes" type="checkbox" checked="checked" value="<%= item.id %>" data-action="input->admin#checklist" data-admin-target="category"/>
+            <p> <%= (item.title) %></p>
+          </div>
+          <div class="p-1 rounded text-blue-600 border border-blue-600 h-6 flex items-center">#<%= id + 1 %></div>
         </div>
+
       <% end %>
     </div>
   <% else %>
