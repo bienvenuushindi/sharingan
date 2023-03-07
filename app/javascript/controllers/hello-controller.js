@@ -14,11 +14,11 @@ export default class extends Controller {
         const targetContainer = document.getElementById(controlsTarget)
         if (isExpanded === 'true') {
             target.setAttribute('aria-expanded', false)
-            targetContainer.classList.add('hidden')
         } else {
-            targetContainer.classList.remove('hidden')
             target.setAttribute('aria-expanded', true)
         }
+        target.querySelector('span').classList.toggle('rotate-180')
+        targetContainer.classList.toggle('hidden')
     }
 
     sideMenu = document.getElementById('side-menu');
