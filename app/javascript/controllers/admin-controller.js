@@ -49,9 +49,12 @@ export default class extends Controller {
         if (this.categoryTarget.checked) {
             const currentItem = this.getElementById('rc-' + this.categoryTarget.value);
             if (currentItem) currentItem.remove()
+            this.categoryTarget.nextElementSibling.classList.remove('line-through')
         } else {
             await this.fetchBody()
+            this.categoryTarget.nextElementSibling.classList.add('line-through')
         }
+
     }
 
     copyText(event) {
@@ -85,17 +88,17 @@ export default class extends Controller {
     }
 
     async switch(event) {
-        let url = event.target.getAttribute('data-url') || this.url
-        const cat = event.target.getAttribute('data-value') || event.target.value
+        const source = event.target
+        let url = source.getAttribute('data-url') || this.url
+        const cat = source.getAttribute('data-value') || source.value
         if (this.isOriginReviews) {
             // this.getElementById('review').innerHTML = '';
             this.getElementById('filter-project').value = this.getElementById('project-' + cat).textContent
             this.getElementById('project-title').innerHTML = this.getElementById('project-' + cat).textContent
             this.getElementById('projects-list').classList.add('hidden')
             this.getElementById('cross-btn').classList.add('hidden')
-            if(this.selectedProject !== cat ){
+            if (this.selectedProject !== cat) {
                 this.getElementById('review').innerHTML = ''
-                console.log('state changed')
                 this.selectedProject = cat;
             }
 
@@ -103,14 +106,16 @@ export default class extends Controller {
 
         if (this.isOriginCategories) {
             this.getElementById('add-article').classList.remove('hidden')
-            if(!this.easyMDE){
+            if (!this.easyMDE) {
                 const textArea = this.getElementById('markdown')
-                this.easyMDE = textArea && new EasyMDE({element: textArea, placeholder: "Type here...", showIcons: ["code", "table"], insertTexts: {
+                this.easyMDE = textArea && new EasyMDE({
+                    element: textArea, placeholder: "Type here...", showIcons: ["code", "table"], insertTexts: {
                         horizontalRule: ["", "\n\n-----\n\n"],
                         image: ["![](http://", ")"],
                         link: ["[", "](https://)"],
                         table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
-                    },});
+                    },
+                });
             }
 
         }
