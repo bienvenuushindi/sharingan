@@ -26631,11 +26631,11 @@
       const targetContainer = document.getElementById(controlsTarget);
       if (isExpanded === "true") {
         target.setAttribute("aria-expanded", false);
-        targetContainer.classList.add("hidden");
       } else {
-        targetContainer.classList.remove("hidden");
         target.setAttribute("aria-expanded", true);
       }
+      target.querySelector("span").classList.toggle("rotate-180");
+      targetContainer.classList.toggle("hidden");
     }
     sideMenu = document.getElementById("side-menu");
     mainSection = document.getElementById("main");
@@ -26764,8 +26764,10 @@
         const currentItem = this.getElementById("rc-" + this.categoryTarget.value);
         if (currentItem)
           currentItem.remove();
+        this.categoryTarget.nextElementSibling.classList.remove("line-through");
       } else {
         await this.fetchBody();
+        this.categoryTarget.nextElementSibling.classList.add("line-through");
       }
     }
     copyText(event) {
@@ -26792,8 +26794,9 @@
       return document.getElementById(element);
     }
     async switch(event) {
-      let url = event.target.getAttribute("data-url") || this.url;
-      const cat = event.target.getAttribute("data-value") || event.target.value;
+      const source = event.target;
+      let url = source.getAttribute("data-url") || this.url;
+      const cat = source.getAttribute("data-value") || source.value;
       if (this.isOriginReviews) {
         this.getElementById("filter-project").value = this.getElementById("project-" + cat).textContent;
         this.getElementById("project-title").innerHTML = this.getElementById("project-" + cat).textContent;
@@ -26801,7 +26804,6 @@
         this.getElementById("cross-btn").classList.add("hidden");
         if (this.selectedProject !== cat) {
           this.getElementById("review").innerHTML = "";
-          console.log("state changed");
           this.selectedProject = cat;
         }
       }
@@ -26809,12 +26811,17 @@
         this.getElementById("add-article").classList.remove("hidden");
         if (!this.easyMDE) {
           const textArea = this.getElementById("markdown");
-          this.easyMDE = textArea && new import_easymde.default({ element: textArea, placeholder: "Type here...", showIcons: ["code", "table"], insertTexts: {
-            horizontalRule: ["", "\n\n-----\n\n"],
-            image: ["![](http://", ")"],
-            link: ["[", "](https://)"],
-            table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"]
-          } });
+          this.easyMDE = textArea && new import_easymde.default({
+            element: textArea,
+            placeholder: "Type here...",
+            showIcons: ["code", "table"],
+            insertTexts: {
+              horizontalRule: ["", "\n\n-----\n\n"],
+              image: ["![](http://", ")"],
+              link: ["[", "](https://)"],
+              table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"]
+            }
+          });
         }
       }
       const params = { category: cat, origin: this.target };
