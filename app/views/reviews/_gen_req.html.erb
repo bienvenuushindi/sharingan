@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 mx-3">
+<div class="grid grid-cols-1 mx-3 rounded">
   <h3 class="text-2xl text-blue-600">General Requirements</h3>
   <div id='accordion' data-controller="hello">
     <% Category.general_req.includes(:articles).each_with_index do |group, index| %>
@@ -13,13 +13,13 @@
             data-te-target="<%= "#collapse#{index}" %>"
             aria-expanded="false"
             aria-controls="<%= "collapse#{index}" %>">
-            <div class="capitalize pl-1 text-blue-600 flex gap-2">
+            <div class="capitalize pl-1 text-blue-600 flex gap-2 flex-grow">
               <div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
               </div>
               <%= group.name.split('-').last %>
             </div>
             <span
-              class="ml-auto h-5 w-5 shrink-0 rotate-[-180deg] fill-[#336dec] transition-transform duration-200 ease-in-out group-[[data-te-collapse-collapsed]]:rotate-0 group-[[data-te-collapse-collapsed]]:fill-[#212529] motion-reduce:transition-none dark:fill-blue-300 dark:group-[[data-te-collapse-collapsed]]:fill-white">
+              class="ml-auto h-5 w-5 shrink-0 icon">
           <svg
             xmlns="http://www.w3.org/2000/svg"
             fill="none"
@@ -44,8 +44,8 @@
           data-te-collapse-show
           aria-labelledby="<%= "heading#{index}" %>"
           data-te-parent="#accordion">
-          <% group.articles.each_with_index do |item, id| %>
-            <div class="py-4 px-5">
+          <% group.articles.each do |item| %>
+            <div class="py-1 px-5 flex justify-between">
               <div class="collection-check-box w-fit  w-full flex gap-2 items-baseline  py-2 px-2" data-controller="admin" data-turbo_action="advance" data-turbo_frame="changes">
                 <input id="article_category_ids_<%= item.id %>" data-url="/review/<%= item.id %>" name="article[category_ids][]" data-origin="changes" type="checkbox" checked="checked" value="<%= item.id %>" data-action="input->admin#checklist" data-admin-target="category"/>
                 <label for="article_category_ids_<%= item.id %>"><%= item.title %></label>
