@@ -15,6 +15,20 @@ export default class extends Controller {
             'meta[name="csrf-token"]'
         ).content;
 
+        if (this.isOriginCategories) {
+            if (!this.easyMDE) {
+                const textArea = this.getElementById('markdown')
+                this.easyMDE = textArea && new EasyMDE({
+                    element: textArea, placeholder: "Type here...", showIcons: ["code", "table"], insertTexts: {
+                        horizontalRule: ["", "\n\n-----\n\n"],
+                        image: ["![](http://", ")"],
+                        link: ["[", "](https://)"],
+                        table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
+                    },
+                });
+            }
+        }
+
         this.resetFields()
     }
 
@@ -106,18 +120,6 @@ export default class extends Controller {
 
         if (this.isOriginCategories) {
             this.getElementById('add-article').classList.remove('hidden')
-            if (!this.easyMDE) {
-                const textArea = this.getElementById('markdown')
-                this.easyMDE = textArea && new EasyMDE({
-                    element: textArea, placeholder: "Type here...", showIcons: ["code", "table"], insertTexts: {
-                        horizontalRule: ["", "\n\n-----\n\n"],
-                        image: ["![](http://", ")"],
-                        link: ["[", "](https://)"],
-                        table: ["", "\n\n| Column 1 | Column 2 | Column 3 |\n| -------- | -------- | -------- |\n| Text     | Text      | Text     |\n\n"],
-                    },
-                });
-            }
-
         }
 
         const params = {category: cat, origin: this.target};
