@@ -1,10 +1,10 @@
-<div id="<%= dom_id article %>" class="h-full">
-  <div class=" rounded border flex-col flex gap-3 p-4 my-4 h-full justify-between">
+<div id="<%= dom_id article %>" class="h-full mb-2">
+  <div class="rounded border flex-col flex gap-3 p-4 my-4 h-full justify-between shadow-lg">
     <div class="border-b flex flex-col gap-3 pb-3 font-bold">
       <span class=" text-blue-600">Title: </span> <%= article.title %>
     </div>
-
-    <span class="font-bold text-blue-600">Body: </span> <%=  raw(markdown(article.body)) %>
+    <span class="font-bold text-blue-600">Body: </span>
+    <div class="markdown-body"><%= raw(markdown(article.body)) %></div>
     <div class="actions flex gap-2 ">
       <% if action_name != "show" %>
         <%= link_to "Show", article, class: "app-btn btn-blue btn-sm" %>
@@ -14,7 +14,6 @@
         <hr class="mt-6">
       <% end %>
     </div>
-
   </div>
 
 </div>
