@@ -2,9 +2,11 @@
   <div class="form-group text-start p-2">
     <h4 class="form-label h5">Categories</h4>
     <div class="flex flex-wrap gap-3">
-      <% @categories.each_with_index do |item, id| %>
+      <% @categories.each do |item| %>
+        <% default_cat ||= nil %>
+        <% checked = ((item.id == default_cat.id) unless default_cat.nil?) ? 'checked' : '' %>
         <div class="collection-check-box w-fit flex gap-2 items-baseline shadow py-2 px-2">
-          <input id="article_category_ids_<%= item.id %>" name="article[category_ids][]" type="checkbox" value="<%= item.id %>"/>
+          <input id="article_category_ids_<%= item.id %>" <%= checked %> name="article[category_ids][]" type="checkbox" value="<%= item.id %>"/>
           <label for="article_category_ids_<%= item.id %>"><%= @gen_req ? item.name.split('-').last : item.name %></label>
         </div>
       <% end %>
