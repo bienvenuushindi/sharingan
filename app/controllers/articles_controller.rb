@@ -4,7 +4,7 @@ class ArticlesController < ApplicationController
   before_action :set_select_collections, only: %i[update new create]
   # GET /articles or /articles.json
   def index
-    @articles = Article.all
+    @pagy, @articles = pagy(Article.all.distinct, items: 8)
   end
 
   # GET /articles/1 or /articles/1.json
@@ -35,10 +35,10 @@ class ArticlesController < ApplicationController
       if @article.save
         @article.add_categories(article_params[:category_ids])
         format.html { redirect_to article_url(@article), notice: 'Article was successfully created.' }
-        format.json { render :show, status: :created, location: @article }
+        # format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        # format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
   end
@@ -48,10 +48,10 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to article_url(@article), notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article }
+        # format.json { render :show, status: :ok, location: @article }
       else
         format.html { render :edit, status: :unprocessable_entity }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
+        # format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
   end
