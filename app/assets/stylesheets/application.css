@@ -48,6 +48,10 @@ html {
     transform: rotate(180deg);
 }
 
+.bg-red-600{
+    background-color: #B00100;
+}
+
 .max-h-screen-90 {
     max-height: 80vh;
 }
@@ -82,4 +86,8 @@ html {
 
 .stop-propagation > * {
     pointer-events: none;
+}
+
+.justify-end{
+    justify-content: end;
 }
