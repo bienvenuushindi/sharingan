@@ -1,8 +1,5 @@
 <div class="mx-auto md:w-2/3 w-full flex">
   <div class="mx-auto">
-    <% if notice.present? %>
-      <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
-    <% end %>
     <div class="border-b flex flex-col gap-3 pb-3 font-bold">
       <span class=" text-blue-600">Name: </span> <%= @category.name %>
     </div>
@@ -15,16 +12,9 @@
       </div>
     <% end %>
     <%= link_to 'Back to categories', categories_path, class: "ml-2 rounded-lg py-1 px-3 bg-gray-100 inline-block font-medium" %>
-    <% @category.articles.each do |article| %>
-      <div class="shadow-lg rounded border flex-col flex gap-3 p-4 my-4">
-        <div class="border-b flex flex-col gap-3 pb-3 font-bold">
-          <span class=" text-blue-600">Title: </span> <%= article.title %>
-        </div>
-
-        <span class="font-bold text-blue-600">Body: </span> <%= sanitize markdown(article.body) %>
-
-      </div>
-    <% end %>
+    <div id="articles" class="min-w-full grid">
+      <%= render @category.articles %>
+    </div>
   </div>
 
 </div>

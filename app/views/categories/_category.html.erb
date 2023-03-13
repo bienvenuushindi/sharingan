@@ -1,15 +1,27 @@
-<div id="<%= dom_id category %>" class="shadow px-2 pb-3 pt-1 my-2 border flex flex-col justify-between">
-  <div class=" flex flex-col gap-3 pb-3 font-bold">
-    <span class=" text-blue-600">Name: </span>  <%= category.name %>
-  </div>
-  <div class="">
+<tr id="<%= dom_id category %>" >
+  <td class="">
+    <span class="capitalize font-bold "><%= category.name %></span>
+  </td>
+  <td class="text-center">
+    <span><%= category.count_articles %> </span>
+  </td>
+  <td class="actions flex justify-end pr-2">
     <% if can? :manage, @category %>
       <% if action_name != "show" %>
-        <%= link_to "Show", category, class: "app-btn btn-blue btn-sm" %>
-        <%= link_to 'Edit', edit_category_path(category), class: "app-btn btn-warning btn-sm" %>
+        <%= link_to category, class: "app-btn btn-blue btn-sm ml-1 rounded-lg" do %>
+          <i class="fa fa-solid fa-eye"></i>
+        <% end %>
+        <%= link_to edit_category_path(category), class: "app-btn btn-warning btn-sm ml-1  rounded-lg" do %>
+          <i class="fa fa-solid fa-edit"></i>
+        <% end %>
+        <% if can? :destroy, @category %>
+          <%= button_to category_path(category), method: :delete, class: "app-btn btn-warning btn-sm ml-1 text-white rounded-lg  bg-red-600" do %>
+            <i class="fa fa-solid fa-trash"></i>
+          <% end %>
 
+        <% end %>
       <% end %>
     <% end %>
-  </div>
+  </td>
 
-</div>
+</tr>

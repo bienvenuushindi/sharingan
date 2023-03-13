@@ -7,10 +7,13 @@
     <h1 class="font-bold text-4xl">Categories</h1>
     <%= link_to 'New category', new_category_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
-
-  <div id="categories" class="min-w-full">
-    <div class="rounded border grid grid-cols-2 lg:grid-cols-4 flex gap-3 p-4 my-4">
-    <%= render @categories %>
-    </div>
+  <div>
+    <% gen_categories = Category.general_req %>
+    <%= render partial: 'categories', locals: { categories: gen_categories, cat_name: 'General Requirements', id: 0 } %>
   </div>
+</div>
+<% @categories.each_with_index do |item, index| %>
+  <% child_categories = item.categories.filter_out_gen_req %>
+  <%= render partial: 'categories', locals: { categories: child_categories, cat_name: item.name, id: index + 1 } %>
+<% end %>
 </div>

@@ -1,0 +1,60 @@
+<div class="my-3" data-controller="hello">
+  <div
+    class="rounded-t-lg border border-neutral-200 bg-white ">
+    <h2 class="mb-0" id="<%= "heading#{id}" %>">
+      <button
+        class="stop-propagation group relative flex w-full items-center rounded-t-[15px] border-0 bg-white py-4 px-5 text-left  transition "
+        type="button"
+        data-action="click->hello#toggleAccordion"
+        data-te-collapse-init
+        data-te-target="<%= "#collapse#{id}" %>"
+        aria-expanded="false"
+        aria-controls="<%= "collapse#{id}" %>">
+        <div class="capitalize pl-1  flex gap-2 flex-grow">
+          <div class="flex relative text-blue-600 bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+          </div>
+          <%= cat_name %> (<%= categories.length %>)
+        </div>
+        <span
+          class="ml-auto h-5 w-5 shrink-0 icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke-width="1.5"
+            stroke="currentColor"
+            class="h-6 w-6">
+            <path
+              stroke-linecap="round"
+              stroke-linejoin="round"
+              d="M19.5 8.25l-7.5 7.5-7.5-7.5"/>
+          </svg>
+        </span>
+      </button>
+    </h2>
+  </div>
+  <div id="<%= "collapse#{id}" %>"
+       class="hidden mb-3 min-w-full border flex flex-col gap-2 p-2 rounded"
+       data-controller="pagination"
+       data-te-collapse-item
+       data-te-collapse-show
+       aria-labelledby="<%= "heading#{id}" %>"
+       data-te-parent="#accordion">
+    <div class="table-parent-box">
+      <table id="pager<%= id %>"  data-table-id="<%= id %>" class="w-full table-auto table-entity">
+        <thead class="bg-gray-100">
+        <tr>
+          <th class="text-blue-600 pl-2 py-3 text-start">Name</th>
+          <th class="text-blue-600 pl-2 py-3 text-center">Number of Article</th>
+          <th class="text-blue-600 px-2 py-3 text-end">Actions</th>
+        </tr>
+        </thead>
+        <tbody>
+        <%= render categories %>
+        </tbody>
+      </table>
+      <div class="pager-nav flex justify-end gap-1 pageNavPosition"></div>
+    </div>
+
+  </div>
+</div>
