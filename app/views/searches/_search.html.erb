@@ -12,7 +12,7 @@
         <span class=" text-blue-600">Title: </span> <%= item.title %>
       </div>
 
-      <span class="font-bold text-blue-600">Body: </span> <%= sanitize markdown(item.body) %>
+      <span class="font-bold text-blue-600 markdown-body">Body: </span> <%=  raw(markdown(item.body)) %>
 
     </div>
 
