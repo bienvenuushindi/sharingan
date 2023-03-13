@@ -3,20 +3,20 @@
   <div id='accordion' data-controller="hello">
     <% Category.general_req.includes(:articles).each_with_index do |group, index| %>
       <div
-        class="rounded-t-lg border border-neutral-200 bg-white dark:border-neutral-600 dark:bg-neutral-800">
+        class="rounded-t-lg border border-neutral-200 bg-white ">
         <h2 class="mb-0" id="<%= "heading#{index}" %>">
           <button
-            class="stop-propagation group relative flex w-full items-center rounded-t-[15px] border-0 bg-white py-4 px-5 text-left text-base text-neutral-800 transition [overflow-anchor:none] hover:z-[2] focus:z-[3] focus:outline-none dark:bg-neutral-800 dark:text-white [&:not([data-te-collapse-collapsed])]:bg-white [&:not([data-te-collapse-collapsed])]:text-primary [&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(229,231,235)] dark:[&:not([data-te-collapse-collapsed])]:bg-neutral-800 dark:[&:not([data-te-collapse-collapsed])]:text-primary-400 dark:[&:not([data-te-collapse-collapsed])]:[box-shadow:inset_0_-1px_0_rgba(75,85,99)]"
+            class="stop-propagation group relative flex w-full items-center rounded-t-[15px] border-0 bg-white py-4 px-5 text-left  transition "
             type="button"
             data-action="click->hello#toggleAccordion"
             data-te-collapse-init
             data-te-target="<%= "#collapse#{index}" %>"
             aria-expanded="false"
             aria-controls="<%= "collapse#{index}" %>">
-            <div class="capitalize pl-1 text-blue-600 flex gap-2 flex-grow">
-              <div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+            <div class="capitalize pl-1  flex gap-2 flex-grow">
+              <div class="flex relative text-blue-600 bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
               </div>
-              <%= group.name.split('-').last %>
+             <%= group.name.split('-').last %>
             </div>
             <span
               class="ml-auto h-5 w-5 shrink-0 icon">
