@@ -29,7 +29,7 @@ export default class extends Controller {
             }
         }
 
-        this.resetFields()
+        if(!this.isOriginChecklist) this.resetFields()
     }
 
     resetFields() {
