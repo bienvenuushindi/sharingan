@@ -8,9 +8,9 @@
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
   <%= stylesheet_link_tag "tailwind", "inter-font", "data-turbo-track": "reload" %>
-
+  <link href="//stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet">
   <%#= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
-  <%= stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap','application.css' %>
+  <%= stylesheet_link_tag 'https://fonts.googleapis.com/css2?family=Lato:wght@300&display=swap', 'application.css' %>
   <%= javascript_importmap_tags %>
   <%#= javascript_include_tag "application", "data-turbo-track": "reload", defer: true %>
 </head>
@@ -19,14 +19,17 @@
 <aside>
   <!-- This is used to open the menu -->
   <div data-controller="hello" class="m-4 absolute z-10 ">
-    <span class="cursor-pointer text-blue-900 text-4xl" id="open" data-action ="click->hello#openMenu">&#9776;</span>
+    <span class="cursor-pointer text-blue-900 text-4xl" id="open" data-action="click->hello#openMenu">&#9776;</span>
   </div>
   <%= render 'partials/nav' %>
 </aside>
 <main class="xl:ml-64 " id="main">
   <%= render 'partials/header' %>
-  <% if notice %>
-    <p class="alert alert-success"><%= notice %></p>
+  <% if notice.present? %>
+    <div class="w-full flex justify-center mt-3">
+      <p class="py-2 px-3  bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
+    </div>
+
   <% end %>
   <% if alert %>
     <p class="alert alert-danger text-success"><%= alert %></p>
