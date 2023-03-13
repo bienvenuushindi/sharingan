@@ -8,7 +8,16 @@
     <%= link_to 'New article', new_article_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="articles" class="min-w-full grid grid-cols-2 gap-2 h-full">
+  <div id="articles" class="min-w-full grid  gap-1 h-full mt-3">
+    <% if  @pagy.present? && @pagy.count > 0  %>
+      <div class="px-6 py-4 shadow">
+        <h2 class="font-bold text-xl mb-2"> <%= @pagy.count %> Results </h2>
+        <div class="flex  items-center justify-center  w-full">
+          <%== pagy_nav(@pagy) %>
+        </div>
+        <p class="text-center mt-6 text-gray-500"><%== pagy_info @pagy %></p>
+      </div>
+    <% end %>
     <%= render @articles %>
   </div>
 </div>
