@@ -7,7 +7,7 @@ class Article < ApplicationRecord
   validates :title, presence: true
   validates :body, presence: true
   validates :visited_count, numericality: { greater_than_or_equal_to: 0 }
-
+  # default_scope -> { where(public: true).order(created_at: :desc) }
   # scope :public, -> { where(public: true) }
 
   def update_visited_count
@@ -16,6 +16,10 @@ class Article < ApplicationRecord
 
   def public?
     public
+  end
+
+  def parent_category
+    categories.first.parent_category
   end
 
   def self.sort_by_visited
