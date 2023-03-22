@@ -1,4 +1,4 @@
-<div class="grid grid-cols-1 mx-3 rounded">
+<div class="grid grid-cols-1 mx-3 rounded" data-controller="alert">
   <h3 class="text-2xl text-blue-600">General Requirements</h3>
   <div id='accordion' data-controller="hello">
     <% Category.general_req.includes(:articles).each_with_index do |group, index| %>
