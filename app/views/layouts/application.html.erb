@@ -34,6 +34,9 @@
   <% if alert %>
     <p class="alert alert-danger text-success"><%= alert %></p>
   <% end %>
+  <div id="toasts" class="fixed flex gap-1 flex-col items-center z-50 w-full max-w-xs space-x-4  divide-x top-20 right-5 " role="alert">
+  </div>
+
   <div class="container flex mx-auto align-items-start justify-center h-screen mt-6">
     <div class="w-full md:w-11/12 mx-auto">
       <%= yield %>
