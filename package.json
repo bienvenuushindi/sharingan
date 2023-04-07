@@ -9,6 +9,7 @@
     "easymde": "^2.18.0",
     "esbuild": "^0.17.3",
     "github-markdown-css": "^5.1.0",
+    "jquery": "^3.6.4",
     "stimulus-use": "^0.51.3"
   },
   "scripts": {
