@@ -11,13 +11,13 @@ export default class extends Controller {
     selectedProject = null
 
     connect() {
-        this.token = document.querySelector(
+        this.token = $(
             'meta[name="csrf-token"]'
-        ).content;
+        ).attr('content');
 
         if (this.isOriginCategories) {
             if (!this.easyMDE) {
-                const textArea = this.getElementById('markdown')
+                const textArea = $('#markdown').get(0);
                 this.easyMDE = textArea && new EasyMDE({
                     element: textArea, placeholder: "Type here...", showIcons: ["code", "table"], insertTexts: {
                         horizontalRule: ["", "\n\n-----\n\n"],
@@ -29,15 +29,12 @@ export default class extends Controller {
             }
         }
 
-        if(!this.isOriginChecklist) this.resetFields()
+        if (!this.isOriginChecklist) this.resetFields()
     }
 
     resetFields() {
-        this.categoryTargets.forEach(item => {
-            if (!this.isOriginChecklist) item.checked = false;
-        })
+        $(this.categoryTargets).prop('checked', false)
     }
-
 
     get isOriginChecklist() {
         return (this.target === 'changes')
@@ -52,35 +49,34 @@ export default class extends Controller {
     }
 
     get target() {
-        return this.categoryTarget.getAttribute('data-origin')
+        return $(this.categoryTarget).attr('data-origin')
     }
 
     get url() {
-        return this.categoryTarget.getAttribute('data-url')
+        return $(this.categoryTarget).attr('data-url')
     }
 
     async checklist() {
         if (this.categoryTarget.checked) {
-            const currentItem = this.getElementById('rc-' + this.categoryTarget.value);
+            const currentItem = $('#rc-' + this.categoryTarget.value).get(0);
             if (currentItem) currentItem.remove()
-            this.categoryTarget.nextElementSibling.classList.remove('line-through')
         } else {
             await this.fetchBody()
-            this.categoryTarget.nextElementSibling.classList.add('line-through')
         }
-
+        $(this.categoryTarget).next().toggleClass('line-through')
     }
 
     copyText(event) {
         // Get the source
         const target = event.target
-        const parent = target.closest('div')
-        const copyText = parent.firstElementChild;
+        const siblings = $(target.closest('div')).children()
+        const lastElement = siblings.last()
+        const copyText = siblings.first()
         // Copy the text
-        navigator.clipboard.writeText(copyText.innerHTML);
-        parent.lastElementChild.classList.remove('hidden');
+        navigator.clipboard.writeText(copyText.html());
+        lastElement.removeClass('hidden');
         setTimeout(() => {
-            parent.lastElementChild.classList.add('hidden')
+            lastElement.addClass('hidden')
         }, 1000)
     }
 
@@ -93,33 +89,27 @@ export default class extends Controller {
             responseKind: 'turbo-stream'
         }).then(response => response.text)
             .then(html => {
-                return Turbo.renderStreamMessage(html)
+                // return Turbo.renderStreamMessage(html)
             });
-    }
-
-    getElementById(element) {
-        return document.getElementById(element)
     }
 
     async switch(event) {
         const source = event.target
-        let url = source.getAttribute('data-url') || this.url
-        const cat = source.getAttribute('data-value') || source.value
+        let url = $(source).attr('data-url') || this.url
+        const cat = $(source).attr('data-value') || source.value
         if (this.isOriginReviews) {
-            // this.getElementById('review').innerHTML = '';
-            this.getElementById('filter-project').value = this.getElementById('project-' + cat).textContent
-            this.getElementById('project-title').innerHTML = this.getElementById('project-' + cat).textContent
-            this.getElementById('projects-list').classList.add('hidden')
-            this.getElementById('cross-btn').classList.add('hidden')
+            const category = $('#project-' + cat).html()
+            $('#filter-project').value = category
+            $('#project-title').text(category)
+            $('#projects-list').addClass('hidden')
+            $('#cross-btn').addClass('hidden')
             if (this.selectedProject !== cat) {
-                this.getElementById('review').innerHTML = ''
+                $('#review').html('')
                 this.selectedProject = cat;
             }
-
         }
-
         if (this.isOriginCategories) {
-            this.getElementById('add-article').classList.remove('hidden')
+            $('#add-article').removeClass('hidden')
         }
 
         const params = {category: cat, origin: this.target};
