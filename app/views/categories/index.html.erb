@@ -1,19 +1,25 @@
-<div class="w-full">
+<div class="w-full" data-controller="modal">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
 
   <div class="flex justify-between items-center">
     <h1 class="font-bold text-4xl">Categories</h1>
-    <%= link_to 'New category', new_category_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
+    <button data-action="click->modal#show" data-target="new-modal" data-modal-toggle="new-modal" class="block text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800" type="button">
+      Create Category
+    </button>
   </div>
   <div>
     <% gen_categories = Category.general_req %>
     <%= render partial: 'categories', locals: { categories: gen_categories, cat_name: 'General Requirements', id: 0 } %>
   </div>
-</div>
-<% @categories.each_with_index do |item, index| %>
-  <% child_categories = item.categories.filter_out_gen_req %>
-  <%= render partial: 'categories', locals: { categories: child_categories, cat_name: item.name, id: index + 1 } %>
-<% end %>
+
+  <% @categories.each_with_index do |item, index| %>
+    <% child_categories = item.categories.filter_out_gen_req %>
+    <%= render partial: 'categories', locals: { categories: child_categories, cat_name: item.name, id: index + 1 } %>
+  <% end %>
+  <!--modal--->
+  <%= render 'partials/modal' do %>
+    <%= render "form", category: Category.new %>
+  <% end %>
 </div>
