@@ -7,8 +7,12 @@ import HelloController from "./hello-controller.js"
 import SearchFormController from "./search_form-controller.js"
 import AdminController from "./admin-controller.js"
 import PaginationController from "./pagination_controller";
+import ModalController from "./modal_controller";
+import ToastController from "./toast_controller";
 
 application.register("hello", HelloController)
 application.register("search-form", SearchFormController)
 application.register("admin", AdminController)
 application.register("pagination", PaginationController)
+application.register("modal", ModalController)
+application.register("toast", ToastController)
