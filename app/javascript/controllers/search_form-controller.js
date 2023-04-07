@@ -1,7 +1,7 @@
 import Rails from "@rails/ujs";
 import {Controller} from "@hotwired/stimulus"
 import {useDebounce} from 'stimulus-use'
-// import {post} from "@rails/request.js";
+
 
 export default class extends Controller {
 
@@ -11,18 +11,15 @@ export default class extends Controller {
         useDebounce(this, {wait: 500})
     }
 
-    getElementById(element) {
-        return document.getElementById(element)
-    }
 
     showBox() {
-        this.getElementById('projects-list').classList.remove('hidden')
-        this.getElementById('cross-btn').classList.remove('hidden')
+        $('#projects-list').removeClass('hidden')
+        $('#cross-btn').removeClass('hidden')
     }
 
     hideBox() {
-        this.getElementById('projects-list').classList.add('hidden')
-        this.getElementById('cross-btn').classList.add('hidden')
+        $('#projects-list').addClass('hidden')
+        $('#cross-btn').addClass('hidden')
     }
 
     search(event) {
@@ -35,7 +32,7 @@ export default class extends Controller {
         const element = event.target;
         [].forEach.call(projects, (item) => {
             if (!item.textContent.toLowerCase().includes(element.value.toLowerCase())) item.closest('.wrapper').classList.add('hidden');
-            else item.closest('.wrapper').classList.remove('hidden');
+            else item.closest('.wrapper').removeClass('hidden');
         })
     }
 }
