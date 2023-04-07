@@ -17,3 +17,4 @@ pin "codemirror-spell-checker", to: "https://ga.jspm.io/npm:codemirror-spell-che
 pin "codemirror/", to: "https://ga.jspm.io/npm:codemirror@5.65.12/"
 pin "fs", to: "https://ga.jspm.io/npm:@jspm/core@2.0.1/nodelibs/browser/fs.js"
 pin "typo-js", to: "https://ga.jspm.io/npm:typo-js@1.2.2/typo.js"
+pin "jquery", to: "jquery.min.js", preload: true
