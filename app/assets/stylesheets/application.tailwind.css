@@ -28,7 +28,7 @@
     }
 
     .btn-danger {
-        @apply bg-red-500  hover:bg-red-600 text-white font-bold active:bg-red-700 focus-visible:ring ring-red-300
+        @apply bg-red-500  hover:bg-red-600 text-white font-bold active:bg-red-700 active:bg-red-700 focus-visible:ring ring-red-300
     }
 
     .btn-default {
