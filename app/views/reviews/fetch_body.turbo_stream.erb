@@ -1,0 +1,2 @@
+<%= turbo_stream.prepend('review', partial: 'reviews/changes', locals: { body: @body }) %>
+<%= turbo_stream.append('toasts', partial: 'partials/toast', locals: { message: 'This change has been added successfully...' }) %>
