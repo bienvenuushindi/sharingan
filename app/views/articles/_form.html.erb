@@ -1,4 +1,4 @@
-<%= form_with(model: article, class: "contents ") do |form| %>
+<%= form_with(model: article, class: "contents ", data: { controller: "admin" }) do |form| %>
   <% if article.errors.any? %>
     <div id="error_explanation" class="bg-red-50 text-red-500 px-3 py-2 font-medium rounded-lg mt-3">
       <h2><%= pluralize(article.errors.count, "error") %> prohibited this article from being saved:</h2>
@@ -13,7 +13,7 @@
   <% if action_name != 'edit' %>
     <div class="form-group text-start p-2 my-4">
       <%= form.label "Please Select Group", class: 'form-label h5 ' %> <br/>
-      <div class="flex flex-wrap gap-3 my-3" data-controller="admin" data-turbo_action="advance" data-turbo_frame="categories">
+      <div class="flex flex-wrap gap-3 my-3" data-turbo_action="advance" data-turbo_frame="categories">
         <%= form.collection_radio_buttons :group_id, @group, :id, :name, {}, { checked: @group.first } do |b| %>
           <div class="collection-check-box w-fit flex gap-2 items-baseline shadow py-2 px-2">
             <%= b.radio_button(data: { action: "input->admin#switch", admin_target: "category", origin: 'categories', url: group_path }) %>
