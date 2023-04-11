@@ -1,4 +1,4 @@
-<div class="w-full">
+<div class="w-full pb-3">
   <% if notice.present? %>
     <p class="py-2 px-3 bg-green-50 mb-5 text-green-500 font-medium rounded-lg inline-block" id="notice"><%= notice %></p>
   <% end %>
@@ -8,16 +8,50 @@
     <%= link_to 'New article', new_article_path, class: "rounded-lg py-3 px-5 bg-blue-600 text-white block font-medium" %>
   </div>
 
-  <div id="articles" class="min-w-full grid  gap-1 h-full mt-3">
-    <% if  @pagy.present? && @pagy.count > 0  %>
-      <div class="px-6 py-4 shadow">
-        <h2 class="font-bold text-xl mb-2"> <%= @pagy.count %> Results </h2>
-        <div class="flex  items-center justify-center  w-full">
+  <div class="min-w-full grid gap-1 h-full mt-3">
+    <%= form_with url: "", method: :get, data: ({ turbo_frame: "employees", turbo_action: "advance" }) do |form| %>
+      <div class="flex items-start gap-2">
+        <div class="">
+          <%= form.label :show, class: "text-center  font-bold " %>
+          <%= form.select :count, options_for_select([10, 25, 50, 100], selected: params[:count]), {}, { onchange: "this.form.requestSubmit()" } %>
+        </div>
+        <div class=" flex-grow">
+          <%= form.label :search, class: "text-center  font-bold hidden" %>
+          <div class="relative border flex items-center border w-full h-12 rounded-lg focus-within:boder-none  focus-within:shadow-lg bg-white overflow-hidden">
+            <div class="grid place-items-center h-full w-12 text-gray-300">
+              <svg xmlns="http://www.w3.org/2000/svg" class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"/>
+              </svg>
+            </div>
+            <%= form.text_field :query, autocomplete: "off", value: params[:query], oninput: "this.form.requestSubmit()",
+                                placeholder: 'Search',
+                                class: "peer  flex-grow outline-none border-0 text-gray-700 pr-2" %>
+          </div>
+        </div>
+      </div>
+
+    <% end %>
+    <%= turbo_frame_tag "employees" do %>
+      <% if @pagy.present? && @pagy.count > 0 %>
+        <div class="p-1  flex items-baseline gap-1 justify-start">
+          <h2 class="font-bold text-xl mb-2"> <%= @pagy.count %> Results </h2>
+          <p class="text-center mt-6 text-gray-500"> (<%== pagy_info @pagy %>)</p>
+        </div>
+      <% end %>
+      <div class="table border rounded w-full">
+        <div class="table-header-group">
+          <%= sort_link_to "Title", :title, class: 'table-cell p-1 border-b text-blue-600 font-extrabold', data: ({ turbo_action: "advance" }) %>
+          <%= link_to "Actions", '#', class: 'table-cell p-1 border-b text-blue-600 font-extrabold text-end ' %>
+        </div>
+        <%= render @articles, term: params[:query] %>
+      </div>
+
+
+      <% if @pagy.present? && @pagy.count > 0 %>
+        <div class="  flex items-baseline gap-1 justify-end my-2 text-end">
           <%== pagy_nav(@pagy) %>
         </div>
-        <p class="text-center mt-6 text-gray-500"><%== pagy_info @pagy %></p>
-      </div>
+      <% end %>
     <% end %>
-    <%= render @articles %>
   </div>
 </div>
