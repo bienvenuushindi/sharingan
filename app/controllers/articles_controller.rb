@@ -4,8 +4,11 @@ class ArticlesController < ApplicationController
   before_action :set_select_collections, only: %i[update new create]
   # GET /articles or /articles.json
   def index
-    @pagy, @articles = pagy(Article.all.distinct, items: 8)
+    @articles = Article.all
+    @articles = @articles.search(params[:query]) if params[:query].present?
+    @pagy, @articles = pagy(@articles.reorder(sort_column => sort_direction), items: params.fetch(:count, 10))
   end
+
 
   # GET /articles/1 or /articles/1.json
   def show; end
@@ -85,5 +88,14 @@ class ArticlesController < ApplicationController
 
   def set_group
     @group = Category.parent_categories
+  end
+
+
+  def sort_column
+    params['sort'] || 'title'
+  end
+
+  def sort_direction
+    %w[asc desc].include?(params[:direction].to_s) ? params[:direction] : 'asc'
   end
 end
