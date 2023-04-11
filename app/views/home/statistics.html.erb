@@ -1,44 +1,51 @@
-<div class="flex flex-col lg:flex-row gap-3 px-2 mt-6 ">
-  <div class="w-full lg:w-1/4  ">
-    <h3 class="border flex items-center gap-2 text-blue-600  font-semibold text-2xl py-2 pl-3 rounded-t">
-      <div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+<div class="flex flex-col lg:flex-row gap-6 px-2 mt-6 ">
+  <div class="w-full lg:w-1/4 ">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
+      <div class="inline-block min-w-full align-middle">
+        <h3 class="border flex items-center gap-2 text-blue-600  font-semibold text-2xl py-2 pl-3 rounded-t">
+          <div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+          </div>
+          Searched By
+        </h3>
+        <table class="table-auto border w-full">
+          <thead class="bg-gray-100">
+          <tr class="border-b font-bold text-blue-400 text-left">
+            <th class="p-2 pb-3">email</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @users.each do |user| %>
+            <%= render "home/user", user: %>
+          <% end %>
+          </tbody>
+        </table>
       </div>
-      Users
-    </h3>
-    <table class="table-auto border w-full">
-      <thead>
-      <tr class="border-b font-bold text-blue-400 text-left">
-        <th class="p-2 pb-3"></th>
-        <th class="p-2 pb-3">email</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @users.each do |user| %>
-        <%= render "home/user", user: %>
-      <% end %>
-      </tbody>
-    </table>
+    </div>
   </div>
   <div class="w-full lg:w-3/4 ">
-    <h3 class="border flex items-center gap-2 text-blue-600  font-semibold text-2xl py-2 pl-3 rounded-t">
-      <div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+    <div class="overflow-x-auto shadow-md sm:rounded-lg">
+      <div class="inline-block min-w-full align-middle">
+        <h3 class="border flex items-center gap-2 text-blue-600  font-semibold text-2xl py-2 pl-3 rounded-t">
+          <div class="flex relative bg-blue-500 justify-center items-center w-4 h-4 mt-1 rounded-full ">
+          </div>
+          Articles Viewed
+        </h3>
+        <table class="table-auto w-full border min-w-full divide-y divide-gray-200  dark:divide-gray-700">
+          <thead class="bg-gray-100">
+          <tr class="border-b font-bold text-blue-400 text-left">
+            <th class="p-2 pb-3"></th>
+            <th class="p-2 pb-3">Title</th>
+            <th class="p-2 pb-3">Author</th>
+            <th class="p-2 pb-3">Visited</th>
+          </tr>
+          </thead>
+          <tbody>
+          <% @articles.each do |article| %>
+            <%= render "home/article", article: %>
+          <% end %>
+          </tbody>
+        </table>
       </div>
-      Most Read
-    </h3>
-    <table class="table-auto w-full border">
-      <thead>
-      <tr class="border-b font-bold text-blue-400 text-left">
-        <th class="p-2 pb-3"></th>
-        <th class="p-2 pb-3">Title</th>
-        <th class="p-2 pb-3">Author</th>
-        <th class="p-2 pb-3">Visited</th>
-      </tr>
-      </thead>
-      <tbody>
-      <% @articles.each do |article| %>
-        <%= render "home/article", article: %>
-      <% end %>
-      </tbody>
-    </table>
+    </div>
   </div>
 </div>
