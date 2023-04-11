@@ -8,7 +8,7 @@
       <p class="text-center mt-6 text-gray-500"><%== pagy_info @pagy %></p>
     </div>
   <% end %>
-  <div class="grid grid-cols-2 justify-between">
+  <div class="grid grid-cols-1 md:grid-cols-2 justify-between">
     <% searches.each do |article| %>
       <div class="px-4 py-2 border border-b border-gray-200">
         <% if term.present? %>

@@ -26,11 +26,11 @@
 <% end %>
 <%= render "searches", searches: @searches, term: params[:term] %>
 
-<div class="flex gap-3 px-2 mt-6 ">
-  <div class="w-3/4 shadow-lg border">
+<div class="flex flex-col md:flex-row gap-3 px-2 mt-6 ">
+  <div class="md:w-3/4 shadow-lg border">
       <%= render "articles_trends", articles: @articles_trends %>
   </div>
-  <div class="w-1/4 shadow-lg border">
+  <div class="md:w-1/4 shadow-lg border">
     <%= render "searches_trends", searches: @search_trends %>
   </div>
 </div>
