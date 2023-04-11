@@ -33413,6 +33413,16 @@
   var import_jquery = __toESM(require_jquery());
   window.jQuery = import_jquery.default;
   window.$ = import_jquery.default;
+  Turbo.setConfirmMethod((message, element) => {
+    let dialog = document.getElementById("turbo-confirm");
+    dialog.showModal();
+    dialog.querySelector("p").textContent = message;
+    return new Promise((resolve, reject) => {
+      dialog.addEventListener("close", () => {
+        resolve(dialog.returnValue == "confirm");
+      }, { once: true });
+    });
+  });
 })();
 /*! Bundled license information:
 
