@@ -6,7 +6,7 @@
     <span><%= category.count_articles %> </span>
   </td>
   <td class="actions flex justify-end pr-2">
-    <% if can? :manage, @category %>
+    <% if can? :manage, category %>
       <% if action_name != "show" %>
         <%= link_to category, class: "app-btn btn-blue btn-sm ml-1 rounded-lg" do %>
           <i class="fa fa-solid fa-eye"></i>
@@ -14,8 +14,14 @@
         <%= link_to edit_category_path(category), class: "app-btn btn-warning btn-sm ml-1  rounded-lg" do %>
           <i class="fa fa-solid fa-edit"></i>
         <% end %>
-        <% if can? :destroy, @category %>
-          <%= button_to category_path(category), method: :delete,form: { data: { turbo_confirm: "Are you sure you want to delete this category?" } }, class: "app-btn btn-danger btn-sm ml-1 text-white rounded-lg " do %>
+        <% if can? :destroy, category %>
+          <%= button_to category_path(category), method: :delete,form: {
+            data: {
+              turbo_confirm: "Are you sure you want to delete this category?",
+              turbo_confirm_text:  category.name,
+              turbo_confirm_description: "This action cannot be undone. Enter the category name"
+            }
+          }, class: "app-btn btn-danger btn-sm ml-1 text-white rounded-lg " do %>
             <i class="fa fa-solid fa-trash"></i>
           <% end %>
 

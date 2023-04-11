@@ -1,9 +1,14 @@
 <dialog id="turbo-confirm">
-    <form method="dialog">
-      <p>Are you sure ?</p>
-      <div>
-        <button value="cancel" class="btn-blue">Cancel</button>
-        <button value="confirm" class="btn-danger">Confirm</button>
-      </div>
-    </form>
+  <form method="dialog">
+    <h3 data-behavior="title">Are you sure ?</h3>
+    <div data-behavior="description"></div>
+    <div class="form-group">
+      <label for="confirm-text" class="hidden"></label>
+      <input id="confirm-text" name="confirm-text" data-behavior="confirm-text"/>
+    </div>
+    <div>
+      <button value="cancel" class="btn-blue">Cancel</button>
+      <button value="confirm" class="btn-danger">Confirm</button>
+    </div>
+  </form>
 </dialog>
