@@ -99,3 +99,6 @@ group :test do
   gem 'webdrivers'
 end
 gem 'jsbundling-rails'
+
+gem 'redis'
+gem 'sidekiq'
