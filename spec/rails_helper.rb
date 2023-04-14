@@ -3,12 +3,14 @@
 require 'spec_helper'
 ENV['RAILS_ENV'] ||= 'test'
 require_relative '../config/environment'
+require_relative './support/controller_macros'
 # Prevent database truncation if the environment is production
 abort('The Rails environment is running in production mode!') if Rails.env.production?
 require 'rspec/rails'
 # Add additional requires below this line. Rails is not loaded until this point!
 require 'capybara/rspec'
 require 'bullet'
+require 'support/helpers'
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -60,6 +62,8 @@ RSpec.configure do |config|
   # instead of true.
   config.use_transactional_fixtures = false
   config.include Capybara::DSL
+
+  config.include Helpers
   #
   # config.after_initialize do
   #   Bullet.enable        = true
@@ -112,6 +116,7 @@ RSpec.configure do |config|
 
   config.after(:each) do
     DatabaseCleaner.clean
+    Warden.test_reset!
   end
 
   if Bullet.enable?
@@ -124,6 +129,12 @@ RSpec.configure do |config|
       Bullet.end_request
     end
   end
+  config.expect_with :rspec do |c|
+    c.syntax = :except
+  end
   config.include Devise::Test::IntegrationHelpers, type: :feature
+  config.include Devise::Test::ControllerHelpers, type: :controller
+  config.include Warden::Test::Helpers
+  config.include ControllerMacros, :type => :controller
 end
 # rubocop:enable Metrics/BlockLength

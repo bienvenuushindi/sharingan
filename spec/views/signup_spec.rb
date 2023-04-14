@@ -10,5 +10,14 @@ RSpec.describe 'Sign Up process', type: :feature, js: true do
     page.execute_script("document.getElementById('new_user').submit()")
     expect(current_path).to eq(searches_path)
     expect(page).to have_content('Logout')
+    end
+  scenario 'Existing email' do
+    FactoryBot.create(:user, role: 'user')
+    # Email has already been taken
+    fill_in 'Email', with: "dohysepup@mailinator.com"
+    fill_in 'Password', with: 'Pa$$w0rd!'
+    fill_in 'Password', with: 'Pa$$w0rd!'
+    page.execute_script("document.getElementById('new_user').submit()")
+    expect(page).to have_content('Email has already been taken')
   end
 end
