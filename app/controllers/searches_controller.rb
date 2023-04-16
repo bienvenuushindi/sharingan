@@ -15,7 +15,6 @@ class SearchesController < ApplicationController
           created_at: time
         }.to_json
       )
-      # SearchQueryWorker.perform_async
     else
       @searches = []
     end
