@@ -32,7 +32,7 @@ class SearchQueryWorker
   end
 
   def insert_search(user_id, term)
-    search = Search.where(term: term.downcase).first_or_create!
+    search = Analytic.where(term: term.downcase).first_or_create!
     search.add_user(User.find(user_id))
   end
 
