@@ -1,5 +1,5 @@
-class ChangeForeignKeyForArticlesSearchs < ActiveRecord::Migration[7.0]
+class ChangeForeignKeyForArticlesAnalytics < ActiveRecord::Migration[7.0]
   def change
-    rename_column :Searchs_articles, :search_id, :Search_id
+    rename_column :analytics_articles, :search_id, :Search_id
   end
 end

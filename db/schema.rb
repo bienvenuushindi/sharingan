@@ -14,28 +14,28 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_160219) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
-  create_table "Searchs", force: :cascade do |t|
+  create_table "analytics", force: :cascade do |t|
     t.string "term", default: "", null: false
     t.integer "occurrence", default: 0, null: false
     t.integer "user_count", default: 0, null: false
     t.integer "article_count", default: 0, null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["term"], name: "index_Searchs_on_term"
+    t.index ["term"], name: "index_analytics_on_term"
   end
 
-  create_table "Searchs_articles", id: false, force: :cascade do |t|
+  create_table "analytics_articles", id: false, force: :cascade do |t|
     t.bigint "article_id", null: false
     t.bigint "Search_id", null: false
     t.datetime "created_at", default: "2023-01-19 10:58:22", null: false
-    t.index ["Search_id"], name: "index_Searchs_articles_on_Search_id"
-    t.index ["article_id"], name: "index_Searchs_articles_on_article_id"
+    t.index ["Search_id"], name: "index_analytics_articles_on_Search_id"
+    t.index ["article_id"], name: "index_analytics_articles_on_article_id"
   end
 
-  create_table "Searchs_users", id: false, force: :cascade do |t|
+  create_table "analytics_users", id: false, force: :cascade do |t|
     t.bigint "Search_id", null: false
     t.bigint "user_id", null: false
-    t.index ["Search_id"], name: "index_Searchs_users_on_Search_id"
+    t.index ["Search_id"], name: "index_analytics_users_on_Search_id"
     t.index ["user_id"], name: "index_analytics_users_on_user_id"
   end
 
