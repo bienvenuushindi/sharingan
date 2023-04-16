@@ -6,6 +6,16 @@ class SearchesController < ApplicationController
     if params_exist?
       @search_term = search_params
       find_best_match(@search_term, categories_params?)
+      time = DateTime.now.strftime('%Q').to_i
+      redis_key = "user:#{current_user.id}"
+      REDIS.lpush(
+        redis_key,
+        {
+          term: search_params,
+          created_at: time
+        }.to_json
+      )
+      # SearchQueryWorker.perform_async
     else
       @searches = []
     end
@@ -70,6 +80,7 @@ class SearchesController < ApplicationController
   def create(term, from_article: false)
     @search = Search.where(term: term.downcase).first_or_initialize
     @search.add_user(current_user)
+
     # @search.update_occurrence
     # @search.update_user_count
     if from_article

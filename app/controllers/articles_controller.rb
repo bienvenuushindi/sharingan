@@ -9,7 +9,6 @@ class ArticlesController < ApplicationController
     @pagy, @articles = pagy(@articles.reorder(sort_column => sort_direction), items: params.fetch(:count, 10))
   end
 
-
   # GET /articles/1 or /articles/1.json
   def show; end
 
@@ -89,7 +88,6 @@ class ArticlesController < ApplicationController
   def set_group
     @group = Category.parent_categories
   end
-
 
   def sort_column
     params['sort'] || 'title'

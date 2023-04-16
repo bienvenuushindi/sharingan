@@ -1,3 +1,15 @@
+GIT
+  remote: https://github.com/sinatra/sinatra.git
+  revision: 516ee3bc5a256c52e1452009168c2caf2751c5fb
+  specs:
+    rack-protection (3.0.6)
+      rack
+    sinatra (3.0.6)
+      mustermann (~> 3.0)
+      rack (~> 2.2, >= 2.2.4)
+      rack-protection (= 3.0.6)
+      tilt (~> 2.0)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -109,6 +121,8 @@ GEM
       warden (~> 1.2.3)
     diff-lcs (1.5.0)
     erubi (1.12.0)
+    et-orbi (1.2.7)
+      tzinfo
     factory_bot (6.2.1)
       activesupport (>= 5.0.0)
     factory_bot_rails (6.2.0)
@@ -116,6 +130,9 @@ GEM
       railties (>= 5.0.0)
     faker (3.1.0)
       i18n (>= 1.8.11, < 2)
+    fugit (1.8.1)
+      et-orbi (~> 1, >= 1.2.7)
+      raabro (~> 1.4)
     github-markup (4.0.1)
     globalid (1.0.1)
       activesupport (>= 5.0)
@@ -151,6 +168,8 @@ GEM
     mini_mime (1.1.2)
     minitest (5.17.0)
     msgpack (1.6.0)
+    mustermann (3.0.0)
+      ruby2_keywords (~> 0.0.1)
     net-imap (0.3.4)
       date
       net-protocol
@@ -175,6 +194,7 @@ GEM
     public_suffix (5.0.1)
     puma (5.6.5)
       nio4r (~> 2.0)
+    raabro (1.4.0)
     racc (1.6.2)
     rack (2.2.6.2)
     rack-test (2.0.2)
@@ -213,8 +233,26 @@ GEM
     rake (13.0.6)
     redis (5.0.6)
       redis-client (>= 0.9.0)
+    redis-actionpack (5.3.0)
+      actionpack (>= 5, < 8)
+      redis-rack (>= 2.1.0, < 3)
+      redis-store (>= 1.1.0, < 2)
+    redis-activesupport (5.3.0)
+      activesupport (>= 3, < 8)
+      redis-store (>= 1.3, < 2)
     redis-client (0.14.1)
       connection_pool
+    redis-namespace (1.10.0)
+      redis (>= 4)
+    redis-rack (2.1.4)
+      rack (>= 2.0.8, < 3)
+      redis-store (>= 1.2, < 2)
+    redis-rails (5.0.2)
+      redis-actionpack (>= 5.0, < 6)
+      redis-activesupport (>= 5.0, < 6)
+      redis-store (>= 1.2, < 2)
+    redis-store (1.9.2)
+      redis (>= 4, < 6)
     regexp_parser (2.6.1)
     reline (0.3.2)
       io-console (~> 0.5)
@@ -254,7 +292,10 @@ GEM
     rubocop-ast (1.23.0)
       parser (>= 3.1.1.0)
     ruby-progressbar (1.11.0)
+    ruby2_keywords (0.0.5)
     rubyzip (2.3.2)
+    rufus-scheduler (3.8.2)
+      fugit (~> 1.1, >= 1.1.6)
     selenium-webdriver (4.7.1)
       rexml (~> 3.2, >= 3.2.5)
       rubyzip (>= 1.2.2, < 3.0)
@@ -264,6 +305,10 @@ GEM
       connection_pool (>= 2.3.0)
       rack (>= 2.2.4)
       redis-client (>= 0.11.0)
+    sidekiq-scheduler (5.0.2)
+      rufus-scheduler (~> 3.2)
+      sidekiq (>= 6, < 8)
+      tilt (>= 1.4.0)
     sprockets (4.2.0)
       concurrent-ruby (~> 1.0)
       rack (>= 2.2.4, < 4)
@@ -276,6 +321,7 @@ GEM
     tailwindcss-rails (2.0.21-x86_64-linux)
       railties (>= 6.0.0)
     thor (1.2.1)
+    tilt (2.1.0)
     timeout (0.3.1)
     turbo-rails (1.3.2)
       actionpack (>= 6.0.0)
@@ -330,11 +376,15 @@ DEPENDENCIES
   rails (~> 7.0.4)
   rails-controller-testing
   redis
+  redis-namespace
+  redis-rails
   requestjs-rails
   rspec-rails
   rubocop
   selenium-webdriver
   sidekiq
+  sidekiq-scheduler
+  sinatra!
   sprockets-rails
   stimulus-rails
   tailwindcss-rails

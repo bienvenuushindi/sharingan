@@ -7,7 +7,8 @@ module ApplicationHelper
 
   def markdown(text)
     GitHub::Markup.render_s(GitHub::Markups::MARKUP_MARKDOWN, text,
-                            options: { commonmarker_opts: [:DEFAULT], commonmarker_exts: %i[autolink table strikethrough tagfilter] })
+                            options: { commonmarker_opts: [:DEFAULT],
+                                       commonmarker_exts: %i[autolink table strikethrough tagfilter] })
   end
 
   def translate_markdown(text)

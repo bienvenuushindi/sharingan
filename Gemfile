@@ -101,4 +101,8 @@ end
 gem 'jsbundling-rails'
 
 gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
 gem 'sidekiq'
+gem 'sidekiq-scheduler'
+gem 'sinatra', github: 'sinatra/sinatra'
