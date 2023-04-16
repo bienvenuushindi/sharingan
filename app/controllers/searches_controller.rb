@@ -6,7 +6,7 @@ class SearchesController < ApplicationController
     if params_exist?
       @search_term = search_params
       find_best_match(@search_term, categories_params?)
-      time = DateTime.now.strftime('%Q').to_i
+      time = DateTime.now.strftime('%Q')
       redis_key = "user:#{current_user.id}"
       REDIS.lpush(
         redis_key,

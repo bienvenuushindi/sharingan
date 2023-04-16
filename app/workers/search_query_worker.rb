@@ -1,28 +1,46 @@
-require 'sidekiq-scheduler'
-require 'redis'
-
 class SearchQueryWorker
   include Sidekiq::Worker
   # The perform method takes two arguments, user_id and query,
   # and pushes the query onto a Redis list with a key that includes the user ID.
   def perform
-    puts 'Hello this is your key = '
-    @redis ||= redis_instance
-    searches = fetch_searches
+    puts 'Sidekiq has started consuming...................'
+    users_searches = fetch_users_searches
 
-    return if searches.empty?
+    return puts 'No item at the moment' if users_searches.empty?
 
-    p searches
+    users_searches.each do |key|
+      consume(key) if REDIS.type(key) == 'list'
+    end
+    puts 'Sidekiq has finished consuming...................'
   end
 
   private
 
-  def fetch_searches
-    @redis.scan_each(match: 'user:*').to_a
+  def fetch_users_searches
+    REDIS.scan_each(match: 'user:*').to_a
   end
 
-  def redis_instance
-    redis_config = { url: ENV['REDIS_URL'] || 'redis://localhost:6379/0' }
-    Redis.new(redis_config)
+  def consume(key)
+    # get last element in the list
+    last_item = JSON.parse(REDIS.lindex(key, 0))
+    return unless right_interval?(last_item['created_at'])
+
+    # save search
+    insert_search(extract_user_id(key), last_item['term'])
+    # del key
+    REDIS.del(key)
+  end
+
+  def insert_search(user_id, term)
+    search = Search.where(term: term.downcase).first_or_initialize
+    search.add_user(User.find(user_id))
+  end
+
+  def extract_user_id(key)
+    key.split(':')[1]
+  end
+
+  def right_interval?(time1, time2 = DateTime.now.strftime('%Q'))
+    (time2.to_i - time1.to_i).abs.ceil >= 4000
   end
 end
