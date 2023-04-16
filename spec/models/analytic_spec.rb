@@ -1,7 +1,7 @@
 require 'rails_helper'
-RSpec.describe 'Search', type: :model do
+RSpec.describe 'Analytic', type: :model do
   subject do
-    Search.new(term: 'kak', occurrence: 2, user_count: 2, article_count: 2)
+    Analytic.new(term: 'kak', occurrence: 2, user_count: 2, article_count: 2)
   end
   before { subject.save }
 

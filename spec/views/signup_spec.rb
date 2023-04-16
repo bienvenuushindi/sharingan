@@ -8,7 +8,7 @@ RSpec.describe 'Sign Up process', type: :feature, js: true do
     fill_in 'Password', with: 'Pa$$w0rd!'
     fill_in 'Password', with: 'Pa$$w0rd!'
     page.execute_script("document.getElementById('new_user').submit()")
-    expect(current_path).to eq(searches_path)
+    expect(current_path).to eq(analytics_path)
     expect(page).to have_content('Logout')
     end
   scenario 'Existing email' do

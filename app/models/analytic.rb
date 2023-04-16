@@ -1,4 +1,4 @@
-class Search < ApplicationRecord
+class Analytic < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search, against: %i[term], using: { tsearch: { prefix: true } }
   has_and_belongs_to_many :users

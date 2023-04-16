@@ -1,7 +1,7 @@
-class SearchesController < ApplicationController
+class AnalyticsController < ApplicationController
   before_action :set_hot_topics, only: [:index]
   before_action :set_search, only: [:show]
-  # GET /searches or /searches.json
+  # GET /analytics or /analytics.json
   def index
     if params_exist?
       @search_term = search_params
@@ -45,14 +45,14 @@ class SearchesController < ApplicationController
   def find_best_match(term = '', categories = [])
     if categories.empty?
 
-      # p current_user.searches.uniq.pluck(:id)
-      # user_searches = current_user.searches.search(term)
+      # p current_user.analytics.uniq.pluck(:id)
+      # user_searches = current_user.analytics.search(term)
 
       # find user preferences
       # preference_articles = user_searches.includes(articles: [:categories]).uniq.map(&:articles).flatten
 
       # find similar term order by popularity
-      # popular_articles = Search.where.not(id: user_searches.pluck(:id))
+      # popular_articles = Analytic.where.not(id: user_searches.pluck(:id))
       #   .search(term).order('occurrence desc')
       #   .includes(articles: [:categories]).uniq.map(&:articles).flatten
 
@@ -75,9 +75,9 @@ class SearchesController < ApplicationController
     end
   end
 
-  # POST /searches or /searches.json
+  # POST /analytics or /analytics.json
   def create(term, from_article: false)
-    @search = Search.where(term: term.downcase).first_or_initialize
+    @search = Analytic.where(term: term.downcase).first_or_initialize
     @search.add_user(current_user)
 
     # @search.update_occurrence
@@ -106,7 +106,7 @@ class SearchesController < ApplicationController
 
   def visitor_page
     # load data required for operators
-    redirect_to searches_url
+    redirect_to analytics_url
   end
 
   def search_params
@@ -123,7 +123,7 @@ class SearchesController < ApplicationController
 
   def set_hot_topics
     @articles_trends = Article.sort_by_visited.limit(8)
-    @search_trends = Search.sort_by_occurrence.limit(8)
+    @search_trends = Analytic.sort_by_occurrence.limit(8)
     @categories = if params[:category].present?
                     Category.cr_categories(current_user).projects_categories
                   else
@@ -132,6 +132,6 @@ class SearchesController < ApplicationController
   end
 
   def set_search
-    @search = Search.find(params[:id])
+    @search = Analytic.find(params[:id])
   end
 end

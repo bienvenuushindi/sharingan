@@ -18,8 +18,8 @@ RSpec.describe 'Login process', type: :feature, js: true do
       fill_in 'Email', with: 'dohysepup@mailinator.com'
       fill_in 'Password', with: 'Pa$$w0rd!'
       page.execute_script("document.getElementById('new_user').submit()")
-      expect(current_path).to eq(searches_path)
-      expect_text('Search')
+      expect(current_path).to eq(analytics_path)
+      expect_text('Analytic')
       # sleep(5)
       expect_text('Logout')
     end
@@ -56,7 +56,7 @@ RSpec.describe 'Login process', type: :feature, js: true do
     page.execute_script("document.getElementById('new_user').submit()")
     # sleep(10)
     expect(current_path).to eq(admin_root_path)
-    expect_text('Search')
+    expect_text('Analytic')
     expect_text('Logout')
   end
 end

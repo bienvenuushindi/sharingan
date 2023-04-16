@@ -47,7 +47,7 @@ module ApplicationHelper
         icon: 'partials/icons/plus_icon'
       },
       {
-        text: 'Statistics',
+        text: 'Analytic',
         path: admin_root_path,
         icon: 'partials/icons/task'
       }

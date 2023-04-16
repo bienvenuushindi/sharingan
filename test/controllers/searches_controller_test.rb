@@ -6,7 +6,7 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should get index' do
-    get searches_url
+    get analytics_url
     assert_response :success
   end
 
@@ -16,17 +16,17 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should create search' do
-    assert_difference('Search.count') do
-      post searches_url,
+    assert_difference('Analytic.count') do
+      post analytics_url,
            params: { search: { article_count: @search.article_count, occurrence: @search.occurence, term: @search.term,
                                user_count: @search.user_count, user_id: @search.user_id } }
     end
 
-    assert_redirected_to search_url(Search.last)
+    assert_redirected_to analytic_url(Analytic.last)
   end
 
   test 'should show search' do
-    get search_url(@search)
+    get analytic_url(@search)
     assert_response :success
   end
 
@@ -36,17 +36,17 @@ class SearchesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test 'should update search' do
-    patch search_url(@search),
+    patch analytic_url(@search),
           params: { search: { article_count: @search.article_count, occurrence: @search.occurence, term: @search.term,
                               user_count: @search.user_count, user_id: @search.user_id } }
-    assert_redirected_to search_url(@search)
+    assert_redirected_to analytic_url(@search)
   end
 
   test 'should destroy search' do
-    assert_difference('Search.count', -1) do
-      delete search_url(@search)
+    assert_difference('Analytic.count', -1) do
+      delete analytic_url(@search)
     end
 
-    assert_redirected_to searches_url
+    assert_redirected_to analytics_url
   end
 end

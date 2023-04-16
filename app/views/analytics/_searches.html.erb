@@ -1,4 +1,4 @@
-<%= turbo_frame_tag "searches" do %>
+<%= turbo_frame_tag "analytics" do %>
   <% if params[:term].present? && @pagy.present? && @pagy.count > 0  %>
     <div class="px-6 py-4 shadow">
       <h2 class="font-bold text-xl mb-2"> <%= @pagy.count %> Results </h2>

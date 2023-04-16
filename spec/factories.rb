@@ -15,7 +15,7 @@ FactoryBot.define do
 end
 
 FactoryBot.define do
-  factory :search do
+  factory :statistics do
     title { Faker::ProgrammingLanguage.name }
     user_count { Faker::Number.between(from: 0, to: 7) }
     article_count { Faker::Number.between(from: 0, to: 7) }

@@ -1,5 +1,5 @@
 require 'rails_helper'
-RSpec.describe 'Search process', type: :feature, js: true do
+RSpec.describe 'Analytic process', type: :feature, js: true do
   before(:each) do
     FactoryBot.create(:article, { title: 'How do I cancel my subscription?', body: 'n/a' })
     FactoryBot.create(:article, { title: 'How do I cancel my account?', body: 'n/a' })

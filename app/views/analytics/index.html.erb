@@ -1,4 +1,4 @@
-<%= form_with(url: params[:category] ? search_by_category_path(category: 'Project') : searches_path , id: 'search', class: 'shadow-lg p-6 rounded', method: :get, data: { controller: "search-form", turbo_frame: "searches", turbo_action: "advance" }) do |form| %>
+<%= form_with(url: params[:category] ? search_by_category_path(category: 'Project') : analytics_path , id: 'search', class: 'shadow-lg p-6 rounded', method: :get, data: { controller: "search-form", turbo_frame: "analytics", turbo_action: "advance" }) do |form| %>
   <div class=" flex-grow">
     <%= form.label :term, class: "text-center my-5 font-bold text-4xl hidden" %>
     <div class="relative border flex items-center border w-full h-12 rounded-lg focus-within:boder-none mt-2 focus-within:shadow-lg bg-white overflow-hidden">
