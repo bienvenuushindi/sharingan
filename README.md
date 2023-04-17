@@ -138,7 +138,7 @@ rails s
 
 #### Additionally, run this if you want to test the app:
 
-> Note: Make sure your server is running in test mode. You can achieve that running the following command
+> Note: Make sure your server is running in test mode. You can run the following command to enter the test mode
 ```bash command
 rails s -e test
 ```
