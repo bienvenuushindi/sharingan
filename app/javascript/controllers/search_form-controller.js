@@ -11,15 +11,19 @@ export default class extends Controller {
         useDebounce(this, {wait: 500})
     }
 
+    getElementById(element) {
+        return document.getElementById(element)
+    }
+
 
     showBox() {
-        $('#projects-list').removeClass('hidden')
-        $('#cross-btn').removeClass('hidden')
+        this.getElementById('projects-list').classList.remove('hidden')
+        this.getElementById('cross-btn').classList.remove('hidden')
     }
 
     hideBox() {
-        $('#projects-list').addClass('hidden')
-        $('#cross-btn').addClass('hidden')
+        this.getElementById('projects-list').classList.add('hidden')
+        this.getElementById('cross-btn').classList.add('hidden')
     }
 
     search(event) {
@@ -32,7 +36,7 @@ export default class extends Controller {
         const element = event.target;
         [].forEach.call(projects, (item) => {
             if (!item.textContent.toLowerCase().includes(element.value.toLowerCase())) item.closest('.wrapper').classList.add('hidden');
-            else item.closest('.wrapper').removeClass('hidden');
+            else item.closest('.wrapper').classList.remove('hidden');
         })
     }
 }

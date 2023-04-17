@@ -11,13 +11,13 @@ export default class extends Controller {
     selectedProject = null
 
     connect() {
-        this.token = $(
+        this.token = document.querySelector(
             'meta[name="csrf-token"]'
-        ).attr('content');
+        ).content
 
         if (this.isOriginCategories) {
             if (!this.easyMDE) {
-                const textArea = $('#markdown').get(0);
+                const textArea = this.getElementById('markdown');
                 this.easyMDE = textArea && new EasyMDE({
                     element: textArea, placeholder: "Type here...", showIcons: ["code", "table"], insertTexts: {
                         horizontalRule: ["", "\n\n-----\n\n"],
@@ -33,7 +33,9 @@ export default class extends Controller {
     }
 
     resetFields() {
-        $(this.categoryTargets).prop('checked', false)
+        this.categoryTargets.forEach(item => {
+            if (!this.isOriginChecklist) item.checked = false;
+        })
     }
 
     get isOriginChecklist() {
@@ -49,37 +51,37 @@ export default class extends Controller {
     }
 
     get target() {
-        return $(this.categoryTarget).attr('data-origin')
+        return this.categoryTarget.getAttribute('data-origin')
     }
 
     get url() {
-        return $(this.categoryTarget).attr('data-url')
+        return this.categoryTarget.getAttribute('data-url')
     }
 
     async checklist() {
-        const container = $('#count-changes');
+        const container = getElementById('count-changes');
         if (this.categoryTarget.checked) {
-            const currentItem = $('#rc-' + this.categoryTarget.value).get(0);
+            const currentItem = this.getElementById('rc-' + this.categoryTarget.value);
             if (currentItem) currentItem.remove()
-            container.text(parseInt(container.text()) - 1)
+            this.categoryTarget.nextElementSibling.classList.remove('line-through')
         } else {
             await this.fetchBody()
             container.text(parseInt(container.text()) + 1)
         }
-        $(this.categoryTarget).next().toggleClass('line-through')
+        this.categoryTarget.nextElementSibling.classList.toggle('line-through')
     }
 
     copyText(event) {
         // Get the source
         const target = event.target
-        const siblings = $(target.closest('div')).children()
-        const lastElement = siblings.last()
-        const copyText = siblings.first()
+        const parent = target.closest('div')
+        const copyText = parent.firstElementChild;
+
         // Copy the text
         navigator.clipboard.writeText(copyText.html());
-        lastElement.removeClass('hidden');
+        parent.lastElementChild.classList.remove('hidden');
         setTimeout(() => {
-            lastElement.addClass('hidden')
+            parent.lastElementChild.classList.add('hidden')
         }, 1000)
     }
 
@@ -92,28 +94,28 @@ export default class extends Controller {
             responseKind: 'turbo-stream'
         }).then(response => response.text)
             .then(html => {
-                const container = $('#count-changes');
-                container.text(parseInt(container.text()) + 1)
+                const container = document.getElementById('count-changes');
+                container.textContent = (parseInt(container.textContent) + 1).toString()
             });
     }
 
     async switch(event) {
         const source = event.target
-        let url = $(source).attr('data-url') || this.url
-        const cat = $(source).attr('data-value') || source.value
+        let url = source.getAttribute('data-url') || this.url
+        const cat = source.getAttribute('data-value') || source.value
         if (this.isOriginReviews) {
-            const category = $('#project-' + cat).html()
-            $('#filter-project').value = category
-            $('#project-title').text(category)
-            $('#projects-list').addClass('hidden')
-            $('#cross-btn').addClass('hidden')
+            const category = this.getElementById('project-' + cat).innerHTML
+            this.getElementById('filter-project').value = this.getElementById('project-' + cat).textContent
+            this.getElementById('project-title').innerHTML = this.getElementById('project-' + cat).textContent
+            this.getElementById('projects-list').classList.add('hidden')
+            this.getElementById('cross-btn').classList.add('hidden')
             if (this.selectedProject !== cat) {
-                $('#review').html('')
+                this.getElementById('review').innerHTML = ''
                 this.selectedProject = cat;
             }
         }
         if (this.isOriginCategories) {
-            $('#add-article').removeClass('hidden')
+            this.getElementById('add-article').classList.remove('hidden')
         }
 
         const params = {category: cat, origin: this.target};
@@ -128,5 +130,9 @@ export default class extends Controller {
                 return Turbo.renderStreamMessage(html)
             });
         event.preventDefault()
+    }
+
+    getElementById(element) {
+        return document.getElementById(element)
     }
 }

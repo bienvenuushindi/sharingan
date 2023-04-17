@@ -6,30 +6,30 @@ export default class extends Controller {
 
     toggleAccordion(event) {
         const target = event.target
-        const isExpanded = $(target).attr('aria-expanded')
-        const controlsTarget = $(target).attr('aria-controls')
-        const targetContainer = $('#'+controlsTarget)
+        const isExpanded = target.getAttribute('aria-expanded')
+        const controlsTarget = target.getAttribute('aria-controls')
+        const targetContainer = document.getElementById(controlsTarget)
         if (isExpanded === 'true') {
-            $(target).attr('aria-expanded', false)
+            target.setAttribute('aria-expanded', false)
         } else {
-            $(target).attr('aria-expanded', true)
+            target.setAttribute('aria-expanded', true)
         }
-        $(target).find('span').toggleClass('rotate-180')
-        targetContainer.toggleClass('hidden')
+        target.querySelector('span').classList.toggle('rotate-180')
+        targetContainer.classList.toggle('hidden')
     }
 
-    sideMenu = $('#side-menu');
-    mainSection = $('#main');
+    sideMenu = document.getElementById('side-menu');
+    mainSection = document.getElementById('main');
 
     openMenu() {
-        this.sideMenu.removeClass('left-[-250px]');
-        this.sideMenu.addClass('left-0');
-        this.mainSection.addClass('xl:ml-64');
+        this.sideMenu.classList.remove('left-[-250px]');
+        this.sideMenu.classList.add('left-0');
+        this.mainSection.classList.add('xl:ml-64');
     }
 
     closeMenu() {
-        this.sideMenu.removeClass('left-0');
-        this.sideMenu.addClass('left-[-250px]');
-        this.mainSection.removeClass('xl:ml-64');
+        this.sideMenu.classList.remove('left-0');
+        this.sideMenu.classList.add('left-[-250px]');
+        this.mainSection.classList.remove('xl:ml-64');
     }
 }

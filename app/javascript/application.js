@@ -1,5 +1,4 @@
 // Configure your import map in config/importmap.rb. Read more: https://github.com/rails/importmap-rails\
-import jquery from 'jquery'
 import "@hotwired/turbo-rails"
 import "@rails/ujs"
 import "hotkeys-js"
@@ -8,33 +7,30 @@ import "./controllers/index.js"
 import "easymde"
 import "./lib/PagerJs.js"
 
-window.jQuery = jquery
-window.$ = jquery
-
 
 Turbo.setConfirmMethod((message, element) => {
     let confirmText = element.dataset.turboConfirmText
     let description = element.dataset.turboConfirmDescription || ""
-    let dialog = $('#turbo-confirm')
-    let confirmField = dialog.find("[data-behavior='confirm-text']")
-    let commitButton = dialog.find("button[value='confirm']")
-    dialog.find("[data-behavior='title']").text(message)
-    dialog.find("[data-behavior='description']").html(description)
-    confirmField.prop('value', '')
+    let dialog = document.getElementById('#turbo-confirm')
+    let confirmField = dialog.querySelector("[data-behavior='confirm-text']")
+    let commitButton = dialog.querySelector("button[value='confirm']")
+    dialog.querySelector("[data-behavior='title']").textContent = message
+    dialog.querySelector("[data-behavior='description']").innerHTML = description
+    confirmField.value = '';
     if (confirmText) {
-        confirmField.show()
-        commitButton.prop('disabled', true)
-        confirmField.get(0).addEventListener("input", (ev) => {
-            commitButton.prop('disabled', (ev.target.value !== confirmText))
+        confirmField.style.display = ''
+        commitButton.disabled = true
+        confirmField.addEventListener("input", (ev) => {
+            commitButton.disabled = (ev.target.value !== confirmText)
         })
     } else {
-        confirmField.hide()
+        confirmField.style.display = 'none'
     }
 
-    dialog.get(0).showModal()
+    dialog.showModal()
     return new Promise((resolve, reject) => {
-        dialog.get(0).addEventListener("close", () => {
-            resolve(dialog.get(0).returnValue === "confirm")
+        dialog.addEventListener("close", () => {
+            resolve(dialog.returnValue === "confirm")
         }, {once: true})
     })
 })
