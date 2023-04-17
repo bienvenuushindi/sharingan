@@ -4,8 +4,10 @@ require "active_support/core_ext/integer/time"
 # test suite. You never need to work with it otherwise. Remember that
 # your test database is "scratch space" for the test suite and is wiped
 # and recreated between test runs. Don't rely on the data there!
-
+# require 'sidekiq/testing'
+# Sidekiq::Testing.inline!
 Rails.application.configure do
+  # config.active_job.queue_adapter = :sidekiq
   # config.after_initialize do
   #   Bullet.enable        = true
   #   Bullet.bullet_logger = true

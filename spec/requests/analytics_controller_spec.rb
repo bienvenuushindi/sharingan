@@ -18,7 +18,8 @@ RSpec.describe 'Analytic', type: :request do
 
   describe 'GET /index' do
     before :each do
-      get search_path, params: { term: "Google" }
+      @term = "HelpJuice"
+      get search_path, params: { term: @term }
     end
 
     it 'response status success' do

@@ -16,7 +16,7 @@ RSpec.describe 'UsersControllers', type: :request do
 
     it 'renders the correct placeholder' do
       expect(response.body).to include('Login')
-      expect(response.body).to include('Register')
+      expect(response.body).to include('Sign up')
     end
   end
 end
