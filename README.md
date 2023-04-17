@@ -7,6 +7,8 @@
 > for each requirement that is not followed by the student.
 > The Admin can manage data and have analytics that display what users were searching for.
 
+
+
 ## 🛠 Built With <a name="built-with"></a>
 
 ### Tech Stack <a name="tech-stack"></a>
@@ -36,16 +38,24 @@ This project was built using.
   </ul>
 </details>
 
+<details>
+<summary> Other Technologies </summary>
+  <ul>
+    <li><a href="https://github.com/sidekiq/sidekiq">Sidekiq</a></li>
+    <li><a href="https://github.com/redis/redis">Redis</a></li>
+  </ul>
+</details>
+
 <!-- Features -->
 
 ### Key Features <a name="key-features"></a>
 
 - **User can register and login**
-- **Authenticated Code Reviewer can use realtime search box to search guidelines and generate ready to use comment for
+- **Authenticated User can use realtime search box to search guidelines and generate ready to use comment for
   each uncompleted requirements based on the company standard**
 - **Admin can manage data and view analytics that display what users were searching for**
 
-
+[//]: # (make the search box more efficient and handle thousands of requests per hour)
 
 <!-- LIVE DEMO -->
 
@@ -73,8 +83,10 @@ To get a local copy up and running, follow these steps.
 
 In order to run this project you need:
 
-- Ruby installed
-- Postgresql installed
+- Ruby 3.1 installed
+- Rails 7.0.4.3 installed
+- Redis server 7.0.10 installed and running 
+- PostgreSQL installed
 - Git installed [ In case you want to clone this repo using your terminal]
 - Any IDE or text editor that supports Ruby
 
@@ -112,7 +124,13 @@ $ rake db:seed
 $ yarn run build
 ```
 
-#### 6 Finally you can run the server:
+#### 6. Run Sidekiq for background processing :
+
+```bash command
+$  bundle exec sidekiq 
+```
+
+#### 7 Finally you can run the server:
 
 ```bash command
 rails s
@@ -120,10 +138,14 @@ rails s
 
 #### Additionally, run this if you want to test the app:
 
+> Note: Make sure your server is running in test mode. You can achieve that running the following command
 ```bash command
-rspec spec
+rails s -e test
 ```
-
+Finally you can run this command to test the solution
+```bash command
+bundle exec rspec spec
+```
 
 
 <!-- AUTHOR -->
