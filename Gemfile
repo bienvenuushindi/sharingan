@@ -81,8 +81,8 @@ end
 group :development do
   gem 'bullet'
   # Use console on exceptions pages [https://github.com/rails/web-console]
-  gem 'web-console'
   gem 'sinatra', github: 'sinatra/sinatra'
+  gem 'web-console'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
