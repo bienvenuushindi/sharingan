@@ -15,7 +15,7 @@
           </thead>
           <tbody>
           <% @users.each do |user| %>
-            <%= render "home/user", user: %>
+            <%= render "analytics/user", user: %>
           <% end %>
           </tbody>
         </table>
@@ -41,7 +41,7 @@
           </thead>
           <tbody>
           <% @articles.each do |article| %>
-            <%= render "home/article", article: %>
+            <%= render "analytics/article", article: %>
           <% end %>
           </tbody>
         </table>
