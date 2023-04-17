@@ -82,7 +82,7 @@ group :development do
   gem 'bullet'
   # Use console on exceptions pages [https://github.com/rails/web-console]
   gem 'web-console'
-
+  gem 'sinatra', github: 'sinatra/sinatra'
   # Add speed badges [https://github.com/MiniProfiler/rack-mini-profiler]
   # gem "rack-mini-profiler"
 
@@ -106,4 +106,3 @@ gem 'redis-namespace'
 gem 'redis-rails'
 gem 'sidekiq'
 gem 'sidekiq-scheduler'
-gem 'sinatra', github: 'sinatra/sinatra'
