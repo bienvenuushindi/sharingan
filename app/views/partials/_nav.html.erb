@@ -20,7 +20,7 @@
       </li>
       <li class="nav-item">
         <%= render 'partials/icons/task' %>
-        <%= link_to 'Analitics', admin_root_path, class: "nav-link py-3" %></li>
+        <%= link_to 'Analytics', admin_root_path, class: "nav-link py-3" %></li>
     <% end %>
     <li>
       <h4 class="px-2 text-white block font-medium text-gray-200 flex gap-3">
@@ -32,7 +32,7 @@
           <% if item.name == 'Projects' %>
             <li class="nav-item"><%= link_to item.name, search_by_category_path(category: item.name), class: "nav-link " %></li>
           <% else %>
-            <li class="nav-item"><%= link_to item.name, analytics_path, class: "nav-link " %></li>
+            <li class="nav-item"><%= link_to item.name, search_path, class: "nav-link " %></li>
           <% end %>
         <% end %>
       </ul>
