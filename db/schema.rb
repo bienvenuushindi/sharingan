@@ -27,7 +27,7 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_160219) do
   create_table "analytics_articles", id: false, force: :cascade do |t|
     t.bigint "article_id", null: false
     t.bigint "Search_id", null: false
-    t.datetime "created_at", default: "2023-01-19 10:58:22", null: false
+    t.datetime "created_at", default: "2023-04-16 21:08:46", null: false
     t.index ["Search_id"], name: "index_analytics_articles_on_Search_id"
     t.index ["article_id"], name: "index_analytics_articles_on_article_id"
   end
@@ -82,9 +82,9 @@ ActiveRecord::Schema[7.0].define(version: 2023_04_16_160219) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
-  add_foreign_key "analytics_articles", "analytics"
+  add_foreign_key "analytics_articles", "analytics", column: "Search_id"
   add_foreign_key "analytics_articles", "articles"
-  add_foreign_key "analytics_users", "analytics"
+  add_foreign_key "analytics_users", "analytics", column: "Search_id"
   add_foreign_key "analytics_users", "users"
   add_foreign_key "articles", "users"
   add_foreign_key "articles_categories", "articles"
