@@ -20,5 +20,4 @@ class Category < ApplicationRecord
   def count_articles
     articles.count
   end
-
 end

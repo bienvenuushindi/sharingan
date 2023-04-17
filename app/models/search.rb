@@ -1,36 +1,34 @@
-class Search < ApplicationRecord
-  include PgSearch::Model
-  pg_search_scope :search, against: %i[term], using: { tsearch: { prefix: true } }
-  has_and_belongs_to_many :users
-  has_and_belongs_to_many :articles
-  validates :term, presence: true, uniqueness: true
-  validates :user_count, numericality: { greater_than_or_equal_to: 0 }
-  validates :article_count, numericality: { greater_than_or_equal_to: 0 }
-  validates :occurrence, numericality: { greater_than_or_equal_to: 0 }
+class Search
+  class << self
+    def push_to_redis(redis, term)
+      redis.lpush(
+        "user:#{term[:creator].id}",
+        {
+          term: term[:value],
+          created_at: DateTime.now.strftime('%Q')
+        }.to_json
+      )
+    end
 
-  before_save :update_occurrence, :update_user_count
+    def find_best_match(term = '', categories = [])
+      if categories.empty?
+        searches = Article.includes([:categories]).search(term).order('visited_count desc')
+      else
+        articles = Category.includes([:articles]).where(id: categories).uniq.map(&:articles).flatten
+        searches = Article.includes([:categories]).where(id: articles).search(term).order('visited_count desc')
+      end
+      searches
+    end
 
-  def add_user(user)
-    users << user
-  end
-
-  def uniq_articles
-    articles.uniq
-  end
-
-  def self.sort_by_occurrence
-    order('occurrence desc')
-  end
-
-  def update_occurrence
-    increment!(:occurrence)
-  end
-
-  def update_user_count
-    increment!(:user_count)
-  end
-
-  def update_article_count
-    increment!(:article_count)
+    def insert(user, term, article = nil)
+      search = Analytic.where(term: term.downcase).first_or_create!
+      search.add_user(user)
+      if article
+        search.update_article_count
+        search.articles << article
+        article.update_visited_count
+      end
+      search
+    end
   end
 end

@@ -4,7 +4,7 @@ git_source(:github) { |repo| "https://github.com/#{repo}.git" }
 ruby '3.1.2'
 
 # CanCanCan is an authorization library for Ruby and Ruby on Rails which
-# restricts what resources a given user is allowed to access
+# restricts what analytics a given user is allowed to access
 gem 'cancancan'
 
 # Devise is a flexible authentication solution for Rails based on Warden
@@ -94,8 +94,16 @@ group :test do
   # Use system testing [https://guides.rubyonrails.org/testing.html#system-testing]
   gem 'capybara'
   gem 'factory_bot_rails'
+  gem 'mock_redis'
   gem 'rails-controller-testing'
   gem 'selenium-webdriver'
   gem 'webdrivers'
 end
 gem 'jsbundling-rails'
+
+gem 'redis'
+gem 'redis-namespace'
+gem 'redis-rails'
+gem 'sidekiq'
+gem 'sidekiq-scheduler'
+gem 'sinatra', github: 'sinatra/sinatra'

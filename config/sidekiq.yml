@@ -1,0 +1,5 @@
+:scheduler:
+  :schedule:
+    search_query:
+      cron: '0 * * * * *'   # Runs once per minute
+      class: SearchQueryWorker

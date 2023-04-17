@@ -57,11 +57,14 @@ export default class extends Controller {
     }
 
     async checklist() {
+        const container = $('#count-changes');
         if (this.categoryTarget.checked) {
             const currentItem = $('#rc-' + this.categoryTarget.value).get(0);
             if (currentItem) currentItem.remove()
+            container.text(parseInt(container.text()) - 1)
         } else {
             await this.fetchBody()
+            container.text(parseInt(container.text()) + 1)
         }
         $(this.categoryTarget).next().toggleClass('line-through')
     }
@@ -89,7 +92,8 @@ export default class extends Controller {
             responseKind: 'turbo-stream'
         }).then(response => response.text)
             .then(html => {
-                // return Turbo.renderStreamMessage(html)
+                const container = $('#count-changes');
+                container.text(parseInt(container.text()) + 1)
             });
     }
 

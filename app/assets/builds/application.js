@@ -33224,6 +33224,8 @@
         const currentItem = $("#rc-" + this.categoryTarget.value).get(0);
         if (currentItem)
           currentItem.remove();
+        const container = $("#count-changes");
+        container.text(parseInt(container.text()) - 1);
       } else {
         await this.fetchBody();
       }
@@ -33247,6 +33249,8 @@
         credentials: "same-origin",
         responseKind: "turbo-stream"
       }).then((response) => response.text).then((html) => {
+        const container = $("#count-changes");
+        container.text(parseInt(container.text()) + 1);
       });
     }
     async switch(event) {

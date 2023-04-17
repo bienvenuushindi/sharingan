@@ -2,7 +2,7 @@ class Article < ApplicationRecord
   include PgSearch::Model
   pg_search_scope :search, against: %i[title body], using: { tsearch: { prefix: true, normalization: 8 } }
   belongs_to :user
-  has_and_belongs_to_many :searches
+  has_and_belongs_to_many :statistics
   has_and_belongs_to_many :categories
   validates :title, presence: true
   validates :body, presence: true

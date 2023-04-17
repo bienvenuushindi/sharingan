@@ -125,6 +125,11 @@
   "resolved" "https://registry.npmjs.org/hotkeys-js/-/hotkeys-js-3.10.1.tgz"
   "version" "3.10.1"
 
+"jquery@^3.6.4":
+  "integrity" "sha512-v28EW9DWDFpzcD9O5iyJXg3R3+q+mET5JhnjJzQUZMHOv67bpSIHq81GEYpPNZHG+XXHsfSme3nxp/hndKEcsQ=="
+  "resolved" "https://registry.npmjs.org/jquery/-/jquery-3.6.4.tgz"
+  "version" "3.6.4"
+
 "marked@^4.1.0":
   "integrity" "sha512-yr8hSKa3Fv4D3jdZmtMMPghgVt6TWbk86WQaWhDloQjRSQhMMYCAro7jP7VDJrjjdV8pxVxMssXS8B8Y5DZ5aw=="
   "resolved" "https://registry.npmjs.org/marked/-/marked-4.2.12.tgz"
