@@ -51,25 +51,7 @@ class AnalyticsController < ApplicationController
     flash[:notice] = Search.insert(current_user, term) ? 'Search was successfully created.' : 'Search insertion failed.'
   end
 
-  def select_page
-    if current_user.admin?
-      admin_dashboard
-    else
-      user_page
-    end
-  end
-
   private
-
-  def admin_dashboard
-    # load data required for managers
-    redirect_to admin_root_url
-  end
-
-  def user_page
-    # load data required for operators
-    render search_url
-  end
 
   def search_params
     params[:term].strip

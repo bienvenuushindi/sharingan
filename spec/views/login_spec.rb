@@ -16,7 +16,7 @@ RSpec.describe 'Login', type: :feature, js: true do
       fill_in 'Email', with: 'dohysepup@mailinator.com'
       fill_in 'Password', with: 'Pa$$w0rd!'
       page.execute_script("document.getElementById('new_user').submit()")
-      expect(current_path).to eq(admin_root_path)
+      expect(current_path).to eq(authenticated_root_path)
       expect_text('Search')
       expect_text('Logout')
     end
@@ -24,7 +24,7 @@ RSpec.describe 'Login', type: :feature, js: true do
       fill_in 'Email', with: 'user@test.com'
       fill_in 'Password', with: 'Pa$$w0rd!'
       page.execute_script("document.getElementById('new_user').submit()")
-      expect(current_path).to eq(search_path)
+      expect(current_path).to eq(authenticated_root_path)
       expect_text('Search')
       expect_text('Logout')
     end
@@ -59,7 +59,7 @@ RSpec.describe 'Login', type: :feature, js: true do
     fill_in 'Password', with: 'Pa$$w0rd!'
     page.execute_script("document.getElementById('new_user').submit()")
     # sleep(10)
-    expect(current_path).to eq(admin_root_path)
+    expect(current_path).to eq(authenticated_root_path)
     expect_text('Analytic')
     expect_text('Logout')
   end
