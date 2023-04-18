@@ -68,7 +68,7 @@ class AnalyticsController < ApplicationController
 
   def user_page
     # load data required for operators
-    redirect_to search_url
+    render search_url
   end
 
   def search_params

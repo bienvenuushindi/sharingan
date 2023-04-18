@@ -26989,7 +26989,7 @@
   Turbo.setConfirmMethod((message, element) => {
     let confirmText = element.dataset.turboConfirmText;
     let description = element.dataset.turboConfirmDescription || "";
-    let dialog = document.getElementById("#turbo-confirm");
+    let dialog = document.getElementById("turbo-confirm");
     let confirmField = dialog.querySelector("[data-behavior='confirm-text']");
     let commitButton = dialog.querySelector("button[value='confirm']");
     dialog.querySelector("[data-behavior='title']").textContent = message;
