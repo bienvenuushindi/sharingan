@@ -7,6 +7,7 @@
 > for each requirement that is not followed by the student.
 > The Admin can manage data and have analytics that display what users were searching for.
 
+![showcase](https://user-images.githubusercontent.com/26736582/232632881-aadfed3a-e105-4e13-b0e7-b858e4eb2099.png)
 
 
 ## 🛠 Built With <a name="built-with"></a>
