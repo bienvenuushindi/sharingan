@@ -66,7 +66,7 @@ export default class extends Controller {
             this.categoryTarget.nextElementSibling.classList.remove('line-through')
         } else {
             await this.fetchBody()
-            container.text(parseInt(container.text()) + 1)
+            container.textContent = (parseInt(container.textContent) + 1).toString()
         }
         this.categoryTarget.nextElementSibling.classList.toggle('line-through')
     }

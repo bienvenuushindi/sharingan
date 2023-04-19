@@ -26777,7 +26777,7 @@
       return this.categoryTarget.getAttribute("data-url");
     }
     async checklist() {
-      const container = getElementById("count-changes");
+      const container = this.getElementById("count-changes");
       if (this.categoryTarget.checked) {
         const currentItem = this.getElementById("rc-" + this.categoryTarget.value);
         if (currentItem)
@@ -26785,7 +26785,7 @@
         this.categoryTarget.nextElementSibling.classList.remove("line-through");
       } else {
         await this.fetchBody();
-        container.text(parseInt(container.text()) + 1);
+        container.textContent = (parseInt(container.textContent) + 1).toString();
       }
       this.categoryTarget.nextElementSibling.classList.toggle("line-through");
     }
