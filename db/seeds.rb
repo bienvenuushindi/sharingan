@@ -5,7 +5,7 @@ unless User.where(email: 'admin@test.com').exists?
   admin = User.create(email: 'admin@test.com', password: 'admin@test')
   user = User.create(email: 'user@test.com', password: 'user@test')
   User.where(email: 'admin@test.com').update!(role: 'admin').first
-end
+
   categories = [
     'Guidelines',
     'Projects',
@@ -15,8 +15,6 @@ end
   categories.each do |item|
     Category.create(name: item, user: admin)
   end
-
-
   sub_categories = [
     'Invalid', 'review loop', 'Review mistake',
     'about project requirement', 'Review your project from trials!',
@@ -38,9 +36,7 @@ end
     @cat << (0..15).to_a.map { |n| Article.create(title: Faker::Movie.title, body: Faker::Lorem.paragraph, user: admin) }
   end
 
-  2.times do
-
-  end
+end
 
 
 
