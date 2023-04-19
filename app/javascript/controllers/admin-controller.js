@@ -59,7 +59,7 @@ export default class extends Controller {
     }
 
     async checklist() {
-        const container = getElementById('count-changes');
+        const container = this.getElementById('count-changes');
         if (this.categoryTarget.checked) {
             const currentItem = this.getElementById('rc-' + this.categoryTarget.value);
             if (currentItem) currentItem.remove()
