@@ -5,7 +5,7 @@ unless User.where(email: 'admin@test.com').exists?
   admin = User.create(email: 'admin@test.com', password: 'admin@test')
   user = User.create(email: 'user@test.com', password: 'user@test')
   User.where(email: 'admin@test.com').update!(role: 'admin').first
-
+end
   categories = [
     'Guidelines',
     'Projects',
@@ -16,9 +16,6 @@ unless User.where(email: 'admin@test.com').exists?
     Category.create(name: item, user: admin)
   end
 
-  categories.each do |item|
-    Category.create(name: Faker, user: admin)
-  end
 
   sub_categories = [
     'Invalid', 'review loop', 'Review mistake',
@@ -44,7 +41,6 @@ unless User.where(email: 'admin@test.com').exists?
   2.times do
 
   end
-end
 
 
 
